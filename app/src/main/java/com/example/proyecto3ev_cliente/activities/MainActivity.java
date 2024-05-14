@@ -1,15 +1,17 @@
-package com.example.proyecto3ev_cliente;
+package com.example.proyecto3ev_cliente.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.proyecto3ev_cliente.R;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vista_detallada);
+        setContentView(R.layout.activity_login);
 
         imagenLogo = findViewById(R.id.imageViewLogo);
         usuario = findViewById(R.id.editTextUsuario);
@@ -32,6 +34,27 @@ public class MainActivity extends AppCompatActivity {
         botonRecordarPass = findViewById(R.id.buttonRecordarPass);
         botonCrearCuenta = findViewById(R.id.buttonCrearCuenta);
 
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.configuracion) {
+            Intent intentPreferenciasActivity = new Intent(this, PreferenciasActivity.class);
+            startActivity(intentPreferenciasActivity);
+            return true;
+        }
+
+        if(item.getItemId()==R.id.exit){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
 
     }
 }

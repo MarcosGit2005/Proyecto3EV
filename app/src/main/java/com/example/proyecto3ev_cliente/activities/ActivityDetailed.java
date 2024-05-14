@@ -1,4 +1,4 @@
-package com.example.proyecto3ev_cliente;
+package com.example.proyecto3ev_cliente.activities;
 
 import android.os.Bundle;
 import android.widget.EditText;
@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.proyecto3ev_cliente.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ActivityDetailed extends AppCompatActivity {
