@@ -1,4 +1,4 @@
-package com.example.proyecto3ev_cliente;
+package com.example.proyecto3ev_cliente.activities;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -6,6 +6,8 @@ import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.proyecto3ev_cliente.R;
 
 public class CrearCuentaActivity extends AppCompatActivity {
     private EditText nombreApellidos;
