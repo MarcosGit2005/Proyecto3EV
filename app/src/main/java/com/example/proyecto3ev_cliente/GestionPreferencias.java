@@ -48,6 +48,6 @@ public class GestionPreferencias {
 
     public String getLanguage(Context context){
         inicializa(context);
-        return pref.getString("idioma", "spanish");
+        return pref.getString("idioma", "spanish") ;
     }
 }
