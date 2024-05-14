@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_cuenta);
+        setContentView(R.layout.activity_login);
 
         imagenLogo = findViewById(R.id.imageViewLogo);
         usuario = findViewById(R.id.editTextUsuario);
