@@ -26,7 +26,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
         nombreApellidos = findViewById(R.id.nombreApellidos);
         domicilio = findViewById(R.id.domicilio);
-        codigoPostal = findViewById(R.id.domicilio);
+        codigoPostal = findViewById(R.id.domicilio) ;
         correo = findViewById(R.id.correo);
         date = findViewById(R.id.date);
         numTarjeta = findViewById(R.id.numTarjeta);
