@@ -18,7 +18,7 @@
         app:srcCompat="@android:drawable/btn_star_big_on" />
 
     <EditText
-        android:id="@+id/editTextNombre"
+        android:id="@+id/editTextUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -37,9 +37,9 @@
         android:ems="10"
         android:hint="Introduce tu contraseña"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNombre"
-        app:layout_constraintStart_toStartOf="@+id/editTextNombre"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNombre" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextUsuario"
+        app:layout_constraintStart_toStartOf="@+id/editTextUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsuario" />
 
     <Button
         android:id="@+id/buttonEntrar"
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonEntrar" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/buttonCrearCuenta"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
