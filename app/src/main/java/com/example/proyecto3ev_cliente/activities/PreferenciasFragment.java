@@ -1,4 +1,4 @@
-package com.example.proyecto3ev_cliente;
+package com.example.proyecto3ev_cliente.activities;
 
 
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.PreferenceFragmentCompat;
+
+import com.example.proyecto3ev_cliente.R;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,15 +22,15 @@ public class PreferenciasFragment extends PreferenceFragmentCompat {
         // Modificacion de la vista de preferencias por codigo
 
         // EditTextPreference
-        final EditTextPreference editTextEndPoint = findPreference("endPoint");
-        editTextEndPoint.setSummary("Actualmente: " + GestionPreferencias.getInstance().getEndPoint(getContext()));
+        final EditTextPreference editTextEndPoint = findPreference("requestMapping");
+        editTextEndPoint.setSummary("Actualmente: " + GestionPreferencias.getInstance().getRequestMapping(getContext()));
 
         editTextEndPoint.setOnPreferenceChangeListener((preference, newValue) -> {
             editTextEndPoint.setSummary("Actualmente: " + newValue);
             return true;
         });
 
-        final EditTextPreference editTextRutaServer = findPreference("rutaServer");
+        final EditTextPreference editTextRutaServer = findPreference("ruta_puerto");
         editTextRutaServer.setSummary("Actualmente: " + GestionPreferencias.getInstance().getRutaServer(getContext()));
 
         editTextRutaServer.setOnPreferenceChangeListener((preference, newValue) -> {

@@ -14,8 +14,10 @@ import retrofit2.Retrofit;
 
 public class CallMethods<T>  {
 
-    private Retrofit retrofit = new Retrofit.Builder().baseUrl(Parameters.URL).build();
-    private APIService service = retrofit.create(APIService.class);
+    //private Retrofit retrofit = new Retrofit.Builder().baseUrl(Parameters.URL).build();
+    //private APIService service = retrofit.create(APIService.class);
+    private APIService service = null;
+    private Retrofit retrofit = null;
     private static CallMethods callMethods;
 
     public static CallMethods getCallMethodsObject(){
@@ -24,6 +26,7 @@ public class CallMethods<T>  {
         }
         return callMethods;
     }
+
 
     public String get(String url){
         Call<ResponseBody> call = service.getCall(url);

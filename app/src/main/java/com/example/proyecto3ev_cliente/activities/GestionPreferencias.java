@@ -1,9 +1,11 @@
-package com.example.proyecto3ev_cliente;
+package com.example.proyecto3ev_cliente.activities;
 
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import com.example.proyecto3ev_cliente.R;
 
 
 public class GestionPreferencias {
@@ -26,24 +28,19 @@ public class GestionPreferencias {
             pref = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public String getUnidades(Context context){
+    public String getRequestMapping(Context context){
         inicializa(context);
-        return pref.getString("unidades","standard");
-    }
-
-    public String getEndPoint(Context context){
-        inicializa(context);
-        return pref.getString("endPoint","/api");
+        return pref.getString("requestMapping","/api");
     }
 
     public String getRutaServer(Context context){
         inicializa(context);
-        return pref.getString("rutaServer","poner ruta cuando la tengamos");
+        return pref.getString("ruta_puerto","poner ruta cuando la tengamos");
     }
 
     public String getTheme(Context context){
         inicializa(context);
-        return pref.getString(context.getString(R.string.settings_theme_key),ThemeSetup.Mode.DEFAULT.name());
+        return pref.getString(context.getString(R.string.settings_theme_key), ThemeSetup.Mode.DEFAULT.name());
     }
 
     public String getLanguage(Context context){

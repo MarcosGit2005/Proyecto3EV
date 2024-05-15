@@ -1,9 +1,11 @@
-package com.example.proyecto3ev_cliente;
+package com.example.proyecto3ev_cliente.activities;
 
 import android.content.Context;
 import android.os.Build;
 
 import androidx.appcompat.app.AppCompatDelegate;
+
+import com.example.proyecto3ev_cliente.activities.GestionPreferencias;
 
 public final class ThemeSetup {
 

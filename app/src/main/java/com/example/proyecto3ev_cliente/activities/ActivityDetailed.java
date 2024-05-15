@@ -8,9 +8,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.proyecto3ev_cliente.R;
+import com.example.proyecto3ev_cliente.base.BaseActivity;
+import com.example.proyecto3ev_cliente.base.CallInterface;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class ActivityDetailed extends AppCompatActivity {
+public class ActivityDetailed extends BaseActivity implements CallInterface {
 
     private ImageView imagenPelicula;
     private TextView titulo;
@@ -42,6 +44,16 @@ public class ActivityDetailed extends AppCompatActivity {
         fechaEstreno = findViewById(R.id.textViewFechaDetailed);
         voto = findViewById(R.id.editTextNota);
         buttonCarrito = findViewById(R.id.buttonCarrito);
+
+    }
+
+    @Override
+    public void doInBackground() {
+
+    }
+
+    @Override
+    public void doInUI() {
 
     }
 }

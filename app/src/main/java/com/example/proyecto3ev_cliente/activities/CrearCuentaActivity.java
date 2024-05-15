@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.activity.EdgeToEdge;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.proyecto3ev_cliente.R;
+import com.example.proyecto3ev_cliente.base.BaseActivity;
+import com.example.proyecto3ev_cliente.base.CallInterface;
 
-public class CrearCuentaActivity extends AppCompatActivity {
+public class CrearCuentaActivity extends AppCompatActivity implements CallInterface {
     private EditText nombreApellidos;
     private EditText domicilio;
     private EditText codigoPostal;
@@ -23,7 +25,6 @@ public class CrearCuentaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_crear_cuenta);
 
         nombreApellidos = findViewById(R.id.nombreApellidos);
@@ -36,6 +37,16 @@ public class CrearCuentaActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         botonCrear = findViewById(R.id.botonCrear);
 
+
+    }
+
+    @Override
+    public void doInBackground() {
+
+    }
+
+    @Override
+    public void doInUI() {
 
     }
 }
