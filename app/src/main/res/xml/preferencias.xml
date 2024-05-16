@@ -10,10 +10,10 @@
             android:title="Idioma" />
         <EditTextPreference
             android:inputType="text"
-            android:key="endPoint"
-            android:title="Establece el endpoint que quieras" />
+            android:key="requestMapping"
+            android:title="RequestMapping API: " />
         <EditTextPreference
-            android:key="rutaServer"
+            android:key="ruta_puerto"
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:title="Establece la ruta del servidor" />

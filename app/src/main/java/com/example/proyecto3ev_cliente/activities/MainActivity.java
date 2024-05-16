@@ -11,9 +11,11 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.proyecto3ev_cliente.R;
+import com.example.proyecto3ev_cliente.base.BaseActivity;
+import com.example.proyecto3ev_cliente.base.CallInterface;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity implements CallInterface {
 
     private ImageView imagenLogo;
     private EditText usuario;
@@ -34,7 +36,10 @@ public class MainActivity extends AppCompatActivity {
         botonRecordarPass = findViewById(R.id.buttonRecordarPass);
         botonCrearCuenta = findViewById(R.id.buttonCrearCuenta);
 
-
+        botonCrearCuenta.setOnClickListener(view -> {
+            Intent intent = new Intent(this, CrearCuentaActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -55,6 +60,16 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+
+    }
+
+    @Override
+    public void doInBackground() {
+
+    }
+
+    @Override
+    public void doInUI() {
 
     }
 }
