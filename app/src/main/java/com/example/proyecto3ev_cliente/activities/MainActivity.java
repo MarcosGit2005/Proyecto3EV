@@ -40,6 +40,10 @@ public class MainActivity extends BaseActivity implements CallInterface {
             Intent intent = new Intent(this, CrearCuentaActivity.class);
             startActivity(intent);
         });
+        botonRecordarPass.setOnClickListener(view ->{
+            Intent intent = new Intent(this,ContrasenyaActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override

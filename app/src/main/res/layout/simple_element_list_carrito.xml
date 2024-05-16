@@ -35,4 +35,13 @@
         android:text="00,00€"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewPeli"
         app:layout_constraintStart_toStartOf="@+id/textView13" />
+
+    <Button
+        android:id="@+id/añadirBoton"
+        android:layout_width="95dp"
+        android:layout_height="40dp"
+        android:text="Añadir"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintTop_toTopOf="@+id/textView13"
+        tools:layout_editor_absoluteX="290dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
