@@ -14,10 +14,9 @@ import retrofit2.Retrofit;
 
 public class CallMethods<T>  {
 
-    //private Retrofit retrofit = new Retrofit.Builder().baseUrl(Parameters.URL).build();
-    //private APIService service = retrofit.create(APIService.class);
-    private APIService service = null;
-    private Retrofit retrofit = null;
+    private Retrofit retrofit = new Retrofit.Builder().baseUrl("http://172.30.198.204:8080").build();
+    private APIService service = retrofit.create(APIService.class);
+
     private static CallMethods callMethods;
 
     public static CallMethods getCallMethodsObject(){

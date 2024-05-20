@@ -25,7 +25,6 @@ public class CarritoActivity extends BaseActivity implements CallInterface {
 
         recyclerView = findViewById(R.id.recyclerViewCarrito);
         sumaTotal = findViewById(R.id.precioTotal);
-        alquilarboton = findViewById(R.id.botonAlquilar);
 
     }
 

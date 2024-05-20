@@ -1,0 +1,95 @@
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities;\n\nimport android.content.Intent;\nimport android.os.Bundle;\nimport android.view.Menu;\nimport android.view.MenuItem;\nimport android.widget.Button;\nimport android.widget.EditText;\nimport android.widget.ImageView;\n\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport com.example.proyecto3ev_cliente.R;\nimport com.example.proyecto3ev_cliente.base.BaseActivity;\nimport com.example.proyecto3ev_cliente.base.CallInterface;\n\n\npublic class MainActivity extends BaseActivity implements CallInterface {\n\n    private ImageView imagenLogo;\n    private EditText usuario;\n    private EditText password;\n    private Button botonEntrar;\n    private Button botonRecordarPass;\n    private Button botonCrearCuenta;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_login);\n\n        imagenLogo = findViewById(R.id.imageViewLogo);\n        usuario = findViewById(R.id.editTextUsuario);\n        password = findViewById(R.id.editTextContraseña);\n        botonEntrar = findViewById(R.id.buttonEntrar);\n        botonRecordarPass = findViewById(R.id.buttonRecordarPass);\n        botonCrearCuenta = findViewById(R.id.buttonCrearCuenta);\n\n        botonCrearCuenta.setOnClickListener(view -> {\n            Intent intent = new Intent(this, CrearCuentaActivity.class);\n            startActivity(intent);\n        });\n    }\n\n    @Override\n    public boolean onCreateOptionsMenu(Menu menu) {\n        getMenuInflater().inflate(R.menu.menu, menu);\n        return super.onCreateOptionsMenu(menu);\n    }\n\n    @Override\n    public boolean onOptionsItemSelected(MenuItem item) {\n        if(item.getItemId()==R.id.configuracion) {\n            Intent intentPreferenciasActivity = new Intent(this, PreferenciasActivity.class);\n            startActivity(intentPreferenciasActivity);\n            return true;\n        }\n\n        if(item.getItemId()==R.id.exit){\n            finish();\n        }\n        return super.onOptionsItemSelected(item);\n\n    }\n\n    @Override\n    public void doInBackground() {\n\n    }\n\n    @Override\n    public void doInUI() {\n\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java	(revision f8b8ed0d80fc756066539c2f761aac6c1afaf26d)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java	(date 1715871877324)
+@@ -10,7 +10,9 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import com.example.proyecto3ev_cliente.API.Connector;
+ import com.example.proyecto3ev_cliente.R;
++import com.example.proyecto3ev_cliente.activities.model.Cliente;
+ import com.example.proyecto3ev_cliente.base.BaseActivity;
+ import com.example.proyecto3ev_cliente.base.CallInterface;
+ 
+@@ -40,6 +42,20 @@
+             Intent intent = new Intent(this, CrearCuentaActivity.class);
+             startActivity(intent);
+         });
++
++        botonEntrar.setOnClickListener(view -> {
++            executeCall(new CallInterface() {
++                @Override
++                public void doInBackground() {
++
++                }
++
++                @Override
++                public void doInUI() {
++
++                }
++            });
++        });
+     }
+ 
+     @Override
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"jbr-17\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\n  </component>\n  <component name=\"ProjectType\">\n    <option name=\"id\" value=\"Android\" />\n  </component>\n  <component name=\"VisualizationToolProject\">\n    <option name=\"state\">\n      <ProjectState>\n        <option name=\"scale\" value=\"0.9726402188782489\" />\n      </ProjectState>\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision f8b8ed0d80fc756066539c2f761aac6c1afaf26d)
++++ b/.idea/misc.xml	(date 1715869035466)
+@@ -1,4 +1,3 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Cliente.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities.model;\n\n\nimport java.sql.Timestamp;\n\npublic class Cliente {\n    private String usuario;\n    private String contraseña;\n    private String nombre;\n    private String apellidos;\n    private String domicilio;\n    private String CP;\n    private String email;\n    private String fechaNacimiento;\n    private String numTarjeta;\n    private String tipoUsuario;\n    private Timestamp changedTs;\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Cliente.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Cliente.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Cliente.java	(revision f8b8ed0d80fc756066539c2f761aac6c1afaf26d)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Cliente.java	(date 1715793402770)
+@@ -9,7 +9,7 @@
+     private String nombre;
+     private String apellidos;
+     private String domicilio;
+-    private String CP;
++    private int CP;
+     private String email;
+     private String fechaNacimiento;
+     private String numTarjeta;
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    alias(libs.plugins.androidApplication)\n}\n\nandroid {\n    namespace 'com.example.proyecto3ev_cliente'\n    compileSdk 34\n\n    defaultConfig {\n        applicationId \"com.example.proyecto3ev_cliente\"\n        minSdk 24\n        targetSdk 34\n        versionCode 1\n        versionName \"1.0\"\n\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n    }\n\n    buildTypes {\n        release {\n            minifyEnabled false\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n        }\n    }\n    compileOptions {\n        sourceCompatibility JavaVersion.VERSION_1_8\n        targetCompatibility JavaVersion.VERSION_1_8\n    }\n}\n\ndependencies {\n\n    implementation 'androidx.appcompat:appcompat:1.6.1'\n    implementation 'com.google.android.material:material:1.8.0'\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\n    implementation 'androidx.preference:preference:1.2.1'\n    testImplementation 'junit:junit:4.13.2'\n    androidTestImplementation 'androidx.test.ext:junit:1.1.5'\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'\n    // Libreria para la manipulacion de json\n    implementation 'com.google.code.gson:gson:2.8.8'\n    // Libreria para las llamadas a la API\n    implementation 'com.squareup.retrofit2:retrofit:2.9.0'\n    // Libreria para el manejo de imagenes\n    implementation 'com.squareup.picasso:picasso:2.71828'\n    // Libreria para el manejo de imagenes\n    implementation 'com.android.volley:volley:1.2.1'\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision f8b8ed0d80fc756066539c2f761aac6c1afaf26d)
++++ b/app/build.gradle	(date 1715798188490)
+@@ -33,7 +33,9 @@
+     implementation 'androidx.appcompat:appcompat:1.6.1'
+     implementation 'com.google.android.material:material:1.8.0'
+     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
++
+     implementation 'androidx.preference:preference:1.2.1'
++
+     testImplementation 'junit:junit:4.13.2'
+     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

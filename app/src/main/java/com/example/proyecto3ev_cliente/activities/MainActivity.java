@@ -7,12 +7,14 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.proyecto3ev_cliente.API.Connector;
 import com.example.proyecto3ev_cliente.R;
+import com.example.proyecto3ev_cliente.activities.model.Cliente;
 import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
+import com.example.proyecto3ev_cliente.base.Parameters;
 
 
 public class MainActivity extends BaseActivity implements CallInterface {
@@ -23,11 +25,23 @@ public class MainActivity extends BaseActivity implements CallInterface {
     private Button botonEntrar;
     private Button botonRecordarPass;
     private Button botonCrearCuenta;
+    private Cliente clienteSesión;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ThemeSetup.applyPreferenceTheme(getApplicationContext());
+
+        String ruta = GestionPreferencias.getInstance().getRutaServer(getApplicationContext());
+        String requestMap = GestionPreferencias.getInstance().getRequestMapping(getApplicationContext());
+        String lang = GestionPreferencias.getInstance().getLanguage(getApplicationContext());
+
+        Parameters.ip_port = ruta;
+        Parameters.requestMapping = requestMap;
+        Parameters.LANG = lang;
+        Parameters.URL = Parameters.API + Parameters.ip_port + Parameters.requestMapping;
 
         imagenLogo = findViewById(R.id.imageViewLogo);
         usuario = findViewById(R.id.editTextUsuario);
@@ -44,6 +58,18 @@ public class MainActivity extends BaseActivity implements CallInterface {
             Intent intent = new Intent(this,ContrasenyaActivity.class);
             startActivity(intent);
         });
+
+        botonEntrar.setOnClickListener(view -> {
+            if (usuario.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
+                Toast.makeText(getApplicationContext(), "Escribe el usuario y la contraseña!", Toast.LENGTH_SHORT).show();
+            } else {
+                showProgress();
+                executeCall(this);
+            }
+
+        });
+
+
     }
 
     @Override
@@ -68,12 +94,24 @@ public class MainActivity extends BaseActivity implements CallInterface {
     }
 
     @Override
-    public void doInBackground() {
+    public void doInBackground(){
+
+        String user = usuario.getText().toString();
+        String pass = password.getText().toString();
+
+        clienteSesión = Connector.getConector().get(Cliente.class,
+                "/clientesLogin/"
+                        +user+"/"+pass);
 
     }
 
     @Override
     public void doInUI() {
-
+        hideProgress();
+        if (clienteSesión==null){
+            Toast.makeText(getApplicationContext(), "No se ha podido iniciar sesión.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "SESIÓN INICIADA", Toast.LENGTH_SHORT).show();
+        }
     }
 }

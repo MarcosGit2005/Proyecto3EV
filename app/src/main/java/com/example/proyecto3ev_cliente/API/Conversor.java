@@ -15,6 +15,7 @@ public class Conversor {
             gson = new Gson();
             conversor=new Conversor();
         }
+
         return conversor;
     }
 
