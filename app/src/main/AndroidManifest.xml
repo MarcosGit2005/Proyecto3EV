@@ -26,10 +26,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ActivityDetailed"></activity>
-        <activity android:name=".activities.PreferenciasActivity"></activity>
+        <activity android:name=".activities.preferences.PreferenciasActivity"></activity>
         <activity android:name=".activities.CarritoActivity"></activity>
         <activity android:name=".activities.CrearCuentaActivity"></activity>
         <activity android:name=".activities.ContrasenyaActivity"></activity>
+        <activity android:name=".activities.PeliculasActivity"></activity>
     </application>
 
 </manifest>

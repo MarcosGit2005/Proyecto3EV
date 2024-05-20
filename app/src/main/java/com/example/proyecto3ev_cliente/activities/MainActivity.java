@@ -12,6 +12,9 @@ import android.widget.Toast;
 import com.example.proyecto3ev_cliente.API.Connector;
 import com.example.proyecto3ev_cliente.R;
 import com.example.proyecto3ev_cliente.activities.model.Cliente;
+import com.example.proyecto3ev_cliente.activities.preferences.GestionPreferencias;
+import com.example.proyecto3ev_cliente.activities.preferences.PreferenciasActivity;
+import com.example.proyecto3ev_cliente.activities.preferences.ThemeSetup;
 import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
 import com.example.proyecto3ev_cliente.base.Parameters;
@@ -25,7 +28,7 @@ public class MainActivity extends BaseActivity implements CallInterface {
     private Button botonEntrar;
     private Button botonRecordarPass;
     private Button botonCrearCuenta;
-    private Cliente clienteSesión;
+    private Cliente clienteSesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +69,7 @@ public class MainActivity extends BaseActivity implements CallInterface {
                 showProgress();
                 executeCall(this);
             }
-
         });
-
-
     }
 
     @Override
@@ -99,19 +99,20 @@ public class MainActivity extends BaseActivity implements CallInterface {
         String user = usuario.getText().toString();
         String pass = password.getText().toString();
 
-        clienteSesión = Connector.getConector().get(Cliente.class,
-                "/clientesLogin/"
-                        +user+"/"+pass);
+        clienteSesion = Connector.getConector().get(Cliente.class,
+                "/clientesLogin/"+user+"/"+pass);
 
     }
 
     @Override
     public void doInUI() {
         hideProgress();
-        if (clienteSesión==null){
+        if (clienteSesion==null){
             Toast.makeText(getApplicationContext(), "No se ha podido iniciar sesión.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getApplicationContext(), "SESIÓN INICIADA", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, PeliculasActivity.class);
+            intent.putExtra("clienteSesion",clienteSesion);
+            startActivity(intent);
         }
     }
 }

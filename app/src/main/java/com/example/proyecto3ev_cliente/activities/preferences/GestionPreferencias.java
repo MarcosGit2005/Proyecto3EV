@@ -1,4 +1,4 @@
-package com.example.proyecto3ev_cliente.activities;
+package com.example.proyecto3ev_cliente.activities.preferences;
 
 
 import android.content.Context;
