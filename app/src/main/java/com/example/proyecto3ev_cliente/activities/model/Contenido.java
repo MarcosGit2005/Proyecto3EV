@@ -1,6 +1,7 @@
 package com.example.proyecto3ev_cliente.activities.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Clase para crear objetos de contenido.
@@ -229,5 +230,18 @@ public class Contenido implements Serializable {
                 ", disponibilidad=" + disponibilidad +
                 ", disponibleHasta='" + disponibleHasta + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contenido contenido = (Contenido) o;
+        return idContenido == contenido.idContenido;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idContenido, título, género, descripción, imagen, idioma, precio, valoraciónMedia, nombre_director, duración, actoresPrincipales, fechaEstreno, tipoContenido, changedTs, nombreSerie, numeroTemporada, numCapítulo, disponibilidad, disponibleHasta);
     }
 }

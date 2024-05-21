@@ -26,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageViewPelicula" />
 
     <TextView
-        android:id="@+id/textViewNotaDetailed"
+        android:id="@+id/textViewNotaTexto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -40,8 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Nota media"
-        app:layout_constraintStart_toStartOf="@+id/textViewNotaDetailed"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNotaDetailed" />
+        app:layout_constraintStart_toStartOf="@+id/textViewNotaTexto"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNotaTexto" />
 
     <TextView
         android:id="@+id/textViewPrecioDetailed"

@@ -1,0 +1,1130 @@
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\"/>\r\n\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.Proyecto3EV_Cliente\"\r\n        android:usesCleartextTraffic=\"true\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".activities.MainActivity\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity android:name=\".activities.ActivityDetailed\"></activity>\r\n        <activity android:name=\".activities.preferences.PreferenciasActivity\"></activity>\r\n        <activity android:name=\".activities.CarritoActivity\"></activity>\r\n        <activity android:name=\".activities.CrearCuentaActivity\"></activity>\r\n        <activity android:name=\".activities.ContrasenyaActivity\"></activity>\r\n        <activity android:name=\".activities.PeliculasActivity\"></activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 397af8b4ef0f2aed6781fdcbffc14f48c39e9bb4)
++++ b/app/src/main/AndroidManifest.xml	(date 1716306448290)
+@@ -4,7 +4,6 @@
+ 
+     <uses-permission android:name="android.permission.INTERNET"/>
+ 
+-
+     <application
+         android:allowBackup="true"
+         android:dataExtractionRules="@xml/data_extraction_rules"
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/ActivityDetailed.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities;\r\n\r\nimport android.os.Bundle;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport com.example.proyecto3ev_cliente.R;\r\nimport com.example.proyecto3ev_cliente.base.BaseActivity;\r\nimport com.example.proyecto3ev_cliente.base.CallInterface;\r\nimport com.google.android.material.floatingactionbutton.FloatingActionButton;\r\n\r\npublic class ActivityDetailed extends BaseActivity implements CallInterface {\r\n\r\n    private ImageView imagenPelicula;\r\n    private TextView titulo;\r\n    private TextView nota;\r\n    private TextView notaMedia;\r\n    private TextView precio;\r\n    private TextView genero;\r\n    private TextView duracion;\r\n    private TextView director;\r\n    private TextView actores;\r\n    private TextView fechaEstreno;\r\n    private EditText voto;\r\n    private FloatingActionButton buttonCarrito;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_vista_detallada);\r\n\r\n        imagenPelicula = findViewById(R.id.imageViewPelicula);\r\n        titulo = findViewById(R.id.textViewTituloDetailed);\r\n        nota = findViewById(R.id.textViewNotaDetailed);\r\n        notaMedia = findViewById(R.id.textViewNotaMediaDetailed);\r\n        precio = findViewById(R.id.textViewPrecioDetailed);\r\n        genero = findViewById(R.id.textViewGeneroDetailed);\r\n        duracion = findViewById(R.id.textViewDuracionDetailed);\r\n        director = findViewById(R.id.textViewDirectorDetailed);\r\n        actores = findViewById(R.id.textViewActoresDetailed);\r\n        fechaEstreno = findViewById(R.id.textViewFechaDetailed);\r\n        voto = findViewById(R.id.editTextNota);\r\n        buttonCarrito = findViewById(R.id.buttonCarrito);\r\n\r\n    }\r\n\r\n    @Override\r\n    public void doInBackground() {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void doInUI() {\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/ActivityDetailed.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/ActivityDetailed.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/ActivityDetailed.java	(revision 397af8b4ef0f2aed6781fdcbffc14f48c39e9bb4)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/ActivityDetailed.java	(date 1716306448312)
+@@ -1,13 +1,14 @@
+ package com.example.proyecto3ev_cliente.activities;
+ 
+ import android.os.Bundle;
++import android.widget.Button;
+ import android.widget.EditText;
+ import android.widget.ImageView;
++import android.widget.RatingBar;
+ import android.widget.TextView;
+ 
+-import androidx.appcompat.app.AppCompatActivity;
+-
+ import com.example.proyecto3ev_cliente.R;
++import com.example.proyecto3ev_cliente.activities.model.Contenido;
+ import com.example.proyecto3ev_cliente.base.BaseActivity;
+ import com.example.proyecto3ev_cliente.base.CallInterface;
+ import com.google.android.material.floatingactionbutton.FloatingActionButton;
+@@ -16,7 +17,6 @@
+ 
+     private ImageView imagenPelicula;
+     private TextView titulo;
+-    private TextView nota;
+     private TextView notaMedia;
+     private TextView precio;
+     private TextView genero;
+@@ -24,8 +24,11 @@
+     private TextView director;
+     private TextView actores;
+     private TextView fechaEstreno;
+-    private EditText voto;
+     private FloatingActionButton buttonCarrito;
++    private Button buttonVotar;
++    private RatingBar ratingBar;
++    private int valor=0;
++    private Contenido contenido;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -34,7 +37,6 @@
+ 
+         imagenPelicula = findViewById(R.id.imageViewPelicula);
+         titulo = findViewById(R.id.textViewTituloDetailed);
+-        nota = findViewById(R.id.textViewNotaDetailed);
+         notaMedia = findViewById(R.id.textViewNotaMediaDetailed);
+         precio = findViewById(R.id.textViewPrecioDetailed);
+         genero = findViewById(R.id.textViewGeneroDetailed);
+@@ -42,9 +44,52 @@
+         director = findViewById(R.id.textViewDirectorDetailed);
+         actores = findViewById(R.id.textViewActoresDetailed);
+         fechaEstreno = findViewById(R.id.textViewFechaDetailed);
+-        voto = findViewById(R.id.editTextNota);
++
++
++        buttonVotar = findViewById(R.id.buttonValorar);
++        ratingBar = findViewById(R.id.ratingBar);
+         buttonCarrito = findViewById(R.id.buttonCarrito);
+ 
++        ratingBar.setOnRatingBarChangeListener((ratingBar1, rating, fromUser) -> {
++            valor = (int) rating;
++        });
++        buttonVotar.setOnClickListener(view -> {
++            System.out.println(valor);
++            executeCall(new CallInterface() {
++                @Override
++                public void doInBackground() {
++
++                }
++
++                @Override
++                public void doInUI() {
++
++                }
++            });
++        });
++        buttonCarrito.setOnClickListener(view -> {
++            executeCall(this);
++        });
++
++        // Carga del contenido pasado por extras
++        Bundle extras = getIntent().getExtras();
++        if (extras!=null){
++            contenido = (Contenido) extras.getSerializable("contenido");
++            titulo.setText(contenido.getTítulo());
++            notaMedia.setText(contenido.getValoraciónMedia()+"");
++            precio.setText(contenido.getPrecio()+"€");
++            genero.setText(contenido.getGénero());
++            duracion.setText(contenido.getDuración()+" min.");
++            director.setText(contenido.getNombre_director());
++            actores.setText(contenido.getActoresPrincipales());
++            fechaEstreno.setText(contenido.getFechaEstreno());
++
++            if (!extras.getBoolean("con_boton")){
++                buttonCarrito.hide();
++            }
++
++        }
++
+     }
+ 
+     @Override
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/PeliculasActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\n\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.SearchView;\r\n\r\nimport androidx.recyclerview.widget.DividerItemDecoration;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.example.proyecto3ev_cliente.API.Connector;\r\nimport com.example.proyecto3ev_cliente.R;\r\nimport com.example.proyecto3ev_cliente.activities.model.Contenido;\r\nimport com.example.proyecto3ev_cliente.base.BaseActivity;\r\nimport com.example.proyecto3ev_cliente.base.CallInterface;\r\n\r\nimport java.util.List;\r\n\r\nimport okhttp3.Call;\r\nimport okhttp3.Connection;\r\n\r\npublic class PeliculasActivity extends BaseActivity implements CallInterface, View.OnClickListener{\r\n    private SearchView busqueda;\r\n    private RecyclerView recyclerView;\r\n    private Button carrito;\r\n    private Button peliculasAlquiladas;\r\n    private List<Contenido> contenidos;\r\n    private AdaptadorRecycleView adaptadorRecycleView;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_busqueda);\r\n\r\n        Bundle extras = getIntent().getExtras();\r\n\r\n        busqueda=findViewById(R.id.searchViewBusqueda);\r\n        recyclerView=findViewById(R.id.recyclerPeliculas);\r\n        carrito=findViewById(R.id.carritoBoton);\r\n        peliculasAlquiladas=findViewById(R.id.botonPeliculasAlquiladas);\r\n\r\n        carrito.setOnClickListener(view ->{\r\n            Intent intent = new Intent(this, CarritoActivity.class);\r\n            startActivity(intent);\r\n        });\r\n        showProgress();\r\n        executeCall(this);\r\n    }\r\n\r\n    @Override\r\n    public void doInBackground() {\r\n        contenidos = Connector.getConector().getAsList(Contenido.class,\"/contenido/\");\r\n        System.out.println(contenidos);\r\n    }\r\n\r\n    @Override\r\n    public void doInUI() {\r\n        hideProgress();\r\n\r\n        adaptadorRecycleView = new AdaptadorRecycleView(this, contenidos);\r\n\r\n        adaptadorRecycleView.setOnClickListener(this);\r\n        recyclerView.setAdapter(adaptadorRecycleView);\r\n\r\n        recyclerView.setLayoutManager(new LinearLayoutManager(this));\r\n\r\n        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL);\r\n        recyclerView.addItemDecoration(dividerItemDecoration);\r\n\r\n    }\r\n    @Override\r\n    public void onClick(View view) {\r\n        Contenido contenido = contenidos.get(recyclerView.getChildAdapterPosition(view));\r\n        Intent intent = new Intent(this, ActivityDetailed.class);\r\n        intent.putExtra(\"contenido\",contenido);\r\n        startActivity(intent);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/PeliculasActivity.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/PeliculasActivity.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/PeliculasActivity.java	(revision 397af8b4ef0f2aed6781fdcbffc14f48c39e9bb4)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/PeliculasActivity.java	(date 1716304866963)
+@@ -3,8 +3,9 @@
+ import android.content.Intent;
+ import android.os.Bundle;
+ 
++import android.view.Menu;
++import android.view.MenuItem;
+ import android.view.View;
+-import android.widget.Button;
+ import android.widget.SearchView;
+ 
+ import androidx.recyclerview.widget.DividerItemDecoration;
+@@ -19,16 +20,12 @@
+ 
+ import java.util.List;
+ 
+-import okhttp3.Call;
+-import okhttp3.Connection;
+-
+ public class PeliculasActivity extends BaseActivity implements CallInterface, View.OnClickListener{
+     private SearchView busqueda;
+     private RecyclerView recyclerView;
+-    private Button carrito;
+-    private Button peliculasAlquiladas;
++
+     private List<Contenido> contenidos;
+-    private AdaptadorRecycleView adaptadorRecycleView;
++    private AdaptadorRecycleViewContenido adaptadorRecycleViewContenido;
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -38,13 +35,10 @@
+ 
+         busqueda=findViewById(R.id.searchViewBusqueda);
+         recyclerView=findViewById(R.id.recyclerPeliculas);
+-        carrito=findViewById(R.id.carritoBoton);
+-        peliculasAlquiladas=findViewById(R.id.botonPeliculasAlquiladas);
++
+ 
+-        carrito.setOnClickListener(view ->{
+-            Intent intent = new Intent(this, CarritoActivity.class);
+-            startActivity(intent);
+-        });
++
++
+         showProgress();
+         executeCall(this);
+     }
+@@ -59,22 +53,44 @@
+     public void doInUI() {
+         hideProgress();
+ 
+-        adaptadorRecycleView = new AdaptadorRecycleView(this, contenidos);
++        adaptadorRecycleViewContenido = new AdaptadorRecycleViewContenido(this, contenidos);
+ 
+-        adaptadorRecycleView.setOnClickListener(this);
+-        recyclerView.setAdapter(adaptadorRecycleView);
++        adaptadorRecycleViewContenido.setOnClickListener(this);
++        recyclerView.setAdapter(adaptadorRecycleViewContenido);
+ 
+         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+ 
+         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL);
+         recyclerView.addItemDecoration(dividerItemDecoration);
+ 
++    }
++    @Override
++    public boolean onCreateOptionsMenu(Menu menu) {
++        getMenuInflater().inflate(R.menu.menu_actividad_peliculas, menu);
++        return super.onCreateOptionsMenu(menu);
++    }
++
++    @Override
++    public boolean onOptionsItemSelected(MenuItem item) {
++        if(item.getItemId()==R.id.carrito) {
++            Intent intent = new Intent(this, CarritoActivity.class);
++            startActivity(intent);
++        } else if(item.getItemId()==R.id.peliculasAlquiladas){
++
++        } else if (item.getItemId()==R.id.facturas){
++
++        } else if(item.getItemId()==R.id.exit) {
++            finish();
++        }
++        return super.onOptionsItemSelected(item);
++
+     }
+     @Override
+     public void onClick(View view) {
+         Contenido contenido = contenidos.get(recyclerView.getChildAdapterPosition(view));
+         Intent intent = new Intent(this, ActivityDetailed.class);
+         intent.putExtra("contenido",contenido);
++        intent.putExtra("con_boton",true);
+         startActivity(intent);
+     }
+ }
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/CarritoActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities;\r\n\r\nimport android.os.Bundle;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.recyclerview.widget.ItemTouchHelper;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.example.proyecto3ev_cliente.R;\r\nimport com.example.proyecto3ev_cliente.base.BaseActivity;\r\nimport com.example.proyecto3ev_cliente.base.CallInterface;\r\nimport com.google.android.material.snackbar.Snackbar;\r\n\r\npublic class CarritoActivity extends BaseActivity implements CallInterface {\r\n    private RecyclerView recyclerView;\r\n    private EditText sumaTotal;\r\n    private Button alquilarboton;\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_carrito);\r\n\r\n        recyclerView = findViewById(R.id.recyclerViewCarrito);\r\n        sumaTotal = findViewById(R.id.precioTotal);\r\n\r\n    }\r\n\r\n    @Override\r\n    public void doInBackground() {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void doInUI() {\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/CarritoActivity.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/CarritoActivity.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/CarritoActivity.java	(revision 397af8b4ef0f2aed6781fdcbffc14f48c39e9bb4)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/CarritoActivity.java	(date 1716308091828)
+@@ -1,23 +1,37 @@
+ package com.example.proyecto3ev_cliente.activities;
+ 
++import android.content.Intent;
+ import android.os.Bundle;
++import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
+ 
+ import androidx.annotation.NonNull;
+ import androidx.appcompat.app.AppCompatActivity;
++import androidx.recyclerview.widget.DividerItemDecoration;
+ import androidx.recyclerview.widget.ItemTouchHelper;
++import androidx.recyclerview.widget.LinearLayoutManager;
+ import androidx.recyclerview.widget.RecyclerView;
+ 
++import com.example.proyecto3ev_cliente.API.Connector;
+ import com.example.proyecto3ev_cliente.R;
++import com.example.proyecto3ev_cliente.activities.model.Carrito;
++import com.example.proyecto3ev_cliente.activities.model.Contenido;
+ import com.example.proyecto3ev_cliente.base.BaseActivity;
+ import com.example.proyecto3ev_cliente.base.CallInterface;
++import com.example.proyecto3ev_cliente.base.Parameters;
+ import com.google.android.material.snackbar.Snackbar;
+ 
+-public class CarritoActivity extends BaseActivity implements CallInterface {
++import java.lang.reflect.Parameter;
++import java.util.List;
++
++public class CarritoActivity extends BaseActivity implements CallInterface,View.OnClickListener {
+     private RecyclerView recyclerView;
+     private EditText sumaTotal;
+     private Button alquilarboton;
++    private List<Contenido> contenidos;
++    private AdaptadorRecycleViewContenido adaptadorRecycleViewContenido;
++    private Carrito carrito;
+     @Override
+     public void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -25,16 +39,41 @@
+ 
+         recyclerView = findViewById(R.id.recyclerViewCarrito);
+         sumaTotal = findViewById(R.id.precioTotal);
++        alquilarboton = findViewById(R.id.botonAlquilar);
++
++        showProgress();
++        executeCall(this);
+ 
+     }
+ 
+     @Override
+     public void doInBackground() {
+-
++        carrito = Connector.getConector().get(Carrito.class,"/clientesCarrito/"+ Parameters.idClienteSesión);
++        contenidos = Connector.getConector().getAsList(Contenido.class,"/contenidoCarrito/"+carrito.getIdCarrito());
+     }
+ 
+     @Override
+     public void doInUI() {
++        hideProgress();
++
++        sumaTotal.setText(carrito.getPrecioTotal()+"€");
++
++        adaptadorRecycleViewContenido = new AdaptadorRecycleViewContenido(this, contenidos);
++
++        adaptadorRecycleViewContenido.setOnClickListener(this);
++        recyclerView.setAdapter(adaptadorRecycleViewContenido);
+ 
++        recyclerView.setLayoutManager(new LinearLayoutManager(this));
++
++        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL);
++        recyclerView.addItemDecoration(dividerItemDecoration);
++    }
++    @Override
++    public void onClick(View view) {
++        Contenido contenido = contenidos.get(recyclerView.getChildAdapterPosition(view));
++        Intent intent = new Intent(this, ActivityDetailed.class);
++        intent.putExtra("contenido",contenido);
++        intent.putExtra("con_boton",false);
++        startActivity(intent);
+     }
+ }
+Index: app/src/main/res/layout/activity_crear_cuenta.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/consLay\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".activities.CrearCuentaActivity\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Crear Usario\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/nombre\"\r\n        android:layout_width=\"150dp\"\r\n        android:layout_height=\"38dp\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:ems=\"10\"\r\n        android:hint=\"Nombre\"\r\n        android:inputType=\"text\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView3\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView2\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Domicilio :\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/nombre\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/nombre\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/nombre\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/domicilio\"\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:ems=\"10\"\r\n        android:hint=\"domicilio\"\r\n        android:inputType=\"text\"\r\n        android:textSize=\"14sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/textView2\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView2\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView2\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView3\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:text=\"Nombre y apellidos:\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/textView\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/codigoPostal\"\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:ems=\"10\"\r\n        android:hint=\"CP\"\r\n        android:inputType=\"number\"\r\n        android:textSize=\"14sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/textView4\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView4\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView4\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView4\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Codigo Postal:\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/domicilio\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/domicilio\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/domicilio\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView5\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Email :\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/codigoPostal\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/codigoPostal\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/codigoPostal\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/correo\"\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textEmailAddress\"\r\n        android:textSize=\"14sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/textView5\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView5\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView5\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView6\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Fecha de nacimiento :\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/correo\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/correo\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/correo\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/date\"\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"4dp\"\r\n        android:ems=\"10\"\r\n        android:hint=\"aaaa/mm/dd\"\r\n        android:inputType=\"date\"\r\n        android:textSize=\"14sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/textView6\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView6\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView6\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView7\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Nº Tarjeta :\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/date\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/date\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/date\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/numTarjeta\"\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:ems=\"10\"\r\n        android:hint=\"1234 1234 1234 1234\"\r\n        android:inputType=\"number\"\r\n        android:textSize=\"14sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/textView7\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView7\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView7\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView8\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Usuario :\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/numTarjeta\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/numTarjeta\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/numTarjeta\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/nomUsuario\"\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:ems=\"10\"\r\n        android:hint=\"introduce un nombre de usuario\"\r\n        android:inputType=\"text\"\r\n        android:textSize=\"14sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/textView8\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView8\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView8\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView9\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Contraseña :\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/nomUsuario\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/nomUsuario\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/nomUsuario\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/password\"\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:ems=\"10\"\r\n        android:hint=\"Introduce una constraseña\"\r\n        android:inputType=\"textPassword\"\r\n        android:textSize=\"14sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/textView9\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView9\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView9\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/botonCrear\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:layout_marginEnd=\"32dp\"\r\n        android:layout_marginBottom=\"32dp\"\r\n        android:text=\"Crear cuenta\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/password\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/apellidos\"\r\n        android:layout_width=\"150dp\"\r\n        android:layout_height=\"38dp\"\r\n        android:ems=\"10\"\r\n        android:hint=\"Apellidos\"\r\n        android:inputType=\"text\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/nombre\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/domicilio\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/nombre\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/nombre\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_crear_cuenta.xml b/app/src/main/res/layout/activity_crear_cuenta.xml
+--- a/app/src/main/res/layout/activity_crear_cuenta.xml	(revision 397af8b4ef0f2aed6781fdcbffc14f48c39e9bb4)
++++ b/app/src/main/res/layout/activity_crear_cuenta.xml	(date 1716307534998)
+@@ -134,7 +134,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginTop="4dp"
+         android:ems="10"
+-        android:hint="aaaa/mm/dd"
++        android:hint="aaaa-mm-dd"
+         android:inputType="date"
+         android:textSize="14sp"
+         app:layout_constraintEnd_toEndOf="@+id/textView6"
+Index: app/src/main/res/layout-land/activity_crear_cuenta.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/consLay\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".activities.CrearCuentaActivity\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"4dp\"\r\n        android:text=\"Crear Usario\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.04\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/nombre\"\r\n        android:layout_width=\"143dp\"\r\n        android:layout_height=\"35dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:ems=\"10\"\r\n        android:hint=\"Nombre\"\r\n        android:inputType=\"text\"\r\n        android:textColor=\"#0000FF\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView3\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView3\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView2\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Domicilio :\"\r\n        android:textSize=\"10sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/nombre\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/nombre\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/nombre\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/domicilio\"\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"4dp\"\r\n        android:ems=\"10\"\r\n        android:hint=\"domicilio\"\r\n        android:inputType=\"text\"\r\n        android:textColor=\"#0000FF\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/textView2\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView2\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView2\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView3\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Nombre y apellidos:\"\r\n        android:textSize=\"10sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.04\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/codigoPostal\"\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"4dp\"\r\n        android:ems=\"10\"\r\n        android:hint=\"CP\"\r\n        android:inputType=\"text\"\r\n        android:textColor=\"#0000FF\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/textView4\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView4\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView4\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView4\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Codigo Postal:\"\r\n        android:textSize=\"10sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/domicilio\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/domicilio\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/domicilio\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView5\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Email :\"\r\n        android:textSize=\"10sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/codigoPostal\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/codigoPostal\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/codigoPostal\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/correo\"\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"4dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textEmailAddress\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/textView5\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView5\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView5\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView6\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"32dp\"\r\n        android:text=\"Fecha de nacimiento :\"\r\n        android:textSize=\"10sp\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/apellidos\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/textView3\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/date\"\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"4dp\"\r\n        android:ems=\"10\"\r\n        android:hint=\"dd/mm/aaaa\"\r\n        android:inputType=\"date\"\r\n        android:textColor=\"#0000FF\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/textView6\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView6\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView6\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView7\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Nº Tarjeta :\"\r\n        android:textSize=\"10sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/date\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/date\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/date\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/numTarjeta\"\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"4dp\"\r\n        android:ems=\"10\"\r\n        android:hint=\"1234 1234 1234 1234\"\r\n        android:inputType=\"text\"\r\n        android:textColor=\"#0000FF\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/textView7\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView7\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView7\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView8\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Usuario :\"\r\n        android:textSize=\"10sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/numTarjeta\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/numTarjeta\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/numTarjeta\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/nomUsuario\"\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"4dp\"\r\n        android:ems=\"10\"\r\n        android:hint=\"introduce un nombre de usuario\"\r\n        android:inputType=\"text\"\r\n        android:textColor=\"#0000FF\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/textView8\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView8\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView8\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView9\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Contraseña :\"\r\n        android:textSize=\"10sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/nomUsuario\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/nomUsuario\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/nomUsuario\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/password\"\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"4dp\"\r\n        android:ems=\"10\"\r\n        android:hint=\"Introduce una constraseña\"\r\n        android:inputType=\"textPassword\"\r\n        android:textColor=\"#0000FF\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/textView9\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView9\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView9\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/botonCrear\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"4dp\"\r\n        android:text=\"Crear cuenta\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/password\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/correo\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/password\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/apellidos\"\r\n        android:layout_width=\"143dp\"\r\n        android:layout_height=\"34dp\"\r\n        android:ems=\"10\"\r\n        android:hint=\"Apellidos\"\r\n        android:inputType=\"text\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/domicilio\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/nombre\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/nombre\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout-land/activity_crear_cuenta.xml b/app/src/main/res/layout-land/activity_crear_cuenta.xml
+--- a/app/src/main/res/layout-land/activity_crear_cuenta.xml	(revision 397af8b4ef0f2aed6781fdcbffc14f48c39e9bb4)
++++ b/app/src/main/res/layout-land/activity_crear_cuenta.xml	(date 1716307534984)
+@@ -138,7 +138,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginTop="4dp"
+         android:ems="10"
+-        android:hint="dd/mm/aaaa"
++        android:hint="dd-mm-aaaa"
+         android:inputType="date"
+         android:textColor="#0000FF"
+         android:textSize="12sp"
+Index: app/src/main/java/com/example/proyecto3ev_cliente/base/Parameters.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.base;\r\n\r\npublic class Parameters {\r\n\r\n    public static String API = \"http://\";\r\n    public static String ip_port = \"\";\r\n    public static String requestMapping = \"\";\r\n    public static String URL = API + ip_port + requestMapping;\r\n    public static String LANG = \"\";\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/base/Parameters.java b/app/src/main/java/com/example/proyecto3ev_cliente/base/Parameters.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/base/Parameters.java	(revision 397af8b4ef0f2aed6781fdcbffc14f48c39e9bb4)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/base/Parameters.java	(date 1716301343992)
+@@ -8,4 +8,7 @@
+     public static String URL = API + ip_port + requestMapping;
+     public static String LANG = "";
+ 
++    // Variable pública para acceder a los datos del cliente
++    public static String idClienteSesión;
++
+ }
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/AdaptadorRecycleView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/AdaptadorRecycleView.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/AdaptadorRecycleViewContenido.java
+rename from app/src/main/java/com/example/proyecto3ev_cliente/activities/AdaptadorRecycleView.java
+rename to app/src/main/java/com/example/proyecto3ev_cliente/activities/AdaptadorRecycleViewContenido.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/AdaptadorRecycleView.java	(revision 397af8b4ef0f2aed6781fdcbffc14f48c39e9bb4)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/AdaptadorRecycleViewContenido.java	(date 1716304406470)
+@@ -4,7 +4,6 @@
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+-import android.widget.Button;
+ import android.widget.ImageView;
+ import android.widget.TextView;
+ 
+@@ -14,18 +13,14 @@
+ import com.example.proyecto3ev_cliente.R;
+ 
+ import com.example.proyecto3ev_cliente.activities.model.Contenido;
+-import com.example.proyecto3ev_cliente.base.ImageDownloader;
+ 
+-import java.text.SimpleDateFormat;
+-import java.util.ArrayList;
+-import java.util.Date;
+ import java.util.List;
+ 
+-public class AdaptadorRecycleView extends RecyclerView.Adapter<AdaptadorRecycleView.ViewHolder> {
++public class AdaptadorRecycleViewContenido extends RecyclerView.Adapter<AdaptadorRecycleViewContenido.ViewHolder> {
+     private LayoutInflater layoutInflater;
+     private java.util.List<Contenido> contenidos;
+     private View.OnClickListener onClickListener;
+-    public AdaptadorRecycleView(Context context, List<Contenido> contenidos){
++    public AdaptadorRecycleViewContenido(Context context, List<Contenido> contenidos){
+         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+         this.contenidos = contenidos;
+     }
+@@ -57,7 +52,6 @@
+     public static class ViewHolder extends RecyclerView.ViewHolder{
+         private ImageView imageView;
+         private TextView tituloContenido, precioContenido;
+-        private Button botonAñadir;
+         private int idContenido;
+ 
+         public ViewHolder(@NonNull View itemView) {
+@@ -65,7 +59,6 @@
+             imageView = itemView.findViewById(R.id.imageViewPelicula);
+             tituloContenido = itemView.findViewById(R.id.tituloContenido);
+             precioContenido = itemView.findViewById(R.id.precioContenido);
+-            botonAñadir = itemView.findViewById(R.id.añadirBoton);
+         }
+     }
+ }
+Index: app/src/main/res/menu/menu_actividad_peliculas.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/menu/menu_actividad_peliculas.xml b/app/src/main/res/menu/menu_actividad_peliculas.xml
+new file mode 100644
+--- /dev/null	(date 1716303694849)
++++ b/app/src/main/res/menu/menu_actividad_peliculas.xml	(date 1716303694849)
+@@ -0,0 +1,31 @@
++<?xml version="1.0" encoding="utf-8"?>
++<menu xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto">
++    <item
++        android:id="@+id/overflowMenu"
++        android:icon="@drawable/ic_baseline_more_vert_24"
++        android:title=""
++        app:showAsAction="always">
++
++        <menu>
++            <item
++                android:id="@+id/carrito"
++                android:icon="@drawable/carrito"
++                android:title="Carrito" />
++            <item
++                android:id="@+id/peliculasAlquiladas"
++                android:icon="@drawable/peli"
++                android:title="Peliculas alquiladas" />
++            <item
++                android:id="@+id/facturas"
++                android:icon="@drawable/factura"
++                android:title="Facturas usuario" />
++            <item
++                android:id="@+id/exit"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:icon="@drawable/ic_baseline_exit_to_app_24"
++                android:title="@string/exit" />
++        </menu>
++    </item>
++</menu>
+\ No newline at end of file
+Index: app/src/main/res/layout/simple_element_list.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\">\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageViewPeli\"\r\n        android:layout_width=\"80dp\"\r\n        android:layout_height=\"80dp\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginBottom=\"16dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintVertical_bias=\"0.0\"\r\n        app:srcCompat=\"@android:drawable/btn_star\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/tituloContenido\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"28dp\"\r\n        android:text=\"Titulo\"\r\n        android:textSize=\"24sp\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/imageViewPeli\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/imageViewPeli\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/precioContenido\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"00,00€\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/imageViewPeli\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/tituloContenido\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/añadirBoton\"\r\n        android:layout_width=\"95dp\"\r\n        android:layout_height=\"40dp\"\r\n        android:layout_marginEnd=\"48dp\"\r\n        android:text=\"Añadir\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/precioContenido\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/tituloContenido\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/simple_element_list.xml b/app/src/main/res/layout/simple_element_list.xml
+--- a/app/src/main/res/layout/simple_element_list.xml	(revision 397af8b4ef0f2aed6781fdcbffc14f48c39e9bb4)
++++ b/app/src/main/res/layout/simple_element_list.xml	(date 1716301343973)
+@@ -36,13 +36,4 @@
+         app:layout_constraintBottom_toBottomOf="@+id/imageViewPeli"
+         app:layout_constraintStart_toStartOf="@+id/tituloContenido" />
+ 
+-    <Button
+-        android:id="@+id/añadirBoton"
+-        android:layout_width="95dp"
+-        android:layout_height="40dp"
+-        android:layout_marginEnd="48dp"
+-        android:text="Añadir"
+-        app:layout_constraintBottom_toBottomOf="@+id/precioContenido"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintTop_toTopOf="@+id/tituloContenido" />
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: .idea/deploymentTargetDropDown.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"deploymentTargetDropDown\">\r\n    <value>\r\n      <entry key=\"app\">\r\n        <State>\r\n          <targetSelectedWithDropDown>\r\n            <Target>\r\n              <type value=\"QUICK_BOOT_TARGET\" />\r\n              <deviceKey>\r\n                <Key>\r\n                  <type value=\"VIRTUAL_DEVICE_PATH\" />\r\n                  <value value=\"$USER_HOME$/.var/app/com.google.AndroidStudio/config/.android/avd/Pixel_2_API_27.avd\" />\r\n                </Key>\r\n              </deviceKey>\r\n            </Target>\r\n          </targetSelectedWithDropDown>\r\n          <timeTargetWasSelectedWithDropDown value=\"2024-05-20T17:29:39.293399061Z\" />\r\n        </State>\r\n      </entry>\r\n    </value>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetDropDown.xml b/.idea/deploymentTargetDropDown.xml
+--- a/.idea/deploymentTargetDropDown.xml	(revision 397af8b4ef0f2aed6781fdcbffc14f48c39e9bb4)
++++ b/.idea/deploymentTargetDropDown.xml	(date 1716308280057)
+@@ -10,12 +10,12 @@
+               <deviceKey>
+                 <Key>
+                   <type value="VIRTUAL_DEVICE_PATH" />
+-                  <value value="$USER_HOME$/.var/app/com.google.AndroidStudio/config/.android/avd/Pixel_2_API_27.avd" />
++                  <value value="C:\Users\marco\.android\avd\Pixel_2_API_26.avd" />
+                 </Key>
+               </deviceKey>
+             </Target>
+           </targetSelectedWithDropDown>
+-          <timeTargetWasSelectedWithDropDown value="2024-05-20T17:29:39.293399061Z" />
++          <timeTargetWasSelectedWithDropDown value="2024-05-21T11:14:30.002485100Z" />
+         </State>
+       </entry>
+     </value>
+Index: app/src/main/res/layout/activity_vista_detallada.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\">\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageViewPelicula\"\r\n        android:layout_width=\"185dp\"\r\n        android:layout_height=\"185dp\"\r\n        android:layout_marginTop=\"100dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.25\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        tools:srcCompat=\"@tools:sample/avatars\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewTituloDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"28dp\"\r\n        android:text=\"Titulo\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/imageViewPelicula\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/imageViewPelicula\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewNotaDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:text=\"Nota\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/imageViewPelicula\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/imageViewPelicula\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewNotaMediaDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:text=\"Nota media\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textViewNotaDetailed\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textViewNotaDetailed\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewPrecioDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:text=\"Precio\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textViewNotaMediaDetailed\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textViewNotaMediaDetailed\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewGeneroDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"32dp\"\r\n        android:text=\"Genero\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textViewTituloDetailed\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/textViewTituloDetailed\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView6\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"24dp\"\r\n        android:text=\"Duración: \"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textViewGeneroDetailed\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/textViewGeneroDetailed\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewDuracionDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:text=\"minutos\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView6\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/textView6\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView8\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"32dp\"\r\n        android:text=\"Dirigida por: \"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textViewTituloDetailed\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textViewTituloDetailed\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewDirectorDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:text=\"Director\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView8\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/textView8\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView10\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Actores Principales: \"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView8\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView8\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewActoresDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:text=\"actores\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView10\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/textView10\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView12\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Fecha de estreno: \"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView10\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView10\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewFechaDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:text=\"fecha\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView12\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/textView12\" />\r\n\r\n    <com.google.android.material.floatingactionbutton.FloatingActionButton\r\n        android:id=\"@+id/buttonCarrito\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"24dp\"\r\n        android:layout_marginBottom=\"24dp\"\r\n        android:clickable=\"true\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:srcCompat=\"@drawable/carrito\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/editTextNota\"\r\n        android:layout_width=\"150dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginTop=\"50dp\"\r\n        android:ems=\"10\"\r\n        android:hint=\"Puntua la pelicula\"\r\n        android:inputType=\"text\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView12\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_vista_detallada.xml b/app/src/main/res/layout/activity_vista_detallada.xml
+--- a/app/src/main/res/layout/activity_vista_detallada.xml	(revision 397af8b4ef0f2aed6781fdcbffc14f48c39e9bb4)
++++ b/app/src/main/res/layout/activity_vista_detallada.xml	(date 1716300592752)
+@@ -26,7 +26,7 @@
+         app:layout_constraintTop_toBottomOf="@+id/imageViewPelicula" />
+ 
+     <TextView
+-        android:id="@+id/textViewNotaDetailed"
++        android:id="@+id/textViewNotaTexto"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+@@ -40,8 +40,8 @@
+         android:layout_height="wrap_content"
+         android:layout_marginTop="16dp"
+         android:text="Nota media"
+-        app:layout_constraintStart_toStartOf="@+id/textViewNotaDetailed"
+-        app:layout_constraintTop_toBottomOf="@+id/textViewNotaDetailed" />
++        app:layout_constraintStart_toStartOf="@+id/textViewNotaTexto"
++        app:layout_constraintTop_toBottomOf="@+id/textViewNotaTexto" />
+ 
+     <TextView
+         android:id="@+id/textViewPrecioDetailed"
+@@ -144,16 +144,25 @@
+         app:layout_constraintEnd_toEndOf="parent"
+         app:srcCompat="@drawable/carrito" />
+ 
+-    <EditText
+-        android:id="@+id/editTextNota"
+-        android:layout_width="150dp"
+-        android:layout_height="0dp"
+-        android:layout_marginTop="50dp"
+-        android:ems="10"
+-        android:hint="Puntua la pelicula"
+-        android:inputType="text"
++    <RatingBar
++        android:id="@+id/ratingBar"
++        style="@android:style/Widget.DeviceDefault.RatingBar"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="32dp"
++        android:numStars="5"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
++        app:layout_constraintTop_toBottomOf="@+id/textViewFechaDetailed" />
++
++    <Button
++        android:id="@+id/buttonValorar"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="8dp"
++        android:text="Valorar"
++        app:layout_constraintEnd_toEndOf="@+id/ratingBar"
++        app:layout_constraintStart_toStartOf="@+id/ratingBar"
++        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_vista_detallada_sin_boton.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_vista_detallada_sin_boton.xml b/app/src/main/res/layout/activity_vista_detallada_sin_boton.xml
+new file mode 100644
+--- /dev/null	(date 1716304406515)
++++ b/app/src/main/res/layout/activity_vista_detallada_sin_boton.xml	(date 1716304406515)
+@@ -0,0 +1,157 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++
++    <ImageView
++        android:id="@+id/imageViewPelicula"
++        android:layout_width="185dp"
++        android:layout_height="185dp"
++        android:layout_marginTop="100dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.25"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        tools:srcCompat="@tools:sample/avatars" />
++
++    <TextView
++        android:id="@+id/textViewTituloDetailed"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="28dp"
++        android:text="Titulo"
++        app:layout_constraintStart_toStartOf="@+id/imageViewPelicula"
++        app:layout_constraintTop_toBottomOf="@+id/imageViewPelicula" />
++
++    <TextView
++        android:id="@+id/textViewNotaTexto"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="16dp"
++        android:text="Nota"
++        app:layout_constraintStart_toEndOf="@+id/imageViewPelicula"
++        app:layout_constraintTop_toTopOf="@+id/imageViewPelicula" />
++
++    <TextView
++        android:id="@+id/textViewNotaMediaDetailed"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:text="Nota media"
++        app:layout_constraintStart_toStartOf="@+id/textViewNotaTexto"
++        app:layout_constraintTop_toBottomOf="@+id/textViewNotaTexto" />
++
++    <TextView
++        android:id="@+id/textViewPrecioDetailed"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:text="Precio"
++        app:layout_constraintStart_toStartOf="@+id/textViewNotaMediaDetailed"
++        app:layout_constraintTop_toBottomOf="@+id/textViewNotaMediaDetailed" />
++
++    <TextView
++        android:id="@+id/textViewGeneroDetailed"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="32dp"
++        android:text="Genero"
++        app:layout_constraintStart_toEndOf="@+id/textViewTituloDetailed"
++        app:layout_constraintTop_toTopOf="@+id/textViewTituloDetailed" />
++
++    <TextView
++        android:id="@+id/textView6"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="24dp"
++        android:text="Duración: "
++        app:layout_constraintStart_toEndOf="@+id/textViewGeneroDetailed"
++        app:layout_constraintTop_toTopOf="@+id/textViewGeneroDetailed" />
++
++    <TextView
++        android:id="@+id/textViewDuracionDetailed"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
++        android:text="minutos"
++        app:layout_constraintStart_toEndOf="@+id/textView6"
++        app:layout_constraintTop_toTopOf="@+id/textView6" />
++
++    <TextView
++        android:id="@+id/textView8"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="32dp"
++        android:text="Dirigida por: "
++        app:layout_constraintStart_toStartOf="@+id/textViewTituloDetailed"
++        app:layout_constraintTop_toBottomOf="@+id/textViewTituloDetailed" />
++
++    <TextView
++        android:id="@+id/textViewDirectorDetailed"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
++        android:text="Director"
++        app:layout_constraintStart_toEndOf="@+id/textView8"
++        app:layout_constraintTop_toTopOf="@+id/textView8" />
++
++    <TextView
++        android:id="@+id/textView10"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="8dp"
++        android:text="Actores Principales: "
++        app:layout_constraintStart_toStartOf="@+id/textView8"
++        app:layout_constraintTop_toBottomOf="@+id/textView8" />
++
++    <TextView
++        android:id="@+id/textViewActoresDetailed"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
++        android:text="actores"
++        app:layout_constraintStart_toEndOf="@+id/textView10"
++        app:layout_constraintTop_toTopOf="@+id/textView10" />
++
++    <TextView
++        android:id="@+id/textView12"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="8dp"
++        android:text="Fecha de estreno: "
++        app:layout_constraintStart_toStartOf="@+id/textView10"
++        app:layout_constraintTop_toBottomOf="@+id/textView10" />
++
++    <TextView
++        android:id="@+id/textViewFechaDetailed"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
++        android:text="fecha"
++        app:layout_constraintStart_toEndOf="@+id/textView12"
++        app:layout_constraintTop_toTopOf="@+id/textView12" />
++
++    <RatingBar
++        android:id="@+id/ratingBar"
++        style="@android:style/Widget.DeviceDefault.RatingBar"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="32dp"
++        android:numStars="5"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/textViewFechaDetailed" />
++
++    <Button
++        android:id="@+id/buttonValorar"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="8dp"
++        android:text="Valorar"
++        app:layout_constraintEnd_toEndOf="@+id/ratingBar"
++        app:layout_constraintStart_toStartOf="@+id/ratingBar"
++        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout-land/activity_vista_detallada.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\">\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageViewPelicula\"\r\n        android:layout_width=\"185dp\"\r\n        android:layout_height=\"185dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.08\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        tools:srcCompat=\"@tools:sample/avatars\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewTituloDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"28dp\"\r\n        android:text=\"Titulo\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/imageViewPelicula\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/imageViewPelicula\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewNotaDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:text=\"Nota\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/imageViewPelicula\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/imageViewPelicula\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewNotaMediaDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:text=\"Nota media\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textViewNotaDetailed\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textViewNotaDetailed\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewPrecioDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:text=\"Precio\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textViewNotaMediaDetailed\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textViewNotaMediaDetailed\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewGeneroDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"32dp\"\r\n        android:text=\"Genero\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textViewTituloDetailed\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/textViewTituloDetailed\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView6\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"24dp\"\r\n        android:text=\"Duración: \"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textViewGeneroDetailed\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/textViewGeneroDetailed\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewDuracionDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:text=\"minutos\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView6\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/textView6\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView8\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"32dp\"\r\n        android:text=\"Dirigida por: \"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textViewTituloDetailed\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textViewTituloDetailed\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewDirectorDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:text=\"Director\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView8\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/textView8\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView10\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Actores Principales: \"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView8\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView8\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewActoresDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:text=\"actores\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView10\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/textView10\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView12\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"Fecha de estreno: \"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textView10\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView10\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewFechaDetailed\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:text=\"fecha\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView12\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/textView12\" />\r\n\r\n    <com.google.android.material.floatingactionbutton.FloatingActionButton\r\n        android:id=\"@+id/buttonCarrito\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"24dp\"\r\n        android:layout_marginBottom=\"24dp\"\r\n        android:clickable=\"true\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:srcCompat=\"@android:drawable/ic_dialog_info\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/editTextNota\"\r\n        android:layout_width=\"150dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:ems=\"10\"\r\n        android:hint=\"Puntua la pelicula\"\r\n        android:inputType=\"text\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/textViewPrecioDetailed\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textViewPrecioDetailed\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout-land/activity_vista_detallada.xml b/app/src/main/res/layout-land/activity_vista_detallada.xml
+--- a/app/src/main/res/layout-land/activity_vista_detallada.xml	(revision 397af8b4ef0f2aed6781fdcbffc14f48c39e9bb4)
++++ b/app/src/main/res/layout-land/activity_vista_detallada.xml	(date 1716300592717)
+@@ -26,7 +26,7 @@
+         app:layout_constraintTop_toBottomOf="@+id/imageViewPelicula" />
+ 
+     <TextView
+-        android:id="@+id/textViewNotaDetailed"
++        android:id="@+id/textViewNotaTexto"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+@@ -40,8 +40,8 @@
+         android:layout_height="wrap_content"
+         android:layout_marginTop="16dp"
+         android:text="Nota media"
+-        app:layout_constraintStart_toStartOf="@+id/textViewNotaDetailed"
+-        app:layout_constraintTop_toBottomOf="@+id/textViewNotaDetailed" />
++        app:layout_constraintStart_toStartOf="@+id/textViewNotaTexto"
++        app:layout_constraintTop_toBottomOf="@+id/textViewNotaTexto" />
+ 
+     <TextView
+         android:id="@+id/textViewPrecioDetailed"
+Index: app/src/main/res/layout/activity_busqueda.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n             android:layout_height=\"match_parent\">\r\n\r\n    <SearchView\r\n        android:id=\"@+id/searchViewBusqueda\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"50dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" >\r\n\r\n    </SearchView>\r\n\r\n    <androidx.recyclerview.widget.RecyclerView\r\n        android:id=\"@+id/recyclerPeliculas\"\r\n        android:layout_width=\"409dp\"\r\n        android:layout_height=\"600dp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/searchViewBusqueda\"\r\n        tools:layout_editor_absoluteX=\"1dp\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/botonPeliculasAlquiladas\"\r\n        android:layout_width=\"33dp\"\r\n        android:layout_height=\"44dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        app:icon=\"@drawable/peli\"\r\n        app:iconGravity=\"textStart\"\r\n        app:iconSize=\"20dp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/carritoBoton\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/carritoBoton\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/carritoBoton\"\r\n        android:layout_width=\"33dp\"\r\n        android:layout_height=\"44dp\"\r\n        android:layout_marginTop=\"56dp\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        app:icon=\"@drawable/carrito\"\r\n        app:iconGravity=\"textStart\"\r\n        app:iconSize=\"20dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_busqueda.xml b/app/src/main/res/layout/activity_busqueda.xml
+--- a/app/src/main/res/layout/activity_busqueda.xml	(revision 397af8b4ef0f2aed6781fdcbffc14f48c39e9bb4)
++++ b/app/src/main/res/layout/activity_busqueda.xml	(date 1716299317874)
+@@ -22,26 +22,4 @@
+         app:layout_constraintTop_toBottomOf="@+id/searchViewBusqueda"
+         tools:layout_editor_absoluteX="1dp" />
+ 
+-    <Button
+-        android:id="@+id/botonPeliculasAlquiladas"
+-        android:layout_width="33dp"
+-        android:layout_height="44dp"
+-        android:layout_marginTop="16dp"
+-        app:icon="@drawable/peli"
+-        app:iconGravity="textStart"
+-        app:iconSize="20dp"
+-        app:layout_constraintEnd_toEndOf="@+id/carritoBoton"
+-        app:layout_constraintTop_toBottomOf="@+id/carritoBoton" />
+-
+-    <Button
+-        android:id="@+id/carritoBoton"
+-        android:layout_width="33dp"
+-        android:layout_height="44dp"
+-        android:layout_marginTop="56dp"
+-        android:layout_marginEnd="8dp"
+-        app:icon="@drawable/carrito"
+-        app:iconGravity="textStart"
+-        app:iconSize="20dp"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.Menu;\r\nimport android.view.MenuItem;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageView;\r\nimport android.widget.Toast;\r\n\r\nimport com.example.proyecto3ev_cliente.API.Connector;\r\nimport com.example.proyecto3ev_cliente.R;\r\nimport com.example.proyecto3ev_cliente.activities.model.Cliente;\r\nimport com.example.proyecto3ev_cliente.activities.preferences.GestionPreferencias;\r\nimport com.example.proyecto3ev_cliente.activities.preferences.PreferenciasActivity;\r\nimport com.example.proyecto3ev_cliente.activities.preferences.ThemeSetup;\r\nimport com.example.proyecto3ev_cliente.base.BaseActivity;\r\nimport com.example.proyecto3ev_cliente.base.CallInterface;\r\nimport com.example.proyecto3ev_cliente.base.Parameters;\r\n\r\n\r\npublic class MainActivity extends BaseActivity implements CallInterface {\r\n\r\n    private ImageView imagenLogo;\r\n    private EditText usuario;\r\n    private EditText password;\r\n    private Button botonEntrar;\r\n    private Button botonRecordarPass;\r\n    private Button botonCrearCuenta;\r\n    private Cliente clienteSesion;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_login);\r\n\r\n        ThemeSetup.applyPreferenceTheme(getApplicationContext());\r\n\r\n        String ruta = GestionPreferencias.getInstance().getRutaServer(getApplicationContext());\r\n        String requestMap = GestionPreferencias.getInstance().getRequestMapping(getApplicationContext());\r\n        String lang = GestionPreferencias.getInstance().getLanguage(getApplicationContext());\r\n\r\n        Parameters.ip_port = ruta;\r\n        Parameters.requestMapping = requestMap;\r\n        Parameters.LANG = lang;\r\n        Parameters.URL = Parameters.API + Parameters.ip_port + Parameters.requestMapping;\r\n\r\n        imagenLogo = findViewById(R.id.imageViewLogo);\r\n        usuario = findViewById(R.id.editTextUsuario);\r\n        password = findViewById(R.id.editTextContraseña);\r\n        botonEntrar = findViewById(R.id.buttonEntrar);\r\n        botonRecordarPass = findViewById(R.id.buttonRecordarPass);\r\n        botonCrearCuenta = findViewById(R.id.buttonCrearCuenta);\r\n\r\n        botonCrearCuenta.setOnClickListener(view -> {\r\n            Intent intent = new Intent(this, CrearCuentaActivity.class);\r\n            startActivity(intent);\r\n        });\r\n        botonRecordarPass.setOnClickListener(view ->{\r\n            Intent intent = new Intent(this,ContrasenyaActivity.class);\r\n            startActivity(intent);\r\n        });\r\n\r\n        botonEntrar.setOnClickListener(view -> {\r\n            if (usuario.getText().toString().isEmpty() || password.getText().toString().isEmpty()){\r\n                Toast.makeText(getApplicationContext(), \"Escribe el usuario y la contraseña!\", Toast.LENGTH_SHORT).show();\r\n            } else {\r\n                showProgress();\r\n                executeCall(this);\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        getMenuInflater().inflate(R.menu.menu, menu);\r\n        return super.onCreateOptionsMenu(menu);\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(MenuItem item) {\r\n        if(item.getItemId()==R.id.configuracion) {\r\n            Intent intentPreferenciasActivity = new Intent(this, PreferenciasActivity.class);\r\n            startActivity(intentPreferenciasActivity);\r\n            return true;\r\n        }\r\n\r\n        if(item.getItemId()==R.id.exit){\r\n            finish();\r\n        }\r\n        return super.onOptionsItemSelected(item);\r\n\r\n    }\r\n\r\n    @Override\r\n    public void doInBackground(){\r\n\r\n        String user = usuario.getText().toString();\r\n        String pass = password.getText().toString();\r\n\r\n        clienteSesion = Connector.getConector().get(Cliente.class,\r\n                \"/clientesLogin/\"+user+\"/\"+pass);\r\n\r\n    }\r\n\r\n    @Override\r\n    public void doInUI() {\r\n        hideProgress();\r\n        if (clienteSesion==null){\r\n            Toast.makeText(getApplicationContext(), \"No se ha podido iniciar sesión.\", Toast.LENGTH_SHORT).show();\r\n        } else {\r\n            Intent intent = new Intent(this, PeliculasActivity.class);\r\n            intent.putExtra(\"clienteSesion\",clienteSesion);\r\n            startActivity(intent);\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java	(revision 397af8b4ef0f2aed6781fdcbffc14f48c39e9bb4)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java	(date 1716301343873)
+@@ -110,6 +110,7 @@
+         if (clienteSesion==null){
+             Toast.makeText(getApplicationContext(), "No se ha podido iniciar sesión.", Toast.LENGTH_SHORT).show();
+         } else {
++            Parameters.idClienteSesión = clienteSesion.getUsuario();
+             Intent intent = new Intent(this, PeliculasActivity.class);
+             intent.putExtra("clienteSesion",clienteSesion);
+             startActivity(intent);
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Factura.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Factura.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Factura.java
+new file mode 100644
+--- /dev/null	(date 1716304867010)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Factura.java	(date 1716304867010)
+@@ -0,0 +1,80 @@
++package com.example.proyecto3ev_cliente.activities.model;
++
++
++
++
++public class Factura {
++    private int idFactura;
++    private String usuario;
++    private String fecha;
++    private double importeBase;
++    private double importeIVA;
++    private double totalFactura;
++    private String changedTs;
++
++    public Factura(int idFactura, String usuario, String fecha, double importeBase, double importeIVA, double totalFactura, String changedTs) {
++        this.idFactura = idFactura;
++        this.usuario = usuario;
++        this.fecha = fecha;
++        this.importeBase = importeBase;
++        this.importeIVA = importeIVA;
++        this.totalFactura = totalFactura;
++        this.changedTs = changedTs;
++    }
++
++    public int getIdFactura() {
++        return idFactura;
++    }
++
++    public void setIdFactura(int idFactura) {
++        this.idFactura = idFactura;
++    }
++
++    public String getUsuario() {
++        return usuario;
++    }
++
++    public void setUsuario(String usuario) {
++        this.usuario = usuario;
++    }
++
++    public String getFecha() {
++        return fecha;
++    }
++
++    public void setFecha(String fecha) {
++        this.fecha = fecha;
++    }
++
++    public double getImporteBase() {
++        return importeBase;
++    }
++
++    public void setImporteBase(double importeBase) {
++        this.importeBase = importeBase;
++    }
++
++    public double getImporteIVA() {
++        return importeIVA;
++    }
++
++    public void setImporteIVA(double importeIVA) {
++        this.importeIVA = importeIVA;
++    }
++
++    public double getTotalFactura() {
++        return totalFactura;
++    }
++
++    public void setTotalFactura(double totalFactura) {
++        this.totalFactura = totalFactura;
++    }
++
++    public String getChangedTs() {
++        return changedTs;
++    }
++
++    public void setChangedTs(String changedTs) {
++        this.changedTs = changedTs;
++    }
++}
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Linea.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Linea.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Linea.java
+new file mode 100644
+--- /dev/null	(date 1716304866944)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Linea.java	(date 1716304866944)
+@@ -0,0 +1,48 @@
++package com.example.proyecto3ev_cliente.activities.model;
++
++
++public class Linea {
++    private int idLinea;
++    private int idFactura;
++    private int idContenido;
++    private String changedTs;
++
++    public Linea(int idLinea, int idFactura, int idContenido, String changedTs) {
++        this.idLinea = idLinea;
++        this.idFactura = idFactura;
++        this.idContenido = idContenido;
++        this.changedTs = changedTs;
++    }
++
++    public int getIdLinea() {
++        return idLinea;
++    }
++
++    public void setIdLinea(int idLinea) {
++        this.idLinea = idLinea;
++    }
++
++    public int getIdFactura() {
++        return idFactura;
++    }
++
++    public void setIdFactura(int idFactura) {
++        this.idFactura = idFactura;
++    }
++
++    public int getIdContenido() {
++        return idContenido;
++    }
++
++    public void setIdContenido(int idContenido) {
++        this.idContenido = idContenido;
++    }
++
++    public String getChangedTs() {
++        return changedTs;
++    }
++
++    public void setChangedTs(String changedTs) {
++        this.changedTs = changedTs;
++    }
++}
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/FacturasActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/FacturasActivity.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/FacturasActivity.java
+new file mode 100644
+--- /dev/null	(date 1716304406497)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/FacturasActivity.java	(date 1716304406497)
+@@ -0,0 +1,4 @@
++package com.example.proyecto3ev_cliente.activities;
++
++public class FacturasActivity {
++}
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/AlquiladasActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/AlquiladasActivity.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/AlquiladasActivity.java
+new file mode 100644
+--- /dev/null	(date 1716304406505)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/AlquiladasActivity.java	(date 1716304406505)
+@@ -0,0 +1,4 @@
++package com.example.proyecto3ev_cliente.activities;
++
++public class AlquiladasActivity {
++}
+Index: app/src/main/res/menu/menu_facturas_carrito_alquiladas.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/menu/menu_facturas_carrito_alquiladas.xml b/app/src/main/res/menu/menu_facturas_carrito_alquiladas.xml
+new file mode 100644
+--- /dev/null	(date 1716304020329)
++++ b/app/src/main/res/menu/menu_facturas_carrito_alquiladas.xml	(date 1716304020329)
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="utf-8"?>
++<menu xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto">
++    <item
++        android:id="@+id/overflowMenu"
++        android:icon="@drawable/ic_baseline_more_vert_24"
++        android:title=""
++        app:showAsAction="always">
++
++        <menu>
++            <item
++                android:id="@+id/exit"
++                android:icon="@drawable/ic_baseline_exit_to_app_24"
++                android:title="@string/exit" />
++        </menu>
++    </item>
++</menu>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_peliculas_alquiladas.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_peliculas_alquiladas.xml b/app/src/main/res/layout/activity_peliculas_alquiladas.xml
+new file mode 100644
+--- /dev/null	(date 1716304406489)
++++ b/app/src/main/res/layout/activity_peliculas_alquiladas.xml	(date 1716304406489)
+@@ -0,0 +1,28 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++
++    <TextView
++        android:id="@+id/textView11"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:text="Tus películas alquiladas\nde este mes"
++        android:textSize="24sp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++
++    <androidx.recyclerview.widget.RecyclerView
++        android:id="@+id/recyclerViewCarrito"
++        android:layout_width="0dp"
++        android:layout_height="300dp"
++        android:layout_marginTop="20dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/textView11" />
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_facturas.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_facturas.xml b/app/src/main/res/layout/activity_facturas.xml
+new file mode 100644
+--- /dev/null	(date 1716304406481)
++++ b/app/src/main/res/layout/activity_facturas.xml	(date 1716304406481)
+@@ -0,0 +1,28 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++
++    <TextView
++        android:id="@+id/textView11"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:text="Tus facturas"
++        android:textSize="24sp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++
++    <androidx.recyclerview.widget.RecyclerView
++        android:id="@+id/recyclerViewCarrito"
++        android:layout_width="0dp"
++        android:layout_height="300dp"
++        android:layout_marginTop="20dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/textView11" />
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file

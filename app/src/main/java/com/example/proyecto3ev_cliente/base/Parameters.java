@@ -11,4 +11,7 @@ public class Parameters {
     public static String URL = API + ip_port + requestMapping;
     public static String LANG = "";
 
+    // Variable pública para acceder a los datos del cliente
+    public static String idClienteSesión;
+
 }

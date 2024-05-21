@@ -3,8 +3,9 @@ package com.example.proyecto3ev_cliente.activities;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.SearchView;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -19,19 +20,12 @@ import com.example.proyecto3ev_cliente.base.CallInterface;
 
 import java.util.List;
 
-import okhttp3.Call;
-import okhttp3.Connection;
-
-/**
- * Actividad para ver las peliculas en un Recycler View con un botos para ir al carrito personal y una barra de busqueda.
- */
 public class PeliculasActivity extends BaseActivity implements CallInterface, View.OnClickListener{
     private SearchView busqueda;
     private RecyclerView recyclerView;
-    private Button carrito;
-    private Button peliculasAlquiladas;
+
     private List<Contenido> contenidos;
-    private AdaptadorRecycleView adaptadorRecycleView;
+    private AdaptadorRecycleViewContenido adaptadorRecycleViewContenido;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,13 +35,10 @@ public class PeliculasActivity extends BaseActivity implements CallInterface, Vi
 
         busqueda=findViewById(R.id.searchViewBusqueda);
         recyclerView=findViewById(R.id.recyclerPeliculas);
-        carrito=findViewById(R.id.carritoBoton);
-        peliculasAlquiladas=findViewById(R.id.botonPeliculasAlquiladas);
 
-        carrito.setOnClickListener(view ->{
-            Intent intent = new Intent(this, CarritoActivity.class);
-            startActivity(intent);
-        });
+
+
+
         showProgress();
         executeCall(this);
     }
@@ -62,10 +53,10 @@ public class PeliculasActivity extends BaseActivity implements CallInterface, Vi
     public void doInUI() {
         hideProgress();
 
-        adaptadorRecycleView = new AdaptadorRecycleView(this, contenidos);
+        adaptadorRecycleViewContenido = new AdaptadorRecycleViewContenido(this, contenidos);
 
-        adaptadorRecycleView.setOnClickListener(this);
-        recyclerView.setAdapter(adaptadorRecycleView);
+        adaptadorRecycleViewContenido.setOnClickListener(this);
+        recyclerView.setAdapter(adaptadorRecycleViewContenido);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -74,10 +65,32 @@ public class PeliculasActivity extends BaseActivity implements CallInterface, Vi
 
     }
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_actividad_peliculas, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.carrito) {
+            Intent intent = new Intent(this, CarritoActivity.class);
+            startActivity(intent);
+        } else if(item.getItemId()==R.id.peliculasAlquiladas){
+
+        } else if (item.getItemId()==R.id.facturas){
+
+        } else if(item.getItemId()==R.id.exit) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+    @Override
     public void onClick(View view) {
         Contenido contenido = contenidos.get(recyclerView.getChildAdapterPosition(view));
         Intent intent = new Intent(this, ActivityDetailed.class);
         intent.putExtra("contenido",contenido);
+        intent.putExtra("con_boton",true);
         startActivity(intent);
     }
 }

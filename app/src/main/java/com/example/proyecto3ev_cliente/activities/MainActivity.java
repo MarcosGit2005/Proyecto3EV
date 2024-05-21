@@ -112,6 +112,7 @@ public class MainActivity extends BaseActivity implements CallInterface {
         if (clienteSesion==null){
             Toast.makeText(getApplicationContext(), "No se ha podido iniciar sesión.", Toast.LENGTH_SHORT).show();
         } else {
+            Parameters.idClienteSesión = clienteSesion.getUsuario();
             Intent intent = new Intent(this, PeliculasActivity.class);
             intent.putExtra("clienteSesion",clienteSesion);
             startActivity(intent);

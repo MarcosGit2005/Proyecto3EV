@@ -36,13 +36,4 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageViewPeli"
         app:layout_constraintStart_toStartOf="@+id/tituloContenido" />
 
-    <Button
-        android:id="@+id/añadirBoton"
-        android:layout_width="95dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="48dp"
-        android:text="Añadir"
-        app:layout_constraintBottom_toBottomOf="@+id/precioContenido"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tituloContenido" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,23 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto3ev_cliente.R;
-
 import com.example.proyecto3ev_cliente.activities.model.Contenido;
-import com.example.proyecto3ev_cliente.base.ImageDownloader;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-/**
- * Clase para crear el adaptador del Recycler view de peliculas.
- */
-public class AdaptadorRecycleView extends RecyclerView.Adapter<AdaptadorRecycleView.ViewHolder> {
+public class AdaptadorRecycleViewFactura extends RecyclerView.Adapter<AdaptadorRecycleViewFactura.ViewHolder> {
     private LayoutInflater layoutInflater;
-    private java.util.List<Contenido> contenidos;
+    private List<Contenido> contenidos;
     private View.OnClickListener onClickListener;
-    public AdaptadorRecycleView(Context context, List<Contenido> contenidos){
+    public AdaptadorRecycleViewFactura(Context context, List<Contenido> contenidos){
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.contenidos = contenidos;
     }
@@ -60,7 +51,6 @@ public class AdaptadorRecycleView extends RecyclerView.Adapter<AdaptadorRecycleV
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView imageView;
         private TextView tituloContenido, precioContenido;
-        private Button botonAñadir;
         private int idContenido;
 
         public ViewHolder(@NonNull View itemView) {
@@ -68,7 +58,6 @@ public class AdaptadorRecycleView extends RecyclerView.Adapter<AdaptadorRecycleV
             imageView = itemView.findViewById(R.id.imageViewPelicula);
             tituloContenido = itemView.findViewById(R.id.tituloContenido);
             precioContenido = itemView.findViewById(R.id.precioContenido);
-            botonAñadir = itemView.findViewById(R.id.añadirBoton);
         }
     }
 }
