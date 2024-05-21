@@ -40,7 +40,8 @@ public class CallMethods<T>  {
     public String post(String url, RequestBody data){
         Call<ResponseBody> call = service.postCall(url, data);
         try {
-            return call.execute().body().string();
+            if (call.execute().body()!=null)
+                return call.execute().body().string();
         } catch (IOException e) {
             e.printStackTrace();
         }

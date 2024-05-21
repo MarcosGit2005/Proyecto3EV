@@ -26,6 +26,7 @@ public class PeliculasActivity extends BaseActivity implements CallInterface, Vi
     private SearchView busqueda;
     private RecyclerView recyclerView;
     private Button carrito;
+    private Button peliculasAlquiladas;
     private List<Contenido> contenidos;
     private AdaptadorRecycleView adaptadorRecycleView;
     @Override
@@ -38,6 +39,7 @@ public class PeliculasActivity extends BaseActivity implements CallInterface, Vi
         busqueda=findViewById(R.id.searchViewBusqueda);
         recyclerView=findViewById(R.id.recyclerPeliculas);
         carrito=findViewById(R.id.carritoBoton);
+        peliculasAlquiladas=findViewById(R.id.botonPeliculasAlquiladas);
 
         carrito.setOnClickListener(view ->{
             Intent intent = new Intent(this, CarritoActivity.class);

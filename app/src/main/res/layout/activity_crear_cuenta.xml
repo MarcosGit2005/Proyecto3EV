@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/consLay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.CrearCuentaActivity">
@@ -18,14 +18,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/nombreApellidos"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/nombre"
+        android:layout_width="150dp"
+        android:layout_height="38dp"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:hint="Nombre y Apellidos"
+        android:hint="Nombre"
         android:inputType="text"
-        android:textColor="#0000FF"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -37,10 +36,10 @@
         android:layout_marginTop="8dp"
         android:text="Domicilio :"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/nombreApellidos"
+        app:layout_constraintEnd_toEndOf="@+id/nombre"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/nombreApellidos"
-        app:layout_constraintTop_toBottomOf="@+id/nombreApellidos" />
+        app:layout_constraintStart_toStartOf="@+id/nombre"
+        app:layout_constraintTop_toBottomOf="@+id/nombre" />
 
     <EditText
         android:id="@+id/domicilio"
@@ -49,7 +48,6 @@
         android:ems="10"
         android:hint="domicilio"
         android:inputType="text"
-        android:textColor="#0000FF"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintHorizontal_bias="0.0"
@@ -75,8 +73,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="CP"
-        android:inputType="text"
-        android:textColor="#0000FF"
+        android:inputType="number"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.0"
@@ -124,7 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Fecha :"
+        android:text="Fecha de nacimiento :"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/correo"
         app:layout_constraintHorizontal_bias="0.0"
@@ -137,9 +134,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:ems="10"
-        android:hint="dd/mm/aaaa"
+        android:hint="aaaa/mm/dd"
         android:inputType="date"
-        android:textColor="#0000FF"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
         app:layout_constraintHorizontal_bias="0.0"
@@ -164,8 +160,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="1234 1234 1234 1234"
-        android:inputType="text"
-        android:textColor="#0000FF"
+        android:inputType="number"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
         app:layout_constraintHorizontal_bias="0.0"
@@ -191,7 +186,6 @@
         android:ems="10"
         android:hint="introduce un nombre de usuario"
         android:inputType="text"
-        android:textColor="#0000FF"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/textView8"
         app:layout_constraintHorizontal_bias="0.0"
@@ -217,7 +211,6 @@
         android:ems="10"
         android:hint="Introduce una constraseña"
         android:inputType="textPassword"
-        android:textColor="#0000FF"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/textView9"
         app:layout_constraintHorizontal_bias="0.0"
@@ -235,4 +228,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <EditText
+        android:id="@+id/apellidos"
+        android:layout_width="150dp"
+        android:layout_height="38dp"
+        android:ems="10"
+        android:hint="Apellidos"
+        android:inputType="text"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nombre"
+        app:layout_constraintEnd_toEndOf="@+id/domicilio"
+        app:layout_constraintStart_toEndOf="@+id/nombre"
+        app:layout_constraintTop_toTopOf="@+id/nombre" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
