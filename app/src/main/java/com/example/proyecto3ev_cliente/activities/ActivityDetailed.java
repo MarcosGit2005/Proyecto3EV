@@ -12,6 +12,9 @@ import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+/**
+ * Actividad para ver una pelicula con mas información en detalle.
+ */
 public class ActivityDetailed extends BaseActivity implements CallInterface {
 
     private ImageView imagenPelicula;

@@ -5,6 +5,9 @@ import android.os.Build;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
+/**
+ * Clase para cambiar el tema en el menú de preferencias.
+ */
 public final class ThemeSetup {
 
     private ThemeSetup() {

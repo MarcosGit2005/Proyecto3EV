@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.proyecto3ev_cliente.base.Parameters;
 
+/**
+ * Actividad para mostrar el menú de preferencias.
+ */
 public class PreferenciasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

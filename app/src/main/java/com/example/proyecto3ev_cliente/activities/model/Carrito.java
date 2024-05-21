@@ -2,6 +2,9 @@ package com.example.proyecto3ev_cliente.activities.model;
 
 import java.io.Serializable;
 
+/**
+ * Clase para crear objetos Carrito
+ */
 public class Carrito implements Serializable {
     private int idCarrito;
     private String usuario;

@@ -2,6 +2,9 @@ package com.example.proyecto3ev_cliente.activities.model;
 
 import java.io.Serializable;
 
+/**
+ * Clase para que un cliente pueda valorar los contenidos.
+ */
 public class ClienteValoraContenido implements Serializable {
     private String usuario;
     private int idContenido;

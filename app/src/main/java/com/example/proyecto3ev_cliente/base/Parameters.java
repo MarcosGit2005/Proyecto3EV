@@ -1,5 +1,8 @@
 package com.example.proyecto3ev_cliente.base;
 
+/**
+ * Clase con los parametros para conectar con la API.
+ */
 public class Parameters {
 
     public static String API = "http://";

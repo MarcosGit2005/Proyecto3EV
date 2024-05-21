@@ -2,6 +2,9 @@ package com.example.proyecto3ev_cliente.activities.model;
 
 import java.io.Serializable;
 
+/**
+ * Clase para crear objetos de contenido.
+ */
 public class Contenido implements Serializable {
     private int idContenido;
     private String título;

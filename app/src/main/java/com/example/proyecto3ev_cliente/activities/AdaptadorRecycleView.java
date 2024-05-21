@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Clase para crear el adaptador del Recycler view de peliculas.
+ */
 public class AdaptadorRecycleView extends RecyclerView.Adapter<AdaptadorRecycleView.ViewHolder> {
     private LayoutInflater layoutInflater;
     private java.util.List<Contenido> contenidos;

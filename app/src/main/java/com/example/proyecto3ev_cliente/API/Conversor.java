@@ -6,6 +6,9 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
+/**
+ * Clase para convertir el Json a Java.
+ */
 public class Conversor {
     private static Gson gson;
     private static Conversor conversor;

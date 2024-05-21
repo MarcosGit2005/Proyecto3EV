@@ -14,6 +14,9 @@ import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
 import com.google.android.material.snackbar.Snackbar;
 
+/**
+ * Actividad para ver el carrito con todos sus contenidos mediante un Recycler view.
+ */
 public class CarritoActivity extends BaseActivity implements CallInterface {
     private RecyclerView recyclerView;
     private EditText sumaTotal;

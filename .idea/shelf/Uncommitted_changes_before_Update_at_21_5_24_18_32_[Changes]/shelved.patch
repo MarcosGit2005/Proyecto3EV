@@ -1,0 +1,503 @@
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/ActivityDetailed.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities;\n\nimport android.os.Bundle;\nimport android.widget.EditText;\nimport android.widget.ImageView;\nimport android.widget.TextView;\n\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport com.example.proyecto3ev_cliente.R;\nimport com.example.proyecto3ev_cliente.base.BaseActivity;\nimport com.example.proyecto3ev_cliente.base.CallInterface;\nimport com.google.android.material.floatingactionbutton.FloatingActionButton;\n\npublic class ActivityDetailed extends BaseActivity implements CallInterface {\n\n    private ImageView imagenPelicula;\n    private TextView titulo;\n    private TextView nota;\n    private TextView notaMedia;\n    private TextView precio;\n    private TextView genero;\n    private TextView duracion;\n    private TextView director;\n    private TextView actores;\n    private TextView fechaEstreno;\n    private EditText voto;\n    private FloatingActionButton buttonCarrito;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_vista_detallada);\n\n        imagenPelicula = findViewById(R.id.imageViewPelicula);\n        titulo = findViewById(R.id.textViewTituloDetailed);\n        nota = findViewById(R.id.textViewNotaDetailed);\n        notaMedia = findViewById(R.id.textViewNotaMediaDetailed);\n        precio = findViewById(R.id.textViewPrecioDetailed);\n        genero = findViewById(R.id.textViewGeneroDetailed);\n        duracion = findViewById(R.id.textViewDuracionDetailed);\n        director = findViewById(R.id.textViewDirectorDetailed);\n        actores = findViewById(R.id.textViewActoresDetailed);\n        fechaEstreno = findViewById(R.id.textViewFechaDetailed);\n        voto = findViewById(R.id.editTextNota);\n        buttonCarrito = findViewById(R.id.buttonCarrito);\n\n    }\n\n    @Override\n    public void doInBackground() {\n\n    }\n\n    @Override\n    public void doInUI() {\n\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/ActivityDetailed.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/ActivityDetailed.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/ActivityDetailed.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/ActivityDetailed.java	(date 1716307709243)
+@@ -12,6 +12,9 @@
+ import com.example.proyecto3ev_cliente.base.CallInterface;
+ import com.google.android.material.floatingactionbutton.FloatingActionButton;
+ 
++/**
++ * Actividad para ver una pelicula con mas información en detalle.
++ */
+ public class ActivityDetailed extends BaseActivity implements CallInterface {
+ 
+     private ImageView imagenPelicula;
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/ContrasenyaActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities;\n\nimport android.os.Bundle;\nimport android.view.View;\nimport android.widget.CheckBox;\nimport android.widget.EditText;\nimport android.widget.TextView;\n\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport com.example.proyecto3ev_cliente.R;\n\npublic class ContrasenyaActivity extends AppCompatActivity {\n\n    private EditText nombreUsuario;\n    private EditText nuevaContrasenya;\n    private EditText repetirContrasenya;\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_recordar_contrasenya);\n\n        nombreUsuario = findViewById(R.id.usuario);\n        nuevaContrasenya = findViewById(R.id.newPassword);\n        repetirContrasenya = findViewById(R.id.RepNewPassword);\n\n\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/ContrasenyaActivity.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/ContrasenyaActivity.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/ContrasenyaActivity.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/ContrasenyaActivity.java	(date 1716307709263)
+@@ -10,6 +10,9 @@
+ 
+ import com.example.proyecto3ev_cliente.R;
+ 
++/**
++ * Actividad de contraseña olvidada donde el cliente puede cambiar su contraseña.
++ */
+ public class ContrasenyaActivity extends AppCompatActivity {
+ 
+     private EditText nombreUsuario;
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/AdaptadorRecycleView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities;\n\nimport android.content.Context;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.widget.Button;\nimport android.widget.ImageView;\nimport android.widget.TextView;\n\nimport androidx.annotation.NonNull;\nimport androidx.recyclerview.widget.RecyclerView;\n\nimport com.example.proyecto3ev_cliente.R;\n\nimport com.example.proyecto3ev_cliente.activities.model.Contenido;\nimport com.example.proyecto3ev_cliente.base.ImageDownloader;\n\nimport java.text.SimpleDateFormat;\nimport java.util.ArrayList;\nimport java.util.Date;\nimport java.util.List;\n\npublic class AdaptadorRecycleView extends RecyclerView.Adapter<AdaptadorRecycleView.ViewHolder> {\n    private LayoutInflater layoutInflater;\n    private java.util.List<Contenido> contenidos;\n    private View.OnClickListener onClickListener;\n    public AdaptadorRecycleView(Context context, List<Contenido> contenidos){\n        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);\n        this.contenidos = contenidos;\n    }\n\n    @NonNull\n    @Override\n    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\n        View view = layoutInflater.inflate(R.layout.simple_element_list,parent,false);\n        view.setOnClickListener(onClickListener);\n        return new ViewHolder(view);\n    }\n    public void setOnClickListener(View.OnClickListener onClickListener){\n        this.onClickListener = onClickListener;\n    }\n    @Override\n    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {\n        Contenido contenido = contenidos.get(position);\n\n        //ImageDownloader.downloadImage(null);\n        holder.tituloContenido.setText(contenido.getTítulo());\n        holder.precioContenido.setText(contenido.getPrecio()+\"€\");\n        holder.idContenido = contenido.getIdContenido();\n    }\n\n    @Override\n    public int getItemCount() {\n        return contenidos.size();\n    }\n    public static class ViewHolder extends RecyclerView.ViewHolder{\n        private ImageView imageView;\n        private TextView tituloContenido, precioContenido;\n        private Button botonAñadir;\n        private int idContenido;\n\n        public ViewHolder(@NonNull View itemView) {\n            super(itemView);\n            imageView = itemView.findViewById(R.id.imageViewPelicula);\n            tituloContenido = itemView.findViewById(R.id.tituloContenido);\n            precioContenido = itemView.findViewById(R.id.precioContenido);\n            botonAñadir = itemView.findViewById(R.id.añadirBoton);\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/AdaptadorRecycleView.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/AdaptadorRecycleView.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/AdaptadorRecycleView.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/AdaptadorRecycleView.java	(date 1716307709251)
+@@ -21,6 +21,9 @@
+ import java.util.Date;
+ import java.util.List;
+ 
++/**
++ * Clase para crear el adaptador del Recycler view de peliculas.
++ */
+ public class AdaptadorRecycleView extends RecyclerView.Adapter<AdaptadorRecycleView.ViewHolder> {
+     private LayoutInflater layoutInflater;
+     private java.util.List<Contenido> contenidos;
+Index: app/src/main/java/com/example/proyecto3ev_cliente/API/Conversor.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.API;\n\nimport com.google.gson.Gson;\nimport com.google.gson.reflect.TypeToken;\n\nimport java.lang.reflect.Type;\nimport java.util.List;\n\npublic class Conversor {\n    private static Gson gson;\n    private static Conversor conversor;\n\n    public  static Conversor getConversor() {\n        if (conversor==null) {\n            gson = new Gson();\n            conversor=new Conversor();\n        }\n\n        return conversor;\n    }\n\n    public <T> String toJson(T data){\n        String json = gson.toJson(data);\n        return json;\n    }\n\n    public <T> String toJson(List<T> data){\n        String json = gson.toJson(data);\n        return json;\n    }\n\n    public <T> T fromJson(String json, Class<T> clazz){\n        T object = gson.fromJson(json, clazz);\n        return object;\n    }\n\n    public <T> List<T> fromJsonList(String json, Class<T> clazz){\n        Type typeOfT = TypeToken.getParameterized(List.class, clazz).getType();\n        List<T> object = gson.fromJson(json, typeOfT);\n        return object;\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/API/Conversor.java b/app/src/main/java/com/example/proyecto3ev_cliente/API/Conversor.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/API/Conversor.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/API/Conversor.java	(date 1716308313687)
+@@ -6,6 +6,9 @@
+ import java.lang.reflect.Type;
+ import java.util.List;
+ 
++/**
++ * Clase para convertir el Json a Java.
++ */
+ public class Conversor {
+     private static Gson gson;
+     private static Conversor conversor;
+Index: app/src/main/java/com/example/proyecto3ev_cliente/base/Parameters.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.base;\n\npublic class Parameters {\n\n    public static String API = \"http://\";\n    public static String ip_port = \"\";\n    public static String requestMapping = \"\";\n    public static String URL = API + ip_port + requestMapping;\n    public static String LANG = \"\";\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/base/Parameters.java b/app/src/main/java/com/example/proyecto3ev_cliente/base/Parameters.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/base/Parameters.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/base/Parameters.java	(date 1716308313695)
+@@ -1,5 +1,8 @@
+ package com.example.proyecto3ev_cliente.base;
+ 
++/**
++ * Clase con los parametros para conectar con la API.
++ */
+ public class Parameters {
+ 
+     public static String API = "http://";
+Index: app/src/main/java/com/example/proyecto3ev_cliente/API/Connector.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.API;\n\n\nimport com.example.proyecto3ev_cliente.base.Parameters;\n\nimport java.util.List;\n\nimport okhttp3.MediaType;\nimport okhttp3.RequestBody;\n\n\npublic class Connector{\n\n    private static Connector connector;\n    private static Conversor conversor;\n    private static CallMethods callMethodsObject;\n\n    public static Connector getConector(){\n        if(connector == null){\n            connector = new Connector();\n            conversor = Conversor.getConversor();\n            callMethodsObject = CallMethods.getCallMethodsObject();\n        }\n        return connector;\n    }\n\n    public <T> List<T> getAsList(Class<T> clazz, String path){\n        String url = Parameters.URL + path;\n        String jsonResponse = callMethodsObject.get(url);\n        if(jsonResponse != null)\n            return conversor.fromJsonList(jsonResponse, clazz);\n        return null;\n    }\n\n\n    public <T> T get(Class<T> clazz, String path){\n        String url = Parameters.URL + path;\n        String jsonResponse = callMethodsObject.get(url);\n        if(jsonResponse != null)\n            return conversor.fromJson(jsonResponse, clazz);\n        return null;\n    }\n    public <T> T post(Class<T> clazz, T data, String path){\n        String url = Parameters.URL + path;\n        String jsonObject = conversor.toJson(data);\n        RequestBody body = RequestBody.create(MediaType.parse(\"application/json\"), jsonObject);\n        String jsonResponse = callMethodsObject.post(url, body);\n        if(jsonResponse != null)\n            return conversor.fromJson(jsonResponse, clazz);\n        return null;\n    }\n\n    public <T> T put(Class<T> clazz, T data, String path){\n        String url = Parameters.URL + path;\n        String jsonObject = conversor.toJson(data);\n        RequestBody body = RequestBody.create(MediaType.parse(\"application/json\"), jsonObject);\n        String jsonResponse = callMethodsObject.put(url, body);\n        if(jsonResponse != null)\n            return conversor.fromJson(jsonResponse, clazz);\n        return null;\n    }\n\n    public <T> T delete(Class<T> clazz, String path){\n        String url = Parameters.URL + path;\n        String jsonResponse = callMethodsObject.delete(url);\n        if(jsonResponse != null)\n            return conversor.fromJson(jsonResponse, clazz);\n        return null;\n    }\n\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/API/Connector.java b/app/src/main/java/com/example/proyecto3ev_cliente/API/Connector.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/API/Connector.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/API/Connector.java	(date 1716308313691)
+@@ -8,7 +8,9 @@
+ import okhttp3.MediaType;
+ import okhttp3.RequestBody;
+ 
+-
++/**
++ * Clase conector con metodos CRUD.
++ */
+ public class Connector{
+ 
+     private static Connector connector;
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/PeliculasActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities;\n\nimport android.content.Intent;\nimport android.os.Bundle;\n\nimport android.view.View;\nimport android.widget.Button;\nimport android.widget.SearchView;\n\nimport androidx.recyclerview.widget.DividerItemDecoration;\nimport androidx.recyclerview.widget.LinearLayoutManager;\nimport androidx.recyclerview.widget.RecyclerView;\n\nimport com.example.proyecto3ev_cliente.API.Connector;\nimport com.example.proyecto3ev_cliente.R;\nimport com.example.proyecto3ev_cliente.activities.model.Contenido;\nimport com.example.proyecto3ev_cliente.base.BaseActivity;\nimport com.example.proyecto3ev_cliente.base.CallInterface;\n\nimport java.util.List;\n\nimport okhttp3.Call;\nimport okhttp3.Connection;\n\npublic class PeliculasActivity extends BaseActivity implements CallInterface, View.OnClickListener{\n    private SearchView busqueda;\n    private RecyclerView recyclerView;\n    private Button carrito;\n    private Button peliculasAlquiladas;\n    private List<Contenido> contenidos;\n    private AdaptadorRecycleView adaptadorRecycleView;\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_busqueda);\n\n        Bundle extras = getIntent().getExtras();\n\n        busqueda=findViewById(R.id.searchViewBusqueda);\n        recyclerView=findViewById(R.id.recyclerPeliculas);\n        carrito=findViewById(R.id.carritoBoton);\n        peliculasAlquiladas=findViewById(R.id.botonPeliculasAlquiladas);\n\n        carrito.setOnClickListener(view ->{\n            Intent intent = new Intent(this, CarritoActivity.class);\n            startActivity(intent);\n        });\n        showProgress();\n        executeCall(this);\n    }\n\n    @Override\n    public void doInBackground() {\n        contenidos = Connector.getConector().getAsList(Contenido.class,\"/contenido/\");\n        System.out.println(contenidos);\n    }\n\n    @Override\n    public void doInUI() {\n        hideProgress();\n\n        adaptadorRecycleView = new AdaptadorRecycleView(this, contenidos);\n\n        adaptadorRecycleView.setOnClickListener(this);\n        recyclerView.setAdapter(adaptadorRecycleView);\n\n        recyclerView.setLayoutManager(new LinearLayoutManager(this));\n\n        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL);\n        recyclerView.addItemDecoration(dividerItemDecoration);\n\n    }\n    @Override\n    public void onClick(View view) {\n        Contenido contenido = contenidos.get(recyclerView.getChildAdapterPosition(view));\n        Intent intent = new Intent(this, ActivityDetailed.class);\n        intent.putExtra(\"contenido\",contenido);\n        startActivity(intent);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/PeliculasActivity.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/PeliculasActivity.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/PeliculasActivity.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/PeliculasActivity.java	(date 1716307709239)
+@@ -22,6 +22,9 @@
+ import okhttp3.Call;
+ import okhttp3.Connection;
+ 
++/**
++ * Actividad para ver las peliculas en un Recycler View con un botos para ir al carrito personal y una barra de busqueda.
++ */
+ public class PeliculasActivity extends BaseActivity implements CallInterface, View.OnClickListener{
+     private SearchView busqueda;
+     private RecyclerView recyclerView;
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/PreferenciasActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities.preferences;\n\n\nimport android.os.Bundle;\n\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport com.example.proyecto3ev_cliente.base.Parameters;\n\npublic class PreferenciasActivity extends AppCompatActivity {\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        getSupportFragmentManager().beginTransaction()\n                .replace(android.R.id.content, new PreferenciasFragment())\n                .commit();\n    }\n    @Override\n    public void finish() {\n        Parameters.requestMapping = GestionPreferencias.getInstance().getRequestMapping(getApplicationContext());\n        Parameters.ip_port = GestionPreferencias.getInstance().getRutaServer(getApplicationContext());\n        Parameters.LANG = GestionPreferencias.getInstance().getLanguage(getApplicationContext());\n        super.finish();\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/PreferenciasActivity.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/PreferenciasActivity.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/PreferenciasActivity.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/PreferenciasActivity.java	(date 1716308028829)
+@@ -7,6 +7,9 @@
+ 
+ import com.example.proyecto3ev_cliente.base.Parameters;
+ 
++/**
++ * Actividad para mostrar el menú de preferencias.
++ */
+ public class PreferenciasActivity extends AppCompatActivity {
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/CrearCuentaActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities;\n\nimport android.content.Intent;\nimport android.os.Bundle;\nimport android.widget.Button;\nimport android.widget.EditText;\nimport android.widget.Toast;\n\n\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport com.example.proyecto3ev_cliente.API.Connector;\nimport com.example.proyecto3ev_cliente.R;\nimport com.example.proyecto3ev_cliente.activities.model.Cliente;\nimport com.example.proyecto3ev_cliente.base.BaseActivity;\nimport com.example.proyecto3ev_cliente.base.CallInterface;\n\npublic class CrearCuentaActivity extends BaseActivity implements CallInterface {\n    private EditText nombreEditText;\n    private EditText apellidosEditText;\n    private EditText domicilioEditText;\n    private EditText codigoPostalEditText;\n    private EditText correoEditText;\n    private EditText dateEditText;\n    private EditText numTarjetaEditText;\n    private EditText usuarioEditText;\n    private EditText passwordEditText;\n    private Button botonCrear;\n    private Cliente clienteCreado;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_crear_cuenta);\n\n        nombreEditText = findViewById(R.id.nombre);\n        apellidosEditText = findViewById(R.id.apellidos);\n        domicilioEditText = findViewById(R.id.domicilio);\n        codigoPostalEditText = findViewById(R.id.codigoPostal) ;\n        correoEditText = findViewById(R.id.correo);\n        dateEditText = findViewById(R.id.date);\n        numTarjetaEditText = findViewById(R.id.numTarjeta);\n        usuarioEditText = findViewById(R.id.nomUsuario);\n        passwordEditText = findViewById(R.id.password);\n\n        botonCrear = findViewById(R.id.botonCrear);\n\n\n\n\n        botonCrear.setOnClickListener(view -> {\n            String nombre = nombreEditText.getText().toString();\n            String apellidos = apellidosEditText.getText().toString();\n            String domicilio = domicilioEditText.getText().toString();\n            String cp = codigoPostalEditText.getText().toString();\n            String email = correoEditText.getText().toString();\n            String fechaNac = dateEditText.getText().toString();\n            String numTarjeta = numTarjetaEditText.getText().toString();\n            String usuario = usuarioEditText.getText().toString();\n            String password = passwordEditText.getText().toString();\n\n            if (nombre.isEmpty() || apellidos.isEmpty() || domicilio.isEmpty() || cp.isEmpty() ||\n                    email.isEmpty() || fechaNac.isEmpty() || numTarjeta.isEmpty() ||\n                    usuario.isEmpty() || password.isEmpty()){\n                Toast.makeText(getApplicationContext(), \"Introduce todos los datos por favor.\", Toast.LENGTH_SHORT).show();\n            } else {\n\n            }\n            showProgress();\n            executeCall(this);\n        });\n\n    }\n\n    @Override\n    public void doInBackground() {\n        String nombre = nombreEditText.getText().toString();\n        String apellidos = apellidosEditText.getText().toString();\n        String domicilio = domicilioEditText.getText().toString();\n        int cp = Integer.parseInt(codigoPostalEditText.getText().toString().equals(\"\")?\"0\":codigoPostalEditText.getText().toString());\n        String email = correoEditText.getText().toString();\n        String fechaNac = dateEditText.getText().toString();\n        String numTarjeta = numTarjetaEditText.getText().toString();\n        String usuario = usuarioEditText.getText().toString();\n        String password = passwordEditText.getText().toString();\n\n        clienteCreado = Connector.getConector().post(Cliente.class,\n                new Cliente(usuario,password,nombre,apellidos,domicilio,cp,email,\n                        fechaNac,numTarjeta,\"cliente\",null),\"/clientes/\");\n    }\n\n    @Override\n    public void doInUI() {\n        hideProgress();\n        if (clienteCreado==null){\n            Toast.makeText(getApplicationContext(), \"No se ha podido crear el cliente.\", Toast.LENGTH_SHORT).show();\n        } else {\n            Toast.makeText(getApplicationContext(), \"Cuenta creada, ya puedes iniciar sesión.\", Toast.LENGTH_SHORT).show();\n        }\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/CrearCuentaActivity.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/CrearCuentaActivity.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/CrearCuentaActivity.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/CrearCuentaActivity.java	(date 1716307709235)
+@@ -15,6 +15,9 @@
+ import com.example.proyecto3ev_cliente.base.BaseActivity;
+ import com.example.proyecto3ev_cliente.base.CallInterface;
+ 
++/**
++ * Actividad para crear una cuenta nueva de cliente con un formulario para añadirlo a la base de datos.
++ */
+ public class CrearCuentaActivity extends BaseActivity implements CallInterface {
+     private EditText nombreEditText;
+     private EditText apellidosEditText;
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/GestionPreferencias.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities.preferences;\n\n\nimport android.content.Context;\nimport android.content.SharedPreferences;\nimport android.preference.PreferenceManager;\n\nimport com.example.proyecto3ev_cliente.R;\n\n\npublic class GestionPreferencias {\n\n    private SharedPreferences pref;\n    private static GestionPreferencias gestionPreferencias;\n\n    private GestionPreferencias(){\n\n    }\n\n    public static GestionPreferencias getInstance(){\n        if(gestionPreferencias==null)\n            gestionPreferencias = new GestionPreferencias();\n        return gestionPreferencias;\n    }\n\n    private void inicializa(Context context) {\n        if (pref == null)\n            pref = PreferenceManager.getDefaultSharedPreferences(context);\n    }\n\n    public String getRequestMapping(Context context){\n        inicializa(context);\n        return pref.getString(\"requestMapping\",\"/api\");\n    }\n\n    public String getRutaServer(Context context){\n        inicializa(context);\n        return pref.getString(\"ruta_puerto\",\"poner ruta cuando la tengamos\");\n    }\n\n    public String getTheme(Context context){\n        inicializa(context);\n        return pref.getString(context.getString(R.string.settings_theme_key), ThemeSetup.Mode.DEFAULT.name());\n    }\n\n    public String getLanguage(Context context){\n        inicializa(context);\n        return pref.getString(\"idioma\", \"spanish\") ;\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/GestionPreferencias.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/GestionPreferencias.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/GestionPreferencias.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/GestionPreferencias.java	(date 1716308028829)
+@@ -7,7 +7,9 @@
+ 
+ import com.example.proyecto3ev_cliente.R;
+ 
+-
++/**
++ * Clase con funciones especificas que usamos en las preferencias.
++ */
+ public class GestionPreferencias {
+ 
+     private SharedPreferences pref;
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/CarritoActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities;\n\nimport android.os.Bundle;\nimport android.widget.Button;\nimport android.widget.EditText;\n\nimport androidx.annotation.NonNull;\nimport androidx.appcompat.app.AppCompatActivity;\nimport androidx.recyclerview.widget.ItemTouchHelper;\nimport androidx.recyclerview.widget.RecyclerView;\n\nimport com.example.proyecto3ev_cliente.R;\nimport com.example.proyecto3ev_cliente.base.BaseActivity;\nimport com.example.proyecto3ev_cliente.base.CallInterface;\nimport com.google.android.material.snackbar.Snackbar;\n\npublic class CarritoActivity extends BaseActivity implements CallInterface {\n    private RecyclerView recyclerView;\n    private EditText sumaTotal;\n    private Button alquilarboton;\n    @Override\n    public void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_carrito);\n\n        recyclerView = findViewById(R.id.recyclerViewCarrito);\n        sumaTotal = findViewById(R.id.precioTotal);\n\n    }\n\n    @Override\n    public void doInBackground() {\n\n    }\n\n    @Override\n    public void doInUI() {\n\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/CarritoActivity.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/CarritoActivity.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/CarritoActivity.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/CarritoActivity.java	(date 1716307709247)
+@@ -14,6 +14,9 @@
+ import com.example.proyecto3ev_cliente.base.CallInterface;
+ import com.google.android.material.snackbar.Snackbar;
+ 
++/**
++ * Actividad para ver el carrito con todos sus contenidos mediante un Recycler view.
++ */
+ public class CarritoActivity extends BaseActivity implements CallInterface {
+     private RecyclerView recyclerView;
+     private EditText sumaTotal;
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/ThemeSetup.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities.preferences;\n\nimport android.content.Context;\nimport android.os.Build;\n\nimport androidx.appcompat.app.AppCompatDelegate;\n\npublic final class ThemeSetup {\n\n    private ThemeSetup() {\n    }\n\n    public enum Mode {\n        DEFAULT, DARK, LIGHT\n    }\n\n    public static void applyTheme(Mode mode) {\n        switch (mode) {\n            case DARK:\n                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);\n                break;\n            case LIGHT:\n                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);\n                break;\n            default:\n                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {\n                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);\n                } else {\n                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);\n                }\n        }\n    }\n\n    public static void applyPreferenceTheme(Context context) {\n\n        applyTheme(Mode.valueOf(GestionPreferencias.getInstance().getTheme(context)));\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/ThemeSetup.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/ThemeSetup.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/ThemeSetup.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/ThemeSetup.java	(date 1716308028821)
+@@ -5,6 +5,9 @@
+ 
+ import androidx.appcompat.app.AppCompatDelegate;
+ 
++/**
++ * Clase para cambiar el tema en el menú de preferencias.
++ */
+ public final class ThemeSetup {
+ 
+     private ThemeSetup() {
+Index: app/src/main/res/layout-land/activity_recordar_contrasenya.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout-land/activity_recordar_contrasenya.xml b/app/src/main/res/layout-land/activity_recordar_contrasenya.xml
+new file mode 100644
+--- /dev/null	(date 1716308389554)
++++ b/app/src/main/res/layout-land/activity_recordar_contrasenya.xml	(date 1716308389554)
+@@ -0,0 +1,108 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++
++    <TextView
++        android:id="@+id/textView16"
++        android:layout_width="0dp"
++        android:layout_height="50dp"
++        android:background="#07399E"
++        android:text="Recordar Contraseña"
++        android:textAlignment="center"
++        android:textColor="#FFFFFF"
++        android:textSize="34sp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++
++    <TextView
++        android:id="@+id/textView17"
++        android:layout_width="250dp"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="8dp"
++        android:text="Nombre de usuario:"
++        android:textColor="#1A1A1A"
++        android:textSize="18sp"
++        app:layout_constraintEnd_toEndOf="@+id/textView16"
++        app:layout_constraintStart_toStartOf="@+id/textView16"
++        app:layout_constraintTop_toBottomOf="@+id/textView16" />
++
++    <EditText
++        android:id="@+id/usuario"
++        android:layout_width="250dp"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="8dp"
++        android:ems="10"
++        android:hint="Introduce usuario"
++        android:inputType="text"
++        android:textColor="#0000FF"
++        android:textSize="16sp"
++        app:layout_constraintEnd_toEndOf="@+id/textView17"
++        app:layout_constraintStart_toStartOf="@+id/textView17"
++        app:layout_constraintTop_toBottomOf="@+id/textView17" />
++
++    <Button
++        android:id="@+id/buttonValidar"
++        android:layout_width="250dp"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:text="Validar"
++        app:layout_constraintEnd_toEndOf="@+id/RepNewPassword"
++        app:layout_constraintStart_toStartOf="@+id/RepNewPassword"
++        app:layout_constraintTop_toBottomOf="@+id/RepNewPassword" />
++
++    <TextView
++        android:id="@+id/textView18"
++        android:layout_width="250dp"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:text="Introduce contraseña nueva :"
++        android:textColor="#1A1A1A"
++        android:textSize="18sp"
++        app:layout_constraintEnd_toEndOf="@+id/usuario"
++        app:layout_constraintStart_toStartOf="@+id/usuario"
++        app:layout_constraintTop_toBottomOf="@+id/usuario" />
++
++    <TextView
++        android:id="@+id/textView19"
++        android:layout_width="250dp"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:text="Repite contraseña nueva :"
++        android:textColor="#1A1A1A"
++        android:textSize="18sp"
++        app:layout_constraintEnd_toEndOf="@+id/newPassword"
++        app:layout_constraintStart_toStartOf="@+id/newPassword"
++        app:layout_constraintTop_toBottomOf="@+id/newPassword" />
++
++    <EditText
++        android:id="@+id/newPassword"
++        android:layout_width="250dp"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="8dp"
++        android:ems="10"
++        android:hint="Contraseña nueva"
++        android:inputType="textPassword"
++        android:textColor="#0000FF"
++        android:textSize="16sp"
++        app:layout_constraintEnd_toEndOf="@+id/textView18"
++        app:layout_constraintStart_toStartOf="@+id/textView18"
++        app:layout_constraintTop_toBottomOf="@+id/textView18" />
++
++    <EditText
++        android:id="@+id/RepNewPassword"
++        android:layout_width="250dp"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="8dp"
++        android:ems="10"
++        android:hint="Repite nueva contraseña"
++        android:inputType="textPassword"
++        android:textColor="#0000FF"
++        android:textSize="16sp"
++        app:layout_constraintEnd_toEndOf="@+id/textView19"
++        app:layout_constraintStart_toStartOf="@+id/textView19"
++        app:layout_constraintTop_toBottomOf="@+id/textView19" />
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/model/ClienteValoraContenido.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities.model;\n\nimport java.io.Serializable;\n\npublic class ClienteValoraContenido implements Serializable {\n    private String usuario;\n    private int idContenido;\n    private int valoracion;\n\n    public ClienteValoraContenido(String usuario, int idContenido, int valoracion) {\n        this.usuario = usuario;\n        this.idContenido = idContenido;\n        this.valoracion = valoracion;\n    }\n\n    public String getUsuario() {\n        return usuario;\n    }\n\n    public void setUsuario(String usuario) {\n        this.usuario = usuario;\n    }\n\n    public int getIdContenido() {\n        return idContenido;\n    }\n\n    public void setIdContenido(int idContenido) {\n        this.idContenido = idContenido;\n    }\n\n    public int getValoracion() {\n        return valoracion;\n    }\n\n    public void setValoracion(int valoracion) {\n        this.valoracion = valoracion;\n    }\n\n    @Override\n    public String toString() {\n        return \"ClienteValoraContenido{\" +\n                \"usuario='\" + usuario + '\\'' +\n                \", idContenido=\" + idContenido +\n                \", valoracion=\" + valoracion +\n                '}';\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/ClienteValoraContenido.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/ClienteValoraContenido.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/ClienteValoraContenido.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/ClienteValoraContenido.java	(date 1716307783346)
+@@ -2,6 +2,9 @@
+ 
+ import java.io.Serializable;
+ 
++/**
++ * Clase para que un cliente pueda valorar los contenidos.
++ */
+ public class ClienteValoraContenido implements Serializable {
+     private String usuario;
+     private int idContenido;
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/PreferenciasFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities.preferences;\n\n\nimport android.os.Bundle;\n\nimport androidx.preference.EditTextPreference;\nimport androidx.preference.ListPreference;\nimport androidx.preference.PreferenceFragmentCompat;\n\nimport com.example.proyecto3ev_cliente.R;\n\nimport java.util.Arrays;\nimport java.util.List;\n\npublic class PreferenciasFragment extends PreferenceFragmentCompat {\n\n    @Override\n    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {\n\n        setPreferencesFromResource(R.xml.preferencias, rootKey);\n\n        // Modificacion de la vista de preferencias por codigo\n\n        // EditTextPreference\n        final EditTextPreference editTextEndPoint = findPreference(\"requestMapping\");\n        editTextEndPoint.setSummary(\"Actualmente: \" + GestionPreferencias.getInstance().getRequestMapping(getContext()));\n\n        editTextEndPoint.setOnPreferenceChangeListener((preference, newValue) -> {\n            editTextEndPoint.setSummary(\"Actualmente: \" + newValue);\n            return true;\n        });\n\n        final EditTextPreference editTextRutaServer = findPreference(\"ruta_puerto\");\n        editTextRutaServer.setSummary(\"Actualmente: \" + GestionPreferencias.getInstance().getRutaServer(getContext()));\n\n        editTextRutaServer.setOnPreferenceChangeListener((preference, newValue) -> {\n            editTextRutaServer.setSummary(\"Actualmente: \" + newValue);\n            return true;\n        });\n\n        // Theme preferences with ListPreference\n        ListPreference themePreference = getPreferenceManager().findPreference(getString(R.string.settings_theme_key));\n        if (themePreference.getValue() == null) {\n            themePreference.setValue(ThemeSetup.Mode.DEFAULT.name());\n        }\n\n        themePreference.setOnPreferenceChangeListener((preference, newValue) -> {\n            ThemeSetup.applyTheme(ThemeSetup.Mode.valueOf((String) newValue));\n            return true;\n        });\n\n        //Laguage preference\n        final ListPreference language = findPreference(\"idioma\");\n        final List<String> language_entries = Arrays.asList(getResources().getStringArray(R.array.settings_language_entries));\n        final List<String> language_values = Arrays.asList(getResources().getStringArray(R.array.settings_language_values));\n        int position  = language_values.indexOf(GestionPreferencias.getInstance().getLanguage(getContext()));\n\n        language.setSummary(\"Idioma: \" + language_entries.get(position));\n\n        language.setOnPreferenceChangeListener((preference, newValue) -> {\n\n            int position1 = language_values.indexOf(newValue);\n            language.setSummary(\"Idioma: \" + language_entries.get(position1));\n\n            return true;\n        });\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/PreferenciasFragment.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/PreferenciasFragment.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/PreferenciasFragment.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/preferences/PreferenciasFragment.java	(date 1716308028833)
+@@ -12,6 +12,9 @@
+ import java.util.Arrays;
+ import java.util.List;
+ 
++/**
++ * Clase para editar las opciones de preferencias del menú.
++ */
+ public class PreferenciasFragment extends PreferenceFragmentCompat {
+ 
+     @Override
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities;\n\nimport android.content.Intent;\nimport android.os.Bundle;\nimport android.view.Menu;\nimport android.view.MenuItem;\nimport android.widget.Button;\nimport android.widget.EditText;\nimport android.widget.ImageView;\nimport android.widget.Toast;\n\nimport com.example.proyecto3ev_cliente.API.Connector;\nimport com.example.proyecto3ev_cliente.R;\nimport com.example.proyecto3ev_cliente.activities.model.Cliente;\nimport com.example.proyecto3ev_cliente.activities.preferences.GestionPreferencias;\nimport com.example.proyecto3ev_cliente.activities.preferences.PreferenciasActivity;\nimport com.example.proyecto3ev_cliente.activities.preferences.ThemeSetup;\nimport com.example.proyecto3ev_cliente.base.BaseActivity;\nimport com.example.proyecto3ev_cliente.base.CallInterface;\nimport com.example.proyecto3ev_cliente.base.Parameters;\n\n\npublic class MainActivity extends BaseActivity implements CallInterface {\n\n    private ImageView imagenLogo;\n    private EditText usuario;\n    private EditText password;\n    private Button botonEntrar;\n    private Button botonRecordarPass;\n    private Button botonCrearCuenta;\n    private Cliente clienteSesion;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_login);\n\n        ThemeSetup.applyPreferenceTheme(getApplicationContext());\n\n        String ruta = GestionPreferencias.getInstance().getRutaServer(getApplicationContext());\n        String requestMap = GestionPreferencias.getInstance().getRequestMapping(getApplicationContext());\n        String lang = GestionPreferencias.getInstance().getLanguage(getApplicationContext());\n\n        Parameters.ip_port = ruta;\n        Parameters.requestMapping = requestMap;\n        Parameters.LANG = lang;\n        Parameters.URL = Parameters.API + Parameters.ip_port + Parameters.requestMapping;\n\n        imagenLogo = findViewById(R.id.imageViewLogo);\n        usuario = findViewById(R.id.editTextUsuario);\n        password = findViewById(R.id.editTextContraseña);\n        botonEntrar = findViewById(R.id.buttonEntrar);\n        botonRecordarPass = findViewById(R.id.buttonRecordarPass);\n        botonCrearCuenta = findViewById(R.id.buttonCrearCuenta);\n\n        botonCrearCuenta.setOnClickListener(view -> {\n            Intent intent = new Intent(this, CrearCuentaActivity.class);\n            startActivity(intent);\n        });\n        botonRecordarPass.setOnClickListener(view ->{\n            Intent intent = new Intent(this,ContrasenyaActivity.class);\n            startActivity(intent);\n        });\n\n        botonEntrar.setOnClickListener(view -> {\n            if (usuario.getText().toString().isEmpty() || password.getText().toString().isEmpty()){\n                Toast.makeText(getApplicationContext(), \"Escribe el usuario y la contraseña!\", Toast.LENGTH_SHORT).show();\n            } else {\n                showProgress();\n                executeCall(this);\n            }\n        });\n    }\n\n    @Override\n    public boolean onCreateOptionsMenu(Menu menu) {\n        getMenuInflater().inflate(R.menu.menu, menu);\n        return super.onCreateOptionsMenu(menu);\n    }\n\n    @Override\n    public boolean onOptionsItemSelected(MenuItem item) {\n        if(item.getItemId()==R.id.configuracion) {\n            Intent intentPreferenciasActivity = new Intent(this, PreferenciasActivity.class);\n            startActivity(intentPreferenciasActivity);\n            return true;\n        }\n\n        if(item.getItemId()==R.id.exit){\n            finish();\n        }\n        return super.onOptionsItemSelected(item);\n\n    }\n\n    @Override\n    public void doInBackground(){\n\n        String user = usuario.getText().toString();\n        String pass = password.getText().toString();\n\n        clienteSesion = Connector.getConector().get(Cliente.class,\n                \"/clientesLogin/\"+user+\"/\"+pass);\n\n    }\n\n    @Override\n    public void doInUI() {\n        hideProgress();\n        if (clienteSesion==null){\n            Toast.makeText(getApplicationContext(), \"No se ha podido iniciar sesión.\", Toast.LENGTH_SHORT).show();\n        } else {\n            Intent intent = new Intent(this, PeliculasActivity.class);\n            intent.putExtra(\"clienteSesion\",clienteSesion);\n            startActivity(intent);\n        }\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/MainActivity.java	(date 1716307709251)
+@@ -19,7 +19,9 @@
+ import com.example.proyecto3ev_cliente.base.CallInterface;
+ import com.example.proyecto3ev_cliente.base.Parameters;
+ 
+-
++/**
++ * Actividad principal en la que un cliente pone su usuario y contraseña para poder acceder al contenido de las demas actividades.
++ */
+ public class MainActivity extends BaseActivity implements CallInterface {
+ 
+     private ImageView imagenLogo;
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Cliente.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities.model;\n\nimport java.io.Serializable;\n\npublic class Cliente implements Serializable {\n    private String usuario;\n    private String contraseña;\n    private String nombre;\n    private String apellidos;\n    private String domicilio;\n    private String email;\n    private String fechaNacimiento;\n    private String numTarjeta;\n    private String tipoUsuario;\n    private String changedTs;\n    private int cp;\n\n    public Cliente(String usuario, String contraseña, String nombre, String apellidos,\n                   String domicilio, int cp, String email, String fechaNacimiento,\n                   String numTarjeta, String tipoUsuario, String changedTs) {\n        this.usuario = usuario;\n        this.contraseña = contraseña;\n        this.nombre = nombre;\n        this.apellidos = apellidos;\n        this.domicilio = domicilio;\n        this.cp = cp;\n        this.email = email;\n        this.fechaNacimiento = fechaNacimiento;\n        this.numTarjeta = numTarjeta;\n        this.tipoUsuario = tipoUsuario;\n        this.changedTs = changedTs;\n    }\n\n    public String getUsuario() {\n        return usuario;\n    }\n\n    public void setUsuario(String usuario) {\n        this.usuario = usuario;\n    }\n\n    public String getContraseña() {\n        return contraseña;\n    }\n\n    public void setContraseña(String contraseña) {\n        this.contraseña = contraseña;\n    }\n\n    public String getNombre() {\n        return nombre;\n    }\n\n    public void setNombre(String nombre) {\n        this.nombre = nombre;\n    }\n\n    public String getApellidos() {\n        return apellidos;\n    }\n\n    public void setApellidos(String apellidos) {\n        this.apellidos = apellidos;\n    }\n\n    public String getDomicilio() {\n        return domicilio;\n    }\n\n    public void setDomicilio(String domicilio) {\n        this.domicilio = domicilio;\n    }\n\n    public int getCP() {\n        return cp;\n    }\n\n    public void setCP(int cp) {\n        this.cp = cp;\n    }\n\n    public String getEmail() {\n        return email;\n    }\n\n    public void setEmail(String email) {\n        this.email = email;\n    }\n\n    public String getFechaNacimiento() {\n        return fechaNacimiento;\n    }\n\n    public void setFechaNacimiento(String fechaNacimiento) {\n        this.fechaNacimiento = fechaNacimiento;\n    }\n\n    public String getNumTarjeta() {\n        return numTarjeta;\n    }\n\n    public void setNumTarjeta(String numTarjeta) {\n        this.numTarjeta = numTarjeta;\n    }\n\n    public String getTipoUsuario() {\n        return tipoUsuario;\n    }\n\n    public void setTipoUsuario(String tipoUsuario) {\n        this.tipoUsuario = tipoUsuario;\n    }\n\n    public String getChangedTs() {\n        return changedTs;\n    }\n\n    public void setChangedTs(String changedTs) {\n        this.changedTs = changedTs;\n    }\n\n    @Override\n    public String toString() {\n        return \"Cliente{\" +\n                \"usuario='\" + usuario + '\\'' +\n                \", contraseña='\" + contraseña + '\\'' +\n                \", nombre='\" + nombre + '\\'' +\n                \", apellidos='\" + apellidos + '\\'' +\n                \", domicilio='\" + domicilio + '\\'' +\n                \", cp=\" + cp +\n                \", email='\" + email + '\\'' +\n                \", fechaNacimiento='\" + fechaNacimiento + '\\'' +\n                \", numTarjeta='\" + numTarjeta + '\\'' +\n                \", tipoUsuario='\" + tipoUsuario + '\\'' +\n                \", changedTs='\" + changedTs + '\\'' +\n                '}';\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Cliente.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Cliente.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Cliente.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Cliente.java	(date 1716307709259)
+@@ -1,7 +1,11 @@
+ package com.example.proyecto3ev_cliente.activities.model;
+ 
+ import java.io.Serializable;
++import java.util.Objects;
+ 
++/**
++ * Clase para crear objetos Cliente.
++ */
+ public class Cliente implements Serializable {
+     private String usuario;
+     private String contraseña;
+@@ -119,6 +123,19 @@
+         this.changedTs = changedTs;
+     }
+ 
++    @Override
++    public boolean equals(Object o) {
++        if (this == o) return true;
++        if (!(o instanceof Cliente)) return false;
++        Cliente cliente = (Cliente) o;
++        return Objects.equals(getUsuario(), cliente.getUsuario()) && Objects.equals(getNombre(), cliente.getNombre()) && Objects.equals(getApellidos(), cliente.getApellidos());
++    }
++
++    @Override
++    public int hashCode() {
++        return Objects.hash(getUsuario(), getNombre(), getApellidos());
++    }
++
+     @Override
+     public String toString() {
+         return "Cliente{" +
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Carrito.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities.model;\n\nimport java.io.Serializable;\n\npublic class Carrito implements Serializable {\n    private int idCarrito;\n    private String usuario;\n    private double precioTotal;\n    private String changedTs;\n\n    public Carrito(int idCarrito, String usuario, double precioTotal, String changedTs) {\n        this.idCarrito = idCarrito;\n        this.usuario = usuario;\n        this.precioTotal = precioTotal;\n        this.changedTs = changedTs;\n    }\n\n    public int getIdCarrito() {\n        return idCarrito;\n    }\n\n    public void setIdCarrito(int idCarrito) {\n        this.idCarrito = idCarrito;\n    }\n\n    public String getUsuario() {\n        return usuario;\n    }\n\n    public void setUsuario(String usuario) {\n        this.usuario = usuario;\n    }\n\n    public double getPrecioTotal() {\n        return precioTotal;\n    }\n\n    public void setPrecioTotal(double precioTotal) {\n        this.precioTotal = precioTotal;\n    }\n\n    public String getChangedTs() {\n        return changedTs;\n    }\n\n    public void setChangedTs(String changedTs) {\n        this.changedTs = changedTs;\n    }\n\n    @Override\n    public String toString() {\n        return \"Carrito{\" +\n                \"idCarrito=\" + idCarrito +\n                \", usuario='\" + usuario + '\\'' +\n                \", precioTotal=\" + precioTotal +\n                \", changedTs='\" + changedTs + '\\'' +\n                '}';\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Carrito.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Carrito.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Carrito.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Carrito.java	(date 1716307709255)
+@@ -2,6 +2,9 @@
+ 
+ import java.io.Serializable;
+ 
++/**
++ * Clase para crear objetos Carrito
++ */
+ public class Carrito implements Serializable {
+     private int idCarrito;
+     private String usuario;
+Index: app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Contenido.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.proyecto3ev_cliente.activities.model;\n\nimport java.io.Serializable;\n\npublic class Contenido implements Serializable {\n    private int idContenido;\n    private String título;\n    private String género;\n    private String descripción;\n    private String imagen;\n    private String idioma;\n    private double precio;\n    private double valoraciónMedia;\n    private String nombre_director;\n    private int duración;\n    private String actoresPrincipales;\n    private String fechaEstreno;\n    private String tipoContenido;\n    private String changedTs;\n    // 4 variables de serie\n    private String nombreSerie;\n    private int numeroTemporada;\n    private int numCapítulo;\n    private boolean disponibilidad;\n    // variable de película\n    private String disponibleHasta;\n\n    public Contenido(int idContenido, String título, String género, String descripción, String imagen,\n                     String idioma, double precio, double valoraciónMedia, String nombre_director,\n                     int duración, String actoresPrincipales, String fechaEstreno, String tipoContenido,\n                     String changedTs, String nombreSerie, int numeroTemporada, int numCapítulo,\n                     boolean disponibilidad, String disponibleHasta) {\n        this.idContenido = idContenido;\n        this.título = título;\n        this.género = género;\n        this.descripción = descripción;\n        this.imagen = imagen;\n        this.idioma = idioma;\n        this.precio = precio;\n        this.valoraciónMedia = valoraciónMedia;\n        this.nombre_director = nombre_director;\n        this.duración = duración;\n        this.actoresPrincipales = actoresPrincipales;\n        this.fechaEstreno = fechaEstreno;\n        this.tipoContenido = tipoContenido;\n        this.changedTs = changedTs;\n        this.nombreSerie = nombreSerie;\n        this.numeroTemporada = numeroTemporada;\n        this.numCapítulo = numCapítulo;\n        this.disponibilidad = disponibilidad;\n        this.disponibleHasta = disponibleHasta;\n    }\n\n    public int getIdContenido() {\n        return idContenido;\n    }\n\n    public void setIdContenido(int idContenido) {\n        this.idContenido = idContenido;\n    }\n\n    public String getTítulo() {\n        return título;\n    }\n\n    public void setTítulo(String título) {\n        this.título = título;\n    }\n\n    public String getGénero() {\n        return género;\n    }\n\n    public void setGénero(String género) {\n        this.género = género;\n    }\n\n    public String getDescripción() {\n        return descripción;\n    }\n\n    public void setDescripción(String descripción) {\n        this.descripción = descripción;\n    }\n\n    public String getImagen() {\n        return imagen;\n    }\n\n    public void setImagen(String imagen) {\n        this.imagen = imagen;\n    }\n\n    public String getIdioma() {\n        return idioma;\n    }\n\n    public void setIdioma(String idioma) {\n        this.idioma = idioma;\n    }\n\n    public double getPrecio() {\n        return precio;\n    }\n\n    public void setPrecio(double precio) {\n        this.precio = precio;\n    }\n\n    public double getValoraciónMedia() {\n        return valoraciónMedia;\n    }\n\n    public void setValoraciónMedia(double valoraciónMedia) {\n        this.valoraciónMedia = valoraciónMedia;\n    }\n\n    public String getNombre_director() {\n        return nombre_director;\n    }\n\n    public void setNombre_director(String nombre_director) {\n        this.nombre_director = nombre_director;\n    }\n\n    public int getDuración() {\n        return duración;\n    }\n\n    public void setDuración(int duración) {\n        this.duración = duración;\n    }\n\n    public String getActoresPrincipales() {\n        return actoresPrincipales;\n    }\n\n    public void setActoresPrincipales(String actoresPrincipales) {\n        this.actoresPrincipales = actoresPrincipales;\n    }\n\n    public String getFechaEstreno() {\n        return fechaEstreno;\n    }\n\n    public void setFechaEstreno(String fechaEstreno) {\n        this.fechaEstreno = fechaEstreno;\n    }\n\n    public String getTipoContenido() {\n        return tipoContenido;\n    }\n\n    public void setTipoContenido(String tipoContenido) {\n        this.tipoContenido = tipoContenido;\n    }\n\n    public String getChangedTs() {\n        return changedTs;\n    }\n\n    public void setChangedTs(String changedTs) {\n        this.changedTs = changedTs;\n    }\n\n    public String getNombreSerie() {\n        return nombreSerie;\n    }\n\n    public void setNombreSerie(String nombreSerie) {\n        this.nombreSerie = nombreSerie;\n    }\n\n    public int getNumeroTemporada() {\n        return numeroTemporada;\n    }\n\n    public void setNumeroTemporada(int numeroTemporada) {\n        this.numeroTemporada = numeroTemporada;\n    }\n\n    public int getNumCapítulo() {\n        return numCapítulo;\n    }\n\n    public void setNumCapítulo(int numCapítulo) {\n        this.numCapítulo = numCapítulo;\n    }\n\n    public boolean isDisponibilidad() {\n        return disponibilidad;\n    }\n\n    public void setDisponibilidad(boolean disponibilidad) {\n        this.disponibilidad = disponibilidad;\n    }\n\n    public String getDisponibleHasta() {\n        return disponibleHasta;\n    }\n\n    public void setDisponibleHasta(String disponibleHasta) {\n        this.disponibleHasta = disponibleHasta;\n    }\n\n    @Override\n    public String toString() {\n        return \"Contenido{\" +\n                \"idContenido=\" + idContenido +\n                \", título='\" + título + '\\'' +\n                \", género='\" + género + '\\'' +\n                \", descripción='\" + descripción + '\\'' +\n                \", imagen='\" + imagen + '\\'' +\n                \", idioma='\" + idioma + '\\'' +\n                \", precio=\" + precio +\n                \", valoraciónMedia=\" + valoraciónMedia +\n                \", nombre_director='\" + nombre_director + '\\'' +\n                \", duración=\" + duración +\n                \", actoresPrincipales='\" + actoresPrincipales + '\\'' +\n                \", fechaEstreno='\" + fechaEstreno + '\\'' +\n                \", tipoContenido='\" + tipoContenido + '\\'' +\n                \", changedTs='\" + changedTs + '\\'' +\n                \", nombreSerie='\" + nombreSerie + '\\'' +\n                \", numeroTemporada=\" + numeroTemporada +\n                \", numCapítulo=\" + numCapítulo +\n                \", disponibilidad=\" + disponibilidad +\n                \", disponibleHasta='\" + disponibleHasta + '\\'' +\n                '}';\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Contenido.java b/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Contenido.java
+--- a/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Contenido.java	(revision b5575907b9e79b37540ba891f9594463c438a463)
++++ b/app/src/main/java/com/example/proyecto3ev_cliente/activities/model/Contenido.java	(date 1716308028825)
+@@ -2,6 +2,9 @@
+ 
+ import java.io.Serializable;
+ 
++/**
++ * Clase para crear objetos de contenido.
++ */
+ public class Contenido implements Serializable {
+     private int idContenido;
+     private String título;

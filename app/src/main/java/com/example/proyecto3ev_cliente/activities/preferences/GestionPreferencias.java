@@ -7,7 +7,9 @@ import android.preference.PreferenceManager;
 
 import com.example.proyecto3ev_cliente.R;
 
-
+/**
+ * Clase con funciones especificas que usamos en las preferencias.
+ */
 public class GestionPreferencias {
 
     private SharedPreferences pref;
