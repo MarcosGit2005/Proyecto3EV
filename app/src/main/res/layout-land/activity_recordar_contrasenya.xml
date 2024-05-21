@@ -34,7 +34,7 @@
         android:id="@+id/usuario"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Introduce usuario"
         android:inputType="text"
