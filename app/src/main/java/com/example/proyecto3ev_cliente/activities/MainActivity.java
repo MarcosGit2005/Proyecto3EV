@@ -19,7 +19,9 @@ import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
 import com.example.proyecto3ev_cliente.base.Parameters;
 
-
+/**
+ * Actividad principal en la que un cliente pone su usuario y contraseña para poder acceder al contenido de las demas actividades.
+ */
 public class MainActivity extends BaseActivity implements CallInterface {
 
     private ImageView imagenLogo;

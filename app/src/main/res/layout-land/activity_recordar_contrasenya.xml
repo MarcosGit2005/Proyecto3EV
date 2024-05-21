@@ -23,10 +23,16 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+<<<<<<< HEAD
         android:background="#07399E"
         android:text="Nombre de usuario:"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
+=======
+        android:text="Nombre de usuario:"
+        android:textColor="#1A1A1A"
+        android:textSize="18sp"
+>>>>>>> origin/master
         app:layout_constraintEnd_toEndOf="@+id/textView16"
         app:layout_constraintStart_toStartOf="@+id/textView16"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -35,11 +41,19 @@
         android:id="@+id/usuario"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+=======
+        android:layout_marginTop="8dp"
+>>>>>>> origin/master
         android:ems="10"
         android:hint="Introduce usuario"
         android:inputType="text"
         android:textColor="#0000FF"
+<<<<<<< HEAD
         android:textSize="14sp"
+=======
+        android:textSize="16sp"
+>>>>>>> origin/master
         app:layout_constraintEnd_toEndOf="@+id/textView17"
         app:layout_constraintStart_toStartOf="@+id/textView17"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
@@ -48,7 +62,11 @@
         android:id="@+id/buttonValidar"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_marginTop="8dp"
+=======
+        android:layout_marginTop="16dp"
+>>>>>>> origin/master
         android:text="Validar"
         app:layout_constraintEnd_toEndOf="@+id/RepNewPassword"
         app:layout_constraintStart_toStartOf="@+id/RepNewPassword"
@@ -58,11 +76,18 @@
         android:id="@+id/textView18"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_marginTop="8dp"
         android:background="#07399E"
         android:text="Introduce contraseña nueva :"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
+=======
+        android:layout_marginTop="16dp"
+        android:text="Introduce contraseña nueva :"
+        android:textColor="#1A1A1A"
+        android:textSize="18sp"
+>>>>>>> origin/master
         app:layout_constraintEnd_toEndOf="@+id/usuario"
         app:layout_constraintStart_toStartOf="@+id/usuario"
         app:layout_constraintTop_toBottomOf="@+id/usuario" />
@@ -71,11 +96,18 @@
         android:id="@+id/textView19"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_marginTop="8dp"
         android:background="#07399E"
         android:text="Repite contraseña nueva :"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
+=======
+        android:layout_marginTop="16dp"
+        android:text="Repite contraseña nueva :"
+        android:textColor="#1A1A1A"
+        android:textSize="18sp"
+>>>>>>> origin/master
         app:layout_constraintEnd_toEndOf="@+id/newPassword"
         app:layout_constraintStart_toStartOf="@+id/newPassword"
         app:layout_constraintTop_toBottomOf="@+id/newPassword" />
@@ -84,11 +116,19 @@
         android:id="@+id/newPassword"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+=======
+        android:layout_marginTop="8dp"
+>>>>>>> origin/master
         android:ems="10"
         android:hint="Contraseña nueva"
         android:inputType="textPassword"
         android:textColor="#0000FF"
+<<<<<<< HEAD
         android:textSize="14sp"
+=======
+        android:textSize="16sp"
+>>>>>>> origin/master
         app:layout_constraintEnd_toEndOf="@+id/textView18"
         app:layout_constraintStart_toStartOf="@+id/textView18"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
@@ -97,11 +137,19 @@
         android:id="@+id/RepNewPassword"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+=======
+        android:layout_marginTop="8dp"
+>>>>>>> origin/master
         android:ems="10"
         android:hint="Repite nueva contraseña"
         android:inputType="textPassword"
         android:textColor="#0000FF"
+<<<<<<< HEAD
         android:textSize="14sp"
+=======
+        android:textSize="16sp"
+>>>>>>> origin/master
         app:layout_constraintEnd_toEndOf="@+id/textView19"
         app:layout_constraintStart_toStartOf="@+id/textView19"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />

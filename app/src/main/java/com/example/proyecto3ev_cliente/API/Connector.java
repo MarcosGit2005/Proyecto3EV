@@ -8,7 +8,9 @@ import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
-
+/**
+ * Clase conector con metodos CRUD.
+ */
 public class Connector{
 
     private static Connector connector;

@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.proyecto3ev_cliente.R;
 
+/**
+ * Actividad de contraseña olvidada donde el cliente puede cambiar su contraseña.
+ */
 public class ContrasenyaActivity extends AppCompatActivity {
 
     private EditText nombreUsuario;

@@ -22,6 +22,9 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Connection;
 
+/**
+ * Actividad para ver las peliculas en un Recycler View con un botos para ir al carrito personal y una barra de busqueda.
+ */
 public class PeliculasActivity extends BaseActivity implements CallInterface, View.OnClickListener{
     private SearchView busqueda;
     private RecyclerView recyclerView;

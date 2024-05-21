@@ -12,6 +12,9 @@ import com.example.proyecto3ev_cliente.R;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Clase para editar las opciones de preferencias del menú.
+ */
 public class PreferenciasFragment extends PreferenceFragmentCompat {
 
     @Override

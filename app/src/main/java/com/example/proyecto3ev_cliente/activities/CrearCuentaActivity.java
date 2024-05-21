@@ -15,6 +15,9 @@ import com.example.proyecto3ev_cliente.activities.model.Cliente;
 import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
 
+/**
+ * Actividad para crear una cuenta nueva de cliente con un formulario para añadirlo a la base de datos.
+ */
 public class CrearCuentaActivity extends BaseActivity implements CallInterface {
     private EditText nombreEditText;
     private EditText apellidosEditText;
