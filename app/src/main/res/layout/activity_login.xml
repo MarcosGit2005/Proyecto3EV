@@ -9,13 +9,13 @@
 
     <ImageView
         android:id="@+id/imageViewLogo"
-        android:layout_width="106dp"
-        android:layout_height="104dp"
-        android:layout_marginTop="120dp"
+        android:layout_width="128dp"
+        android:layout_height="124dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:srcCompat="@drawable/logo" />
 
     <EditText
         android:id="@+id/editTextUsuario"
@@ -46,6 +46,7 @@
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
+        android:backgroundTint="#07399E"
         android:text="Entrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:backgroundTint="#07399E"
         android:text="Recordar contraseña"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonEntrar" />
@@ -66,6 +68,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:backgroundTint="#07399E"
         android:text="Crear Cuenta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonRecordarPass" />
