@@ -1,7 +1,9 @@
 package com.example.proyecto3ev_cliente.activities.model;
 
 
-public class Linea {
+import java.io.Serializable;
+
+public class Linea implements Serializable {
     private int idLinea;
     private int idFactura;
     private int idContenido;

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageViewPeli"
+        android:id="@+id/imageViewContenidoLinea"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -25,15 +25,33 @@
         android:layout_marginStart="28dp"
         android:text="Titulo"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/imageViewPeli"
-        app:layout_constraintTop_toTopOf="@+id/imageViewPeli" />
+        app:layout_constraintStart_toEndOf="@+id/imageViewContenidoLinea"
+        app:layout_constraintTop_toTopOf="@+id/imageViewContenidoLinea" />
 
     <TextView
         android:id="@+id/precioContenido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="00,00€"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewPeli"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewContenidoLinea"
         app:layout_constraintStart_toStartOf="@+id/tituloContenido" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Género:"
+        app:layout_constraintStart_toEndOf="@+id/precioContenido"
+        app:layout_constraintTop_toTopOf="@+id/precioContenido" />
+
+    <TextView
+        android:id="@+id/textViewGenero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="ejemplo"
+        app:layout_constraintStart_toEndOf="@+id/textView14"
+        app:layout_constraintTop_toTopOf="@+id/textView14" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

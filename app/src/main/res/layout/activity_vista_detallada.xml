@@ -9,7 +9,7 @@
         android:id="@+id/imageViewPelicula"
         android:layout_width="185dp"
         android:layout_height="185dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:text="Titulo"
+        android:textSize="34sp"
         app:layout_constraintStart_toStartOf="@+id/imageViewPelicula"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPelicula" />
 
@@ -29,46 +30,47 @@
         android:id="@+id/textViewNotaTexto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Nota"
-        app:layout_constraintStart_toEndOf="@+id/imageViewPelicula"
-        app:layout_constraintTop_toTopOf="@+id/imageViewPelicula" />
+        android:layout_marginBottom="16dp"
+        android:text="Nota Media:"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPrecioDetailed"
+        app:layout_constraintStart_toStartOf="@+id/textViewPrecioDetailed" />
 
     <TextView
         android:id="@+id/textViewNotaMediaDetailed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Nota media"
-        app:layout_constraintStart_toStartOf="@+id/textViewNotaTexto"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNotaTexto" />
+        android:layout_marginStart="8dp"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/textViewNotaTexto"
+        app:layout_constraintTop_toTopOf="@+id/textViewNotaTexto" />
 
     <TextView
         android:id="@+id/textViewPrecioDetailed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
         android:text="Precio"
-        app:layout_constraintStart_toStartOf="@+id/textViewNotaMediaDetailed"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNotaMediaDetailed" />
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewPelicula"
+        app:layout_constraintStart_toEndOf="@+id/imageViewPelicula" />
 
     <TextView
         android:id="@+id/textViewGeneroDetailed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="Genero"
-        app:layout_constraintStart_toEndOf="@+id/textViewTituloDetailed"
-        app:layout_constraintTop_toTopOf="@+id/textViewTituloDetailed" />
+        android:layout_marginStart="16dp"
+        android:text="ejemplo"
+        app:layout_constraintStart_toEndOf="@+id/textView25"
+        app:layout_constraintTop_toTopOf="@+id/textView25" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
         android:text="Duración: "
-        app:layout_constraintStart_toEndOf="@+id/textViewGeneroDetailed"
-        app:layout_constraintTop_toTopOf="@+id/textViewGeneroDetailed" />
+        app:layout_constraintStart_toStartOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <TextView
         android:id="@+id/textViewDuracionDetailed"
@@ -83,10 +85,11 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
         android:text="Dirigida por: "
         app:layout_constraintStart_toStartOf="@+id/textViewTituloDetailed"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTituloDetailed" />
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <TextView
         android:id="@+id/textViewDirectorDetailed"
@@ -149,7 +152,7 @@
         style="@android:style/Widget.DeviceDefault.RatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:numStars="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -159,6 +162,7 @@
         android:id="@+id/buttonValorar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:text="Valorar"
         app:layout_constraintEnd_toEndOf="@+id/ratingBar"
@@ -177,5 +181,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/carrito" />
+
+    <Button
+        android:id="@+id/buttonEliminarValoracion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#FD0000"
+        android:text="ELIMINAR\nVALORACION"
+        app:layout_constraintEnd_toStartOf="@+id/buttonValorar"
+        app:layout_constraintTop_toTopOf="@+id/buttonValorar" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Género:"
+        app:layout_constraintStart_toStartOf="@+id/textViewTituloDetailed"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTituloDetailed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

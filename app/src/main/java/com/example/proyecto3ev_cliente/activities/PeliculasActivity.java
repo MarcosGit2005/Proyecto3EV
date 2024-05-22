@@ -36,9 +36,6 @@ public class PeliculasActivity extends BaseActivity implements CallInterface, Vi
         busqueda=findViewById(R.id.searchViewBusqueda);
         recyclerView=findViewById(R.id.recyclerPeliculas);
 
-
-
-
         showProgress();
         executeCall(this);
     }
@@ -76,9 +73,11 @@ public class PeliculasActivity extends BaseActivity implements CallInterface, Vi
             Intent intent = new Intent(this, CarritoActivity.class);
             startActivity(intent);
         } else if(item.getItemId()==R.id.peliculasAlquiladas){
-
+            Intent intent = new Intent(this, AlquiladasActivity.class);
+            startActivity(intent);
         } else if (item.getItemId()==R.id.facturas){
-
+            Intent intent = new Intent(this, FacturasActivity.class);
+            startActivity(intent);
         } else if(item.getItemId()==R.id.exit) {
             finish();
         }

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.proyecto3ev_cliente.R;
 
 import com.example.proyecto3ev_cliente.activities.model.Contenido;
+import com.example.proyecto3ev_cliente.base.ImageDownloader;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class AdaptadorRecycleViewContenido extends RecyclerView.Adapter<Adaptado
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.simple_element_list,parent,false);
+        View view = layoutInflater.inflate(R.layout.simple_element_list_content,parent,false);
         view.setOnClickListener(onClickListener);
         return new ViewHolder(view);
     }

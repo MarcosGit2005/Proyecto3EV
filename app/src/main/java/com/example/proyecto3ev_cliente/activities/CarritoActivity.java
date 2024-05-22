@@ -2,6 +2,8 @@ package com.example.proyecto3ev_cliente.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,25 +50,37 @@ public class CarritoActivity extends BaseActivity implements CallInterface,View.
             if (!contenidos.isEmpty()){
                 showProgress();
 
-                    executeCall(new CallInterface() {
-                        @Override
-                        public void doInBackground() {
-                            for (Contenido con:contenidos){
-                                carrito = Connector.getConector().get(Carrito.class,"/clientesAlquilar/"+Parameters.idClienteSesión+"/"+con.getIdContenido());
-                            }
-                            contenidos = Connector.getConector().getAsList(Contenido.class,"/contenidoCarrito/"+carrito.getIdCarrito());
+                executeCall(new CallInterface() {
+                    @Override
+                    public void doInBackground() {
+                        for (Contenido con:contenidos){
+                            carrito = Connector.getConector().get(Carrito.class,"/clientesAlquilar/"+Parameters.idClienteSesión+"/"+con.getIdContenido());
                         }
+                        contenidos = Connector.getConector().getAsList(Contenido.class,"/contenidoCarrito/"+carrito.getIdCarrito());
+                    }
 
-                        @Override
-                        public void doInUI() {
-                            hideProgress();
-                            finish();
-                        }
-                    });
-
-
+                    @Override
+                    public void doInUI() {
+                        hideProgress();
+                        finish();
+                    }
+                });
             }
         });
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_facturas_carrito_alquiladas, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.exit) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
 
     }
 
@@ -75,6 +89,7 @@ public class CarritoActivity extends BaseActivity implements CallInterface,View.
         carrito = Connector.getConector().get(Carrito.class,"/clientesCarrito/"+ Parameters.idClienteSesión);
         contenidos = Connector.getConector().getAsList(Contenido.class,"/contenidoCarrito/"+carrito.getIdCarrito());
     }
+
 
     @Override
     public void doInUI() {
@@ -91,6 +106,16 @@ public class CarritoActivity extends BaseActivity implements CallInterface,View.
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateData();
+    }
+
+    private void updateData() {
+        showProgress();
+        executeCall(this);
     }
     @Override
     public void onClick(View view) {

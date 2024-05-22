@@ -1,9 +1,9 @@
 package com.example.proyecto3ev_cliente.activities.model;
 
 
+import java.io.Serializable;
 
-
-public class Factura {
+public class Factura implements Serializable {
     private int idFactura;
     private String usuario;
     private String fecha;

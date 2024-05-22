@@ -3,7 +3,6 @@ package com.example.proyecto3ev_cliente.activities;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -17,13 +16,12 @@ import com.example.proyecto3ev_cliente.activities.model.ClienteValoraContenido;
 import com.example.proyecto3ev_cliente.activities.model.Contenido;
 import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
-import com.example.proyecto3ev_cliente.base.ImageDownloader;
 import com.example.proyecto3ev_cliente.base.Parameters;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class ActivityDetailed extends BaseActivity implements CallInterface {
+public class ActivityDetailedSinBoton extends BaseActivity implements CallInterface {
 
     private ImageView imagenPelicula;
     private TextView titulo;
@@ -34,21 +32,17 @@ public class ActivityDetailed extends BaseActivity implements CallInterface {
     private TextView director;
     private TextView actores;
     private TextView fechaEstreno;
-    private FloatingActionButton buttonCarrito;
-    private FloatingActionButton buttonEliminarDelCarrito;
-    private Button buttonVotar, buttonEliminarValoracion;
+    private Button buttonVotar,buttonEliminarValoracion;
     private RatingBar ratingBar;
     private int valor=0;
     private Contenido contenido;
-    private List<Contenido> contenidosCarritoCliente;
-    private List<Contenido> contenidosAlquiladosCliente;
     private Cliente cliente;
     private ClienteValoraContenido valoracion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vista_detallada);
+        setContentView(R.layout.activity_vista_detallada_sin_boton);
 
         imagenPelicula = findViewById(R.id.imageViewPelicula);
         titulo = findViewById(R.id.textViewTituloDetailed);
@@ -64,9 +58,6 @@ public class ActivityDetailed extends BaseActivity implements CallInterface {
         buttonVotar = findViewById(R.id.buttonValorar);
         buttonEliminarValoracion = findViewById(R.id.buttonEliminarValoracion);
         ratingBar = findViewById(R.id.ratingBar);
-        buttonCarrito = findViewById(R.id.buttonCarrito);
-
-        buttonEliminarDelCarrito = findViewById(R.id.buttonQuitarDelCarrito);
 
         ratingBar.setOnRatingBarChangeListener((ratingBar1, rating, fromUser) -> {
             valor = (int) rating;
@@ -120,38 +111,6 @@ public class ActivityDetailed extends BaseActivity implements CallInterface {
             });
         });
 
-        buttonCarrito.setOnClickListener(view -> {
-            showProgress();
-            executeCall(this);
-        });
-
-        buttonEliminarDelCarrito.setOnClickListener(view -> {
-            showProgress();
-            executeCall(new CallInterface() {
-                @Override
-                public void doInBackground() {
-                    Carrito carrito = Connector.getConector().get(Carrito.class,"/clientesCarrito/"+ Parameters.idClienteSesión);
-                    contenidosCarritoCliente = Connector.getConector().getAsList(Contenido.class,"/contenidoCarrito/"+carrito.getIdCarrito());
-                    contenidosAlquiladosCliente = Connector.getConector().getAsList(Contenido.class,"/contenidoCliente/"+Parameters.idClienteSesión);
-
-                    if (contenidosCarritoCliente.contains(contenido))
-                        Connector.getConector().delete(Contenido.class,
-                            "/contenidoEliminarCarrito/"+contenido.getIdContenido()+"/"+carrito.getIdCarrito());
-                }
-
-                @Override
-                public void doInUI() {
-                    hideProgress();
-                    if (contenidosCarritoCliente.contains(contenido)){
-                        Toast.makeText(getApplicationContext(), "Contenido eliminado del carrito.", Toast.LENGTH_SHORT).show();
-                    } else if (contenidosAlquiladosCliente.contains(contenido)){
-                        Toast.makeText(getApplicationContext(), "Ya tiene alquilado el contenido.", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "No tiene el contenido en el carrito.", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        });
 
         // Carga del contenido pasado por extras
         Bundle extras = getIntent().getExtras();
@@ -165,9 +124,9 @@ public class ActivityDetailed extends BaseActivity implements CallInterface {
             director.setText(contenido.getNombre_director());
             actores.setText(contenido.getActoresPrincipales());
             fechaEstreno.setText(contenido.getFechaEstreno());
-            ImageDownloader.downloadImage("ftp://mrubiod@5.56.60.121/Proyecto%203%C2%AAEV/res/img/300.jpg",imagenPelicula);
 
         }
+
 
 
     }
@@ -175,21 +134,13 @@ public class ActivityDetailed extends BaseActivity implements CallInterface {
     @Override
     public void doInBackground() {
         Carrito carrito = Connector.getConector().get(Carrito.class,"/clientesCarrito/"+ Parameters.idClienteSesión);
-        contenidosCarritoCliente = Connector.getConector().getAsList(Contenido.class,"/contenidoCarrito/"+carrito.getIdCarrito());
-        contenidosAlquiladosCliente = Connector.getConector().getAsList(Contenido.class,"/contenidoCliente/"+Parameters.idClienteSesión);
-        if (!contenidosAlquiladosCliente.contains(contenido) && !contenidosCarritoCliente.contains(contenido))
-            Connector.getConector().get(Contenido.class,
+        Contenido cont = Connector.getConector().get(Contenido.class,
                 "/contenidoAñadirCarrito/"+contenido.getIdContenido()+"/"+carrito.getIdCarrito());
     }
 
     @Override
     public void doInUI() {
         hideProgress();
-        if (contenidosAlquiladosCliente.contains(contenido))
-            Toast.makeText(getApplicationContext(), "Ya tiene alquilado el contenido.", Toast.LENGTH_SHORT).show();
-        else if (contenidosCarritoCliente.contains(contenido))
-            Toast.makeText(getApplicationContext(), "Ya tiene el contenido en el carrito.", Toast.LENGTH_SHORT).show();
-        else
-            finish();
+        finish();
     }
 }

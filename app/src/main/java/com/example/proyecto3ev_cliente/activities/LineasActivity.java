@@ -12,23 +12,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto3ev_cliente.API.Connector;
 import com.example.proyecto3ev_cliente.R;
+import com.example.proyecto3ev_cliente.activities.model.Contenido;
 import com.example.proyecto3ev_cliente.activities.model.Factura;
+import com.example.proyecto3ev_cliente.activities.model.Linea;
 import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
 import com.example.proyecto3ev_cliente.base.Parameters;
 
 import java.util.List;
 
-public class FacturasActivity extends BaseActivity implements CallInterface, View.OnClickListener {
-    private RecyclerView recyclerViewFacturas;
-    private AdaptadorRecycleViewFactura adaptadorRecycleViewFactura;
-    private List<Factura> facturas;
+public class LineasActivity extends BaseActivity implements CallInterface {
+    private RecyclerView recyclerViewLineas;
+    private AdaptadorRecycleViewLinea adaptadorRecycleViewLinea;
+    private List<Linea> lineas;
+    private Factura factura;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_facturas);
+        setContentView(R.layout.activity_lineas);
 
-        recyclerViewFacturas = findViewById(R.id.recyclerViewFacturas);
+        recyclerViewLineas = findViewById(R.id.recyclerViewLineas);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras!=null)
+            factura = (Factura) extras.getSerializable("factura");
 
         showProgress();
         executeCall(this);
@@ -50,30 +57,21 @@ public class FacturasActivity extends BaseActivity implements CallInterface, Vie
 
     @Override
     public void doInBackground() {
-        facturas = Connector.getConector().getAsList(Factura.class,"/clientesFacturas/"+ Parameters.idClienteSesión);
+        lineas = Connector.getConector().getAsList(Linea.class,"/clientesLineas/"+ factura.getIdFactura());
     }
-
-
     @Override
     public void doInUI() {
         hideProgress();
 
-        adaptadorRecycleViewFactura = new AdaptadorRecycleViewFactura(this, facturas);
+        adaptadorRecycleViewLinea = new AdaptadorRecycleViewLinea(this, lineas);
 
-        adaptadorRecycleViewFactura.setOnClickListener(this);
-        recyclerViewFacturas.setAdapter(adaptadorRecycleViewFactura);
+        recyclerViewLineas.setAdapter(adaptadorRecycleViewLinea);
 
-        recyclerViewFacturas.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewLineas.setLayoutManager(new LinearLayoutManager(this));
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerViewFacturas.getContext(),DividerItemDecoration.VERTICAL);
-        recyclerViewFacturas.addItemDecoration(dividerItemDecoration);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerViewLineas.getContext(),DividerItemDecoration.VERTICAL);
+        recyclerViewLineas.addItemDecoration(dividerItemDecoration);
     }
-    @Override
-    public void onClick(View view) {
-        Factura factura = facturas.get(recyclerViewFacturas.getChildAdapterPosition(view));
-        Intent intent = new Intent(this, LineasActivity.class);
-        intent.putExtra("factura",factura);
-        intent.putExtra("con_boton",false);
-        startActivity(intent);
-    }
+
+
 }
