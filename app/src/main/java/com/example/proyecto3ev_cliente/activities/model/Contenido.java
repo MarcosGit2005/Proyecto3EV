@@ -237,11 +237,16 @@ public class Contenido implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contenido contenido = (Contenido) o;
+        // Si son dos capitulos, para que no me salga la serie repetida hago que sean iguales si la serie se llama igual
+        if (getTipoContenido().equals("capítulo") && contenido.getTipoContenido().equals("capítulo"))
+            return nombreSerie.equals(contenido.getNombreSerie());
         return idContenido == contenido.idContenido;
     }
 
     @Override
     public int hashCode() {
+        if (getTipoContenido().equals("capítulo"))
+            return nombreSerie.hashCode();
         return Objects.hash(idContenido, título, género, descripción, imagen, idioma, precio, valoraciónMedia, nombre_director, duración, actoresPrincipales, fechaEstreno, tipoContenido, changedTs, nombreSerie, numeroTemporada, numCapítulo, disponibilidad, disponibleHasta);
     }
 }

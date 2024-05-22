@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto3ev_cliente.API.Connector;
 import com.example.proyecto3ev_cliente.R;
+import com.example.proyecto3ev_cliente.activities.actividades_detalladas.ActivityDetailedCortoSinBotones;
 import com.example.proyecto3ev_cliente.activities.model.Contenido;
 import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
@@ -55,7 +56,7 @@ public class AlquiladasActivity extends BaseActivity implements CallInterface,Vi
     @Override
     public void onClick(View view) {
         Contenido contenido = contenidos.get(recyclerViewAlquiladas.getChildAdapterPosition(view));
-        Intent intent = new Intent(this, ActivityDetailedSinBoton.class);
+        Intent intent = new Intent(this, ActivityDetailedCortoSinBotones.class);
         intent.putExtra("contenido",contenido);
         startActivity(intent);
     }

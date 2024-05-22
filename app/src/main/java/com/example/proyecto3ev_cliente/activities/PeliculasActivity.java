@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto3ev_cliente.API.Connector;
 import com.example.proyecto3ev_cliente.R;
+import com.example.proyecto3ev_cliente.activities.actividades_detalladas.ActivityDetailedCapítulo;
+import com.example.proyecto3ev_cliente.activities.actividades_detalladas.ActivityDetailedCorto;
+import com.example.proyecto3ev_cliente.activities.actividades_detalladas.ActivityDetailedPelicula;
 import com.example.proyecto3ev_cliente.activities.model.Contenido;
 import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
@@ -48,6 +51,13 @@ public class PeliculasActivity extends BaseActivity implements CallInterface, Vi
     @Override
     public void doInBackground() {
         contenidosOriginal = Connector.getConector().getAsList(Contenido.class,"/contenido/");
+
+        List<Contenido> contenidoSinRepes = contenidosOriginal.stream()
+                .distinct().collect(Collectors.toList());
+
+        contenidosOriginal.clear();
+        contenidosOriginal.addAll(contenidoSinRepes);
+
         contenidosBúsqueda = new ArrayList<>(contenidosOriginal);
     }
 
@@ -92,7 +102,15 @@ public class PeliculasActivity extends BaseActivity implements CallInterface, Vi
     @Override
     public void onClick(View view) {
         Contenido contenido = contenidosBúsqueda.get(recyclerView.getChildAdapterPosition(view));
-        Intent intent = new Intent(this, ActivityDetailed.class);
+        Intent intent = null;
+        if (contenido.getTipoContenido().equals("película")){
+            intent = new Intent(this, ActivityDetailedPelicula.class);
+        } else if (contenido.getTipoContenido().equals("capítulo")){
+            intent = new Intent(this, ActivityDetailedCapítulo.class);
+        } else {
+            intent = new Intent(this, ActivityDetailedCorto.class);
+        }
+
         intent.putExtra("contenido",contenido);
         startActivity(intent);
     }

@@ -24,8 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ActivityDetailed"></activity>
-        <activity android:name=".activities.ActivityDetailedSinBoton"></activity>
+        <activity android:name=".activities.actividades_detalladas.ActivityDetailedCorto"></activity>
+        <activity android:name=".activities.actividades_detalladas.ActivityDetailedCortoSinBotones"></activity>
+        <activity android:name=".activities.actividades_detalladas.ActivityDetailedCapítulo"></activity>
+        <activity android:name=".activities.actividades_detalladas.ActivityDetailedPelicula"></activity>
+        <activity android:name=".activities.actividades_detalladas.ActivityDetailedPeliculaSinBotones"></activity>
         <activity android:name=".activities.preferences.PreferenciasActivity"></activity>
         <activity android:name=".activities.CarritoActivity"></activity>
         <activity android:name=".activities.CrearCuentaActivity"></activity>
@@ -34,6 +37,7 @@
         <activity android:name=".activities.AlquiladasActivity"></activity>
         <activity android:name=".activities.FacturasActivity"></activity>
         <activity android:name=".activities.LineasActivity"></activity>
+
 
     </application>
 

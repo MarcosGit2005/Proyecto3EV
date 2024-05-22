@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageViewContenidoLinea"
+        android:id="@+id/imageViewImagen"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -22,19 +22,20 @@
         android:id="@+id/tituloContenido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="8dp"
         android:text="Titulo"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/imageViewContenidoLinea"
-        app:layout_constraintTop_toTopOf="@+id/imageViewContenidoLinea" />
+        app:layout_constraintStart_toEndOf="@+id/imageViewImagen"
+        app:layout_constraintTop_toTopOf="@+id/imageViewImagen" />
 
     <TextView
         android:id="@+id/precioContenido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="00,00€"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewContenidoLinea"
-        app:layout_constraintStart_toStartOf="@+id/tituloContenido" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewImagen"
+        app:layout_constraintStart_toEndOf="@+id/imageViewImagen" />
 
     <TextView
         android:id="@+id/textView14"
@@ -53,5 +54,24 @@
         android:text="ejemplo"
         app:layout_constraintStart_toEndOf="@+id/textView14"
         app:layout_constraintTop_toTopOf="@+id/textView14" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Tipo:"
+        app:layout_constraintEnd_toStartOf="@+id/textViewTipo"
+        app:layout_constraintTop_toTopOf="@+id/textViewTipo" />
+
+    <TextView
+        android:id="@+id/textViewTipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="(tipo)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

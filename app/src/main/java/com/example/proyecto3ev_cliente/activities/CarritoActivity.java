@@ -8,23 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto3ev_cliente.API.Connector;
 import com.example.proyecto3ev_cliente.R;
+import com.example.proyecto3ev_cliente.activities.actividades_detalladas.ActivityDetailedCorto;
 import com.example.proyecto3ev_cliente.activities.model.Carrito;
 import com.example.proyecto3ev_cliente.activities.model.Contenido;
 import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
 import com.example.proyecto3ev_cliente.base.Parameters;
-import com.google.android.material.snackbar.Snackbar;
 
-import java.lang.reflect.Parameter;
 import java.util.List;
 
 public class CarritoActivity extends BaseActivity implements CallInterface,View.OnClickListener {
@@ -120,7 +116,7 @@ public class CarritoActivity extends BaseActivity implements CallInterface,View.
     @Override
     public void onClick(View view) {
         Contenido contenido = contenidos.get(recyclerView.getChildAdapterPosition(view));
-        Intent intent = new Intent(this, ActivityDetailed.class);
+        Intent intent = new Intent(this, ActivityDetailedCorto.class);
         intent.putExtra("contenido",contenido);
         startActivity(intent);
     }

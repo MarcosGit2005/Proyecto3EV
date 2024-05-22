@@ -1,7 +1,6 @@
-package com.example.proyecto3ev_cliente.activities;
+package com.example.proyecto3ev_cliente.activities.actividades_detalladas;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -17,11 +16,8 @@ import com.example.proyecto3ev_cliente.activities.model.Contenido;
 import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
 import com.example.proyecto3ev_cliente.base.Parameters;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.List;
-
-public class ActivityDetailedSinBoton extends BaseActivity implements CallInterface {
+public class ActivityDetailedCortoSinBotones extends BaseActivity implements CallInterface {
 
     private ImageView imagenPelicula;
     private TextView titulo;
@@ -42,7 +38,7 @@ public class ActivityDetailedSinBoton extends BaseActivity implements CallInterf
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vista_detallada_sin_boton);
+        setContentView(R.layout.activity_vista_detallada_corto_sin_botones);
 
         imagenPelicula = findViewById(R.id.imageViewPelicula);
         titulo = findViewById(R.id.textViewTituloDetailed);

@@ -1,9 +1,7 @@
-package com.example.proyecto3ev_cliente.activities;
+package com.example.proyecto3ev_cliente.activities.actividades_detalladas;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -23,7 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class ActivityDetailed extends BaseActivity implements CallInterface {
+public class ActivityDetailedPelicula extends BaseActivity implements CallInterface {
 
     private ImageView imagenPelicula;
     private TextView titulo;
@@ -34,6 +32,7 @@ public class ActivityDetailed extends BaseActivity implements CallInterface {
     private TextView director;
     private TextView actores;
     private TextView fechaEstreno;
+    private TextView disponibleHasta;
     private FloatingActionButton buttonCarrito;
     private FloatingActionButton buttonEliminarDelCarrito;
     private Button buttonVotar, buttonEliminarValoracion;
@@ -48,7 +47,7 @@ public class ActivityDetailed extends BaseActivity implements CallInterface {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vista_detallada);
+        setContentView(R.layout.activity_vista_detallada_pelicula);
 
         imagenPelicula = findViewById(R.id.imageViewPelicula);
         titulo = findViewById(R.id.textViewTituloDetailed);
@@ -59,6 +58,7 @@ public class ActivityDetailed extends BaseActivity implements CallInterface {
         director = findViewById(R.id.textViewDirectorDetailed);
         actores = findViewById(R.id.textViewActoresDetailed);
         fechaEstreno = findViewById(R.id.textViewFechaDetailed);
+        disponibleHasta = findViewById(R.id.textViewFechaDisponibilidad);
 
 
         buttonVotar = findViewById(R.id.buttonValorar);
@@ -136,7 +136,7 @@ public class ActivityDetailed extends BaseActivity implements CallInterface {
 
                     if (contenidosCarritoCliente.contains(contenido))
                         Connector.getConector().delete(Contenido.class,
-                            "/contenidoEliminarCarrito/"+contenido.getIdContenido()+"/"+carrito.getIdCarrito());
+                                "/contenidoEliminarCarrito/"+contenido.getIdContenido()+"/"+carrito.getIdCarrito());
                 }
 
                 @Override
@@ -165,7 +165,8 @@ public class ActivityDetailed extends BaseActivity implements CallInterface {
             director.setText(contenido.getNombre_director());
             actores.setText(contenido.getActoresPrincipales());
             fechaEstreno.setText(contenido.getFechaEstreno());
-            ImageDownloader.downloadImage("https://www.google.com/imgres?q=300&imgurl=https%3A%2F%2Fwww.lavanguardia.com%2Fpeliculas-series%2Fimages%2Fmovie%2Fposter%2F2007%2F3%2Fw1280%2FzLQG9fqH01f8eFRAaSUJY7va92x.jpg&imgrefurl=https%3A%2F%2Fwww.lavanguardia.com%2Fpeliculas-series%2Fpeliculas%2F300-1271&docid=7D_XqXn01TGWUM&tbnid=ycaDzKRXwIgv1M&vet=12ahUKEwjG16_fzaGGAxXxUaQEHSarBJAQM3oECGQQAA..i&w=1280&h=1920&hcb=2&ved=2ahUKEwjG16_fzaGGAxXxUaQEHSarBJAQM3oECGQQAA",imagenPelicula);
+            disponibleHasta.setText(contenido.getDisponibleHasta());
+            ImageDownloader.downloadImage("https://hips.hearstapps.com/hmg-prod/images/gerard-butler-300-entrenamiento-dieta-mens-health-1605801533.jpg?crop=0.526xw:1.00xh;0.241xw,0&resize=1200:*",imagenPelicula);
 
         }
 
@@ -179,7 +180,7 @@ public class ActivityDetailed extends BaseActivity implements CallInterface {
         contenidosAlquiladosCliente = Connector.getConector().getAsList(Contenido.class,"/contenidoCliente/"+Parameters.idClienteSesión);
         if (!contenidosAlquiladosCliente.contains(contenido) && !contenidosCarritoCliente.contains(contenido))
             Connector.getConector().get(Contenido.class,
-                "/contenidoAñadirCarrito/"+contenido.getIdContenido()+"/"+carrito.getIdCarrito());
+                    "/contenidoAñadirCarrito/"+contenido.getIdContenido()+"/"+carrito.getIdCarrito());
     }
 
     @Override

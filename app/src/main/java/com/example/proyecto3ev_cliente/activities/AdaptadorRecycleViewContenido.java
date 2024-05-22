@@ -40,9 +40,14 @@ public class AdaptadorRecycleViewContenido extends RecyclerView.Adapter<Adaptado
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Contenido contenido = contenidos.get(position);
 
-        //ImageDownloader.downloadImage(null);
-        holder.tituloContenido.setText(contenido.getTítulo());
+        ImageDownloader.downloadImage("https://hips.hearstapps.com/hmg-prod/images/gerard-butler-300-entrenamiento-dieta-mens-health-1605801533.jpg?crop=0.526xw:1.00xh;0.241xw,0&resize=1200:*",holder.imageView);
+        if (!contenido.getTipoContenido().equals("capítulo"))
+            holder.tituloContenido.setText(contenido.getTítulo());
+        else {
+            holder.tituloContenido.setText(contenido.getNombreSerie());
+        }
         holder.precioContenido.setText(contenido.getPrecio()+"€");
+        holder.tipoContenido.setText(contenido.getTipoContenido());
         holder.idContenido = contenido.getIdContenido();
     }
 
@@ -52,14 +57,15 @@ public class AdaptadorRecycleViewContenido extends RecyclerView.Adapter<Adaptado
     }
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView imageView;
-        private TextView tituloContenido, precioContenido;
+        private TextView tituloContenido, precioContenido, tipoContenido;
         private int idContenido;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.imageViewPelicula);
+            imageView = itemView.findViewById(R.id.imageViewImagen);
             tituloContenido = itemView.findViewById(R.id.tituloContenido);
             precioContenido = itemView.findViewById(R.id.precioContenido);
+            tipoContenido = itemView.findViewById(R.id.textViewTipo);
         }
     }
 }
