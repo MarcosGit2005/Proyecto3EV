@@ -47,7 +47,7 @@ public class AdaptadorRecycleViewContenido extends RecyclerView.Adapter<Adaptado
             holder.tituloContenido.setText(contenido.getNombreSerie());
         }
         holder.precioContenido.setText(contenido.getPrecio()+"€");
-        holder.tipoContenido.setText(contenido.getTipoContenido());
+        holder.tipoContenido.setText(!contenido.getTipoContenido().equals("capítulo")?contenido.getTipoContenido():"serie");
         holder.idContenido = contenido.getIdContenido();
     }
 

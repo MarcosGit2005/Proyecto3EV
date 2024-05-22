@@ -1,6 +1,8 @@
 package com.example.proyecto3ev_cliente.activities.actividades_detalladas;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,7 +23,6 @@ import com.example.proyecto3ev_cliente.base.ImageDownloader;
 import com.example.proyecto3ev_cliente.base.Parameters;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,12 +43,14 @@ public class ActivityDetailedCapítulo extends BaseActivity implements CallInter
     private Button buttonVotar, buttonEliminarValoracion;
     private RatingBar ratingBar;
     private int valor=0;
-    private Contenido contenido;
+    private Contenido contenidoBundleExtras;
     private List<Contenido> contenidosCarritoCliente;
     private List<Contenido> contenidosAlquiladosCliente;
     private Cliente cliente;
     private ClienteValoraContenido valoracion;
+
     private List<Contenido> listaContenidos;
+    private List<Contenido> contenidosEstaSerie;
     private List<String> temporadasSerie;
     private List<String> capítulosSerie;
     private Spinner spinnerTemp, spinnerCap;
@@ -69,7 +72,6 @@ public class ActivityDetailedCapítulo extends BaseActivity implements CallInter
         actores = findViewById(R.id.textViewActoresDetailed);
         fechaEstreno = findViewById(R.id.textViewFechaDetailed);
 
-
         buttonVotar = findViewById(R.id.buttonValorar);
         buttonEliminarValoracion = findViewById(R.id.buttonEliminarValoracion);
         ratingBar = findViewById(R.id.ratingBar);
@@ -78,7 +80,49 @@ public class ActivityDetailedCapítulo extends BaseActivity implements CallInter
         buttonEliminarDelCarrito = findViewById(R.id.buttonQuitarDelCarrito);
 
         spinnerTemp = findViewById(R.id.spinnerTemporadas);
+        spinnerTemp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                temporadaSelected = (String)parent.getItemAtPosition(position);
+
+                contenidosEstaSerie = listaContenidos.stream()
+                        .filter(c -> c.getTipoContenido().equals("capítulo"))
+                        .filter(c -> c.getNombreSerie().equals(contenidoBundleExtras.getNombreSerie()))
+                        .filter(c -> c.getNumeroTemporada() == Integer.parseInt(temporadaSelected))
+                        .collect(Collectors.toList());
+
+                capítulosSerie = contenidosEstaSerie.stream().map(Contenido::getNumCapítulo)
+                        .map((capNum -> String.valueOf(capNum)))
+                        .distinct().collect(Collectors.toList());
+
+                ArrayAdapter<String> adapterCaps = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, capítulosSerie);
+
+                spinnerCap.setAdapter(adapterCaps);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         spinnerCap = findViewById(R.id.spinnerCapitulos);
+        spinnerCap.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                capituloSelected = (String)parent.getItemAtPosition(position);
+
+                Contenido contenido = contenidosEstaSerie.stream()
+                                .filter(c -> String.valueOf(c.getNumCapítulo()).equals(capituloSelected))
+                                        .findFirst().orElse(null);
+                tituloCapítulo.setText(contenido.getNumeroTemporada()+"-"+contenido.getNumCapítulo() + ": "+contenido.getTítulo());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         ratingBar.setOnRatingBarChangeListener((ratingBar1, rating, fromUser) -> {
             valor = (int) rating;
@@ -89,16 +133,16 @@ public class ActivityDetailedCapítulo extends BaseActivity implements CallInter
             executeCall(new CallInterface() {
                 @Override
                 public void doInBackground() {
-                    cliente = Connector.getConector().get(Cliente.class,"/clientesValorar/"+Parameters.idClienteSesión+"/"+contenido.getIdContenido()+"/"+valor);
-                    int idCont = contenido.getIdContenido();
-                    contenido = Connector.getConector().get(Contenido.class,"/contenido/"+idCont);
+                    cliente = Connector.getConector().get(Cliente.class,"/clientesValorar/"+Parameters.idClienteSesión+"/"+ contenidoBundleExtras.getIdContenido()+"/"+valor);
+                    int idCont = contenidoBundleExtras.getIdContenido();
+                    contenidoBundleExtras = Connector.getConector().get(Contenido.class,"/contenido/"+idCont);
                 }
 
                 @Override
                 public void doInUI() {
                     hideProgress();
                     Toast.makeText(getApplicationContext(), "Contendo valorado correctamente.", Toast.LENGTH_SHORT).show();
-                    notaMedia.setText(contenido.getValoraciónMedia()+"");
+                    notaMedia.setText(contenidoBundleExtras.getValoraciónMedia()+"");
                 }
             });
         });
@@ -110,11 +154,11 @@ public class ActivityDetailedCapítulo extends BaseActivity implements CallInter
                 public void doInBackground() {
                     valoracion = Connector.getConector()
                             .get(ClienteValoraContenido.class,"/contenidoValoración/"+
-                                    Parameters.idClienteSesión+"/"+contenido.getIdContenido());
+                                    Parameters.idClienteSesión+"/"+ contenidoBundleExtras.getIdContenido());
                     if (valoracion!=null){
-                        cliente = Connector.getConector().delete(Cliente.class,"/clientesBorrarValoración/"+Parameters.idClienteSesión+"/"+contenido.getIdContenido());
-                        int idCont = contenido.getIdContenido();
-                        contenido = Connector.getConector().get(Contenido.class,"/contenido/"+idCont);
+                        cliente = Connector.getConector().delete(Cliente.class,"/clientesBorrarValoración/"+Parameters.idClienteSesión+"/"+ contenidoBundleExtras.getIdContenido());
+                        int idCont = contenidoBundleExtras.getIdContenido();
+                        contenidoBundleExtras = Connector.getConector().get(Contenido.class,"/contenido/"+idCont);
                     }
                 }
 
@@ -123,7 +167,7 @@ public class ActivityDetailedCapítulo extends BaseActivity implements CallInter
                     hideProgress();
                     if (valoracion!=null){
                         Toast.makeText(getApplicationContext(), "Valoración eliminada correctamente.", Toast.LENGTH_SHORT).show();
-                        notaMedia.setText(contenido.getValoraciónMedia()+"");
+                        notaMedia.setText(contenidoBundleExtras.getValoraciónMedia()+"");
                     } else {
                         Toast.makeText(getApplicationContext(), "No tiene ninguna valoración.", Toast.LENGTH_SHORT).show();
                     }
@@ -133,8 +177,33 @@ public class ActivityDetailedCapítulo extends BaseActivity implements CallInter
         });
 
         buttonCarrito.setOnClickListener(view -> {
-            showProgress();
-            executeCall(this);
+            if (capituloSelected.isEmpty() || temporadaSelected.isEmpty()){
+                Toast.makeText(getApplicationContext(), "Selecciona un capítulo y una temporada.", Toast.LENGTH_SHORT).show();
+            } else {
+                showProgress();
+                executeCall(new CallInterface() {
+                    @Override
+                    public void doInBackground() {
+                        Carrito carrito = Connector.getConector().get(Carrito.class,"/clientesCarrito/"+ Parameters.idClienteSesión);
+                        contenidosCarritoCliente = Connector.getConector().getAsList(Contenido.class,"/contenidoCarrito/"+carrito.getIdCarrito());
+                        contenidosAlquiladosCliente = Connector.getConector().getAsList(Contenido.class,"/contenidoCliente/"+Parameters.idClienteSesión);
+                        if (!contenidosAlquiladosCliente.contains(contenidoBundleExtras) && !contenidosCarritoCliente.contains(contenidoBundleExtras))
+                            Connector.getConector().get(Contenido.class,
+                                    "/contenidoAñadirCarrito/"+ contenidoBundleExtras.getIdContenido()+"/"+carrito.getIdCarrito());
+                    }
+
+                    @Override
+                    public void doInUI() {
+                        hideProgress();
+                        if (contenidosAlquiladosCliente.contains(contenidoBundleExtras))
+                            Toast.makeText(getApplicationContext(), "Ya tiene alquilado el contenido.", Toast.LENGTH_SHORT).show();
+                        else if (contenidosCarritoCliente.contains(contenidoBundleExtras))
+                            Toast.makeText(getApplicationContext(), "Ya tiene el contenido en el carrito.", Toast.LENGTH_SHORT).show();
+                        else
+                            finish();
+                    }
+                });
+            }
         });
 
         buttonEliminarDelCarrito.setOnClickListener(view -> {
@@ -146,17 +215,17 @@ public class ActivityDetailedCapítulo extends BaseActivity implements CallInter
                     contenidosCarritoCliente = Connector.getConector().getAsList(Contenido.class,"/contenidoCarrito/"+carrito.getIdCarrito());
                     contenidosAlquiladosCliente = Connector.getConector().getAsList(Contenido.class,"/contenidoCliente/"+Parameters.idClienteSesión);
 
-                    if (contenidosCarritoCliente.contains(contenido))
+                    if (contenidosCarritoCliente.contains(contenidoBundleExtras))
                         Connector.getConector().delete(Contenido.class,
-                                "/contenidoEliminarCarrito/"+contenido.getIdContenido()+"/"+carrito.getIdCarrito());
+                                "/contenidoEliminarCarrito/"+ contenidoBundleExtras.getIdContenido()+"/"+carrito.getIdCarrito());
                 }
 
                 @Override
                 public void doInUI() {
                     hideProgress();
-                    if (contenidosCarritoCliente.contains(contenido)){
+                    if (contenidosCarritoCliente.contains(contenidoBundleExtras)){
                         Toast.makeText(getApplicationContext(), "Contenido eliminado del carrito.", Toast.LENGTH_SHORT).show();
-                    } else if (contenidosAlquiladosCliente.contains(contenido)){
+                    } else if (contenidosAlquiladosCliente.contains(contenidoBundleExtras)){
                         Toast.makeText(getApplicationContext(), "Ya tiene alquilado el contenido.", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getApplicationContext(), "No tiene el contenido en el carrito.", Toast.LENGTH_SHORT).show();
@@ -168,64 +237,42 @@ public class ActivityDetailedCapítulo extends BaseActivity implements CallInter
         // Carga del contenido pasado por extras
         Bundle extras = getIntent().getExtras();
         if (extras!=null){
-            contenido = (Contenido) extras.getSerializable("contenido");
-            nombreSerie.setText(contenido.getNombreSerie());
-            tituloCapítulo.setText(contenido.getNumeroTemporada()+"-"+contenido.getNumCapítulo() + ": "+contenido.getTítulo());
-            notaMedia.setText(contenido.getValoraciónMedia()+"");
-            precio.setText(contenido.getPrecio()+"€");
-            genero.setText(contenido.getGénero());
-            duracion.setText(contenido.getDuración()+" min.");
-            director.setText(contenido.getNombre_director());
-            actores.setText(contenido.getActoresPrincipales());
-            fechaEstreno.setText(contenido.getFechaEstreno());
+            contenidoBundleExtras = (Contenido) extras.getSerializable("contenido");
+            nombreSerie.setText(contenidoBundleExtras.getNombreSerie());
+            tituloCapítulo.setText(contenidoBundleExtras.getNumeroTemporada()+"-"+ contenidoBundleExtras.getNumCapítulo() + ": "+ contenidoBundleExtras.getTítulo());
+            notaMedia.setText(contenidoBundleExtras.getValoraciónMedia()+"");
+            precio.setText(contenidoBundleExtras.getPrecio()+"€");
+            genero.setText(contenidoBundleExtras.getGénero());
+            duracion.setText(contenidoBundleExtras.getDuración()+" min.");
+            director.setText(contenidoBundleExtras.getNombre_director());
+            actores.setText(contenidoBundleExtras.getActoresPrincipales());
+            fechaEstreno.setText(contenidoBundleExtras.getFechaEstreno());
             ImageDownloader.downloadImage("https://hips.hearstapps.com/hmg-prod/images/gerard-butler-300-entrenamiento-dieta-mens-health-1605801533.jpg?crop=0.526xw:1.00xh;0.241xw,0&resize=1200:*",imagenPelicula);
         }
 
         showProgress();
-        executeCall(new CallInterface() {
-            @Override
-            public void doInBackground() {
-                listaContenidos = Connector.getConector().getAsList(Contenido.class,"/contenido/");
-                List<Contenido> contenidosEstaSerie = listaContenidos.stream()
-                        .filter(c -> c.getNombreSerie().equals(contenido.getNombreSerie()))
-                        .collect(Collectors.toList());
-                temporadasSerie = contenidosEstaSerie.stream().map(Contenido::getNumeroTemporada)
-                        .map((tempNum -> String.valueOf(tempNum))).collect(Collectors.toList());
-            }
-
-            @Override
-            public void doInUI() {
-
-            }
-        });
-
-        ArrayAdapter<String> adapterTemp = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, temporadasSerie);
-
-        spinnerTemp.setAdapter(adapterTemp);
-        spinnerTemp.setOnItemClickListener((parent, view, position, id) -> {
-            String temp = (String) parent.getItemAtPosition(position);
-        });
+        executeCall(this);
 
     }
-
     @Override
     public void doInBackground() {
-        Carrito carrito = Connector.getConector().get(Carrito.class,"/clientesCarrito/"+ Parameters.idClienteSesión);
-        contenidosCarritoCliente = Connector.getConector().getAsList(Contenido.class,"/contenidoCarrito/"+carrito.getIdCarrito());
-        contenidosAlquiladosCliente = Connector.getConector().getAsList(Contenido.class,"/contenidoCliente/"+Parameters.idClienteSesión);
-        if (!contenidosAlquiladosCliente.contains(contenido) && !contenidosCarritoCliente.contains(contenido))
-            Connector.getConector().get(Contenido.class,
-                    "/contenidoAñadirCarrito/"+contenido.getIdContenido()+"/"+carrito.getIdCarrito());
+        listaContenidos = Connector.getConector().getAsList(Contenido.class,"/contenido/");
     }
 
     @Override
     public void doInUI() {
         hideProgress();
-        if (contenidosAlquiladosCliente.contains(contenido))
-            Toast.makeText(getApplicationContext(), "Ya tiene alquilado el contenido.", Toast.LENGTH_SHORT).show();
-        else if (contenidosCarritoCliente.contains(contenido))
-            Toast.makeText(getApplicationContext(), "Ya tiene el contenido en el carrito.", Toast.LENGTH_SHORT).show();
-        else
-            finish();
+        contenidosEstaSerie = listaContenidos.stream()
+                .filter(c -> c.getTipoContenido().equals("capítulo"))
+                .filter(c -> c.getNombreSerie().equals(contenidoBundleExtras.getNombreSerie()))
+                .collect(Collectors.toList());
+        temporadasSerie = contenidosEstaSerie.stream().map(Contenido::getNumeroTemporada)
+                .map((tempNum -> String.valueOf(tempNum)))
+                .distinct().collect(Collectors.toList());
+
+        ArrayAdapter<String> adapterTemp = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, temporadasSerie);
+
+        spinnerTemp.setAdapter(adapterTemp);
     }
+
 }
