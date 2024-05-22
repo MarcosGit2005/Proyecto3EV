@@ -57,7 +57,6 @@ public class AlquiladasActivity extends BaseActivity implements CallInterface,Vi
         Contenido contenido = contenidos.get(recyclerViewAlquiladas.getChildAdapterPosition(view));
         Intent intent = new Intent(this, ActivityDetailedSinBoton.class);
         intent.putExtra("contenido",contenido);
-        intent.putExtra("con_boton",false);
         startActivity(intent);
     }
 }

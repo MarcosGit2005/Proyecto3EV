@@ -165,7 +165,7 @@ public class ActivityDetailed extends BaseActivity implements CallInterface {
             director.setText(contenido.getNombre_director());
             actores.setText(contenido.getActoresPrincipales());
             fechaEstreno.setText(contenido.getFechaEstreno());
-            ImageDownloader.downloadImage("ftp://mrubiod@5.56.60.121/Proyecto%203%C2%AAEV/res/img/300.jpg",imagenPelicula);
+            ImageDownloader.downloadImage("https://www.google.com/imgres?q=300&imgurl=https%3A%2F%2Fwww.lavanguardia.com%2Fpeliculas-series%2Fimages%2Fmovie%2Fposter%2F2007%2F3%2Fw1280%2FzLQG9fqH01f8eFRAaSUJY7va92x.jpg&imgrefurl=https%3A%2F%2Fwww.lavanguardia.com%2Fpeliculas-series%2Fpeliculas%2F300-1271&docid=7D_XqXn01TGWUM&tbnid=ycaDzKRXwIgv1M&vet=12ahUKEwjG16_fzaGGAxXxUaQEHSarBJAQM3oECGQQAA..i&w=1280&h=1920&hcb=2&ved=2ahUKEwjG16_fzaGGAxXxUaQEHSarBJAQM3oECGQQAA",imagenPelicula);
 
         }
 

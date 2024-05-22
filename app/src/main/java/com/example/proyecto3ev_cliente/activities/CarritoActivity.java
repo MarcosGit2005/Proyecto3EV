@@ -122,7 +122,6 @@ public class CarritoActivity extends BaseActivity implements CallInterface,View.
         Contenido contenido = contenidos.get(recyclerView.getChildAdapterPosition(view));
         Intent intent = new Intent(this, ActivityDetailed.class);
         intent.putExtra("contenido",contenido);
-        intent.putExtra("con_boton",false);
         startActivity(intent);
     }
 }

@@ -18,13 +18,16 @@ import com.example.proyecto3ev_cliente.activities.model.Contenido;
 import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class PeliculasActivity extends BaseActivity implements CallInterface, View.OnClickListener{
+public class PeliculasActivity extends BaseActivity implements CallInterface, View.OnClickListener, SearchView.OnQueryTextListener{
     private SearchView busqueda;
     private RecyclerView recyclerView;
 
-    private List<Contenido> contenidos;
+    private List<Contenido> contenidosOriginal;
+    private List<Contenido> contenidosBúsqueda;
     private AdaptadorRecycleViewContenido adaptadorRecycleViewContenido;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,21 +39,23 @@ public class PeliculasActivity extends BaseActivity implements CallInterface, Vi
         busqueda=findViewById(R.id.searchViewBusqueda);
         recyclerView=findViewById(R.id.recyclerPeliculas);
 
+        busqueda.setOnQueryTextListener(this);
+
         showProgress();
         executeCall(this);
     }
 
     @Override
     public void doInBackground() {
-        contenidos = Connector.getConector().getAsList(Contenido.class,"/contenido/");
-        System.out.println(contenidos);
+        contenidosOriginal = Connector.getConector().getAsList(Contenido.class,"/contenido/");
+        contenidosBúsqueda = new ArrayList<>(contenidosOriginal);
     }
 
     @Override
     public void doInUI() {
         hideProgress();
 
-        adaptadorRecycleViewContenido = new AdaptadorRecycleViewContenido(this, contenidos);
+        adaptadorRecycleViewContenido = new AdaptadorRecycleViewContenido(this, contenidosBúsqueda);
 
         adaptadorRecycleViewContenido.setOnClickListener(this);
         recyclerView.setAdapter(adaptadorRecycleViewContenido);
@@ -86,10 +91,44 @@ public class PeliculasActivity extends BaseActivity implements CallInterface, Vi
     }
     @Override
     public void onClick(View view) {
-        Contenido contenido = contenidos.get(recyclerView.getChildAdapterPosition(view));
+        Contenido contenido = contenidosBúsqueda.get(recyclerView.getChildAdapterPosition(view));
         Intent intent = new Intent(this, ActivityDetailed.class);
         intent.putExtra("contenido",contenido);
-        intent.putExtra("con_boton",true);
         startActivity(intent);
+    }
+    public void filtrado(String txtBuscar){
+        int length = txtBuscar.length();
+        if (length==0){
+            contenidosBúsqueda.clear();
+            contenidosBúsqueda.addAll(contenidosOriginal);
+        } else {
+            List<Contenido> list = contenidosOriginal.stream()
+                    .filter( cont -> cont.getTítulo().toLowerCase().contains(txtBuscar.toLowerCase()))
+                    .collect(Collectors.toList());
+            contenidosBúsqueda.clear();
+            contenidosBúsqueda.addAll(list);
+        }
+        updateAdapter();
+    }
+    public void updateAdapter(){
+        adaptadorRecycleViewContenido = new AdaptadorRecycleViewContenido(this, contenidosBúsqueda);
+
+        adaptadorRecycleViewContenido.setOnClickListener(this);
+        recyclerView.setAdapter(adaptadorRecycleViewContenido);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+    }
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        filtrado(newText);
+        return false;
     }
 }
