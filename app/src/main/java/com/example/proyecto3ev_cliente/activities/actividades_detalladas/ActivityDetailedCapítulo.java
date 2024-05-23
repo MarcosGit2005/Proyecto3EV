@@ -50,6 +50,7 @@ public class ActivityDetailedCapítulo extends BaseActivity implements CallInter
     private ClienteValoraContenido valoracion;
 
     private List<Contenido> listaContenidos;
+    private Contenido contenidoSelected;
     private List<Contenido> contenidosEstaSerie;
     private List<String> temporadasSerie;
     private List<String> capítulosSerie;
@@ -112,10 +113,10 @@ public class ActivityDetailedCapítulo extends BaseActivity implements CallInter
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 capituloSelected = (String)parent.getItemAtPosition(position);
 
-                Contenido contenido = contenidosEstaSerie.stream()
+                contenidoSelected = contenidosEstaSerie.stream()
                                 .filter(c -> String.valueOf(c.getNumCapítulo()).equals(capituloSelected))
                                         .findFirst().orElse(null);
-                tituloCapítulo.setText(contenido.getNumeroTemporada()+"-"+contenido.getNumCapítulo() + ": "+contenido.getTítulo());
+                tituloCapítulo.setText(contenidoSelected.getNumeroTemporada()+"-"+contenidoSelected.getNumCapítulo() + ": "+contenidoSelected.getTítulo());
             }
 
             @Override
@@ -177,6 +178,7 @@ public class ActivityDetailedCapítulo extends BaseActivity implements CallInter
         });
 
         buttonCarrito.setOnClickListener(view -> {
+
             if (capituloSelected.isEmpty() || temporadaSelected.isEmpty()){
                 Toast.makeText(getApplicationContext(), "Selecciona un capítulo y una temporada.", Toast.LENGTH_SHORT).show();
             } else {
@@ -187,17 +189,27 @@ public class ActivityDetailedCapítulo extends BaseActivity implements CallInter
                         Carrito carrito = Connector.getConector().get(Carrito.class,"/clientesCarrito/"+ Parameters.idClienteSesión);
                         contenidosCarritoCliente = Connector.getConector().getAsList(Contenido.class,"/contenidoCarrito/"+carrito.getIdCarrito());
                         contenidosAlquiladosCliente = Connector.getConector().getAsList(Contenido.class,"/contenidoCliente/"+Parameters.idClienteSesión);
-                        if (!contenidosAlquiladosCliente.contains(contenidoBundleExtras) && !contenidosCarritoCliente.contains(contenidoBundleExtras))
+
+                        if (contenidosCarritoCliente.stream()
+                                .filter(con -> con.getTipoContenido().equals("capítulo"))
+                                .noneMatch(con -> con.getIdContenido()==contenidoSelected.getIdContenido())
+                                && contenidosAlquiladosCliente.stream()
+                                .filter(con -> con.getTipoContenido().equals("capítulo"))
+                                .noneMatch(con -> con.getIdContenido()==contenidoSelected.getIdContenido()))
                             Connector.getConector().get(Contenido.class,
-                                    "/contenidoAñadirCarrito/"+ contenidoBundleExtras.getIdContenido()+"/"+carrito.getIdCarrito());
+                                    "/contenidoAñadirCarrito/"+ contenidoSelected.getIdContenido()+"/"+carrito.getIdCarrito());
                     }
 
                     @Override
                     public void doInUI() {
                         hideProgress();
-                        if (contenidosAlquiladosCliente.contains(contenidoBundleExtras))
+                        if (contenidosAlquiladosCliente.stream()
+                                .filter(con -> con.getTipoContenido().equals("capítulo"))
+                                .anyMatch(con -> con.getIdContenido()==contenidoSelected.getIdContenido()) )
                             Toast.makeText(getApplicationContext(), "Ya tiene alquilado el contenido.", Toast.LENGTH_SHORT).show();
-                        else if (contenidosCarritoCliente.contains(contenidoBundleExtras))
+                        else if (contenidosCarritoCliente.stream()
+                                .filter(con -> con.getTipoContenido().equals("capítulo"))
+                                .anyMatch(con -> con.getIdContenido()==contenidoSelected.getIdContenido()))
                             Toast.makeText(getApplicationContext(), "Ya tiene el contenido en el carrito.", Toast.LENGTH_SHORT).show();
                         else
                             finish();
@@ -247,7 +259,7 @@ public class ActivityDetailedCapítulo extends BaseActivity implements CallInter
             director.setText(contenidoBundleExtras.getNombre_director());
             actores.setText(contenidoBundleExtras.getActoresPrincipales());
             fechaEstreno.setText(contenidoBundleExtras.getFechaEstreno());
-            ImageDownloader.downloadImage("https://hips.hearstapps.com/hmg-prod/images/gerard-butler-300-entrenamiento-dieta-mens-health-1605801533.jpg?crop=0.526xw:1.00xh;0.241xw,0&resize=1200:*",imagenPelicula);
+            ImageDownloader.downloadImage(contenidoBundleExtras.getImagen(),imagenPelicula);
         }
 
         showProgress();

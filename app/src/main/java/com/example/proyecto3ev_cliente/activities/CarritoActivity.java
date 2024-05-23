@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto3ev_cliente.API.Connector;
 import com.example.proyecto3ev_cliente.R;
+import com.example.proyecto3ev_cliente.activities.actividades_detalladas.ActivityDetailedCapítulo;
 import com.example.proyecto3ev_cliente.activities.actividades_detalladas.ActivityDetailedCorto;
+import com.example.proyecto3ev_cliente.activities.actividades_detalladas.ActivityDetailedPelicula;
 import com.example.proyecto3ev_cliente.activities.model.Carrito;
 import com.example.proyecto3ev_cliente.activities.model.Contenido;
 import com.example.proyecto3ev_cliente.base.BaseActivity;
@@ -28,7 +30,7 @@ public class CarritoActivity extends BaseActivity implements CallInterface,View.
     private EditText sumaTotal;
     private Button alquilarboton;
     private List<Contenido> contenidos;
-    private AdaptadorRecycleViewContenido adaptadorRecycleViewContenido;
+    private AdaptadorRecycleViewContenidoCarritoAlquiladas adaptadorRecycleViewContenido;
     private Carrito carrito;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -93,7 +95,7 @@ public class CarritoActivity extends BaseActivity implements CallInterface,View.
 
         sumaTotal.setText(carrito.getPrecioTotal()+"€");
 
-        adaptadorRecycleViewContenido = new AdaptadorRecycleViewContenido(this, contenidos);
+        adaptadorRecycleViewContenido = new AdaptadorRecycleViewContenidoCarritoAlquiladas(this, contenidos);
 
         adaptadorRecycleViewContenido.setOnClickListener(this);
         recyclerView.setAdapter(adaptadorRecycleViewContenido);
@@ -116,7 +118,14 @@ public class CarritoActivity extends BaseActivity implements CallInterface,View.
     @Override
     public void onClick(View view) {
         Contenido contenido = contenidos.get(recyclerView.getChildAdapterPosition(view));
-        Intent intent = new Intent(this, ActivityDetailedCorto.class);
+        Intent intent = null;
+        if (contenido.getTipoContenido().equals("película")){
+            intent = new Intent(this, ActivityDetailedPelicula.class);
+        } else if (contenido.getTipoContenido().equals("capítulo")){
+            intent = new Intent(this, ActivityDetailedCapítulo.class);
+        } else {
+            intent = new Intent(this, ActivityDetailedCorto.class);
+        }
         intent.putExtra("contenido",contenido);
         startActivity(intent);
     }

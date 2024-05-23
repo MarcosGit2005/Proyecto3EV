@@ -11,17 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto3ev_cliente.R;
-
 import com.example.proyecto3ev_cliente.activities.model.Contenido;
 import com.example.proyecto3ev_cliente.base.ImageDownloader;
 
 import java.util.List;
 
-public class AdaptadorRecycleViewContenido extends RecyclerView.Adapter<AdaptadorRecycleViewContenido.ViewHolder> {
+public class AdaptadorRecycleViewContenidoCarritoAlquiladas extends RecyclerView.Adapter<AdaptadorRecycleViewContenidoCarritoAlquiladas.ViewHolder> {
     private LayoutInflater layoutInflater;
-    private java.util.List<Contenido> contenidos;
+    private List<Contenido> contenidos;
     private View.OnClickListener onClickListener;
-    public AdaptadorRecycleViewContenido(Context context, List<Contenido> contenidos){
+    public AdaptadorRecycleViewContenidoCarritoAlquiladas(Context context, List<Contenido> contenidos){
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.contenidos = contenidos;
     }
@@ -29,7 +28,7 @@ public class AdaptadorRecycleViewContenido extends RecyclerView.Adapter<Adaptado
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.simple_element_list_content,parent,false);
+        View view = layoutInflater.inflate(R.layout.simple_element_list_content_carrito_alquiladas,parent,false);
         view.setOnClickListener(onClickListener);
         return new ViewHolder(view);
     }
@@ -47,8 +46,18 @@ public class AdaptadorRecycleViewContenido extends RecyclerView.Adapter<Adaptado
             holder.tituloContenido.setText(contenido.getNombreSerie());
         }
         holder.precioContenido.setText(contenido.getPrecio()+"€");
-        holder.tipoContenido.setText(!contenido.getTipoContenido().equals("capítulo")?contenido.getTipoContenido():"serie");
+        holder.tipoContenido.setText(contenido.getTipoContenido());
         holder.idContenido = contenido.getIdContenido();
+
+        if (contenido.getTipoContenido().equals("capítulo")){
+            holder.temporada.setText(contenido.getNumeroTemporada()+"");
+            holder.episodio.setText(contenido.getNumCapítulo()+"");
+        } else {
+            holder.temporada.setText("");
+            holder.episodio.setText("");
+            holder.tempTextView.setText("");
+            holder.capTextView.setText("");
+        }
     }
 
     @Override
@@ -58,6 +67,7 @@ public class AdaptadorRecycleViewContenido extends RecyclerView.Adapter<Adaptado
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView imageView;
         private TextView tituloContenido, precioContenido, tipoContenido;
+        private TextView temporada,episodio, tempTextView, capTextView;
         private int idContenido;
 
         public ViewHolder(@NonNull View itemView) {
@@ -66,6 +76,11 @@ public class AdaptadorRecycleViewContenido extends RecyclerView.Adapter<Adaptado
             tituloContenido = itemView.findViewById(R.id.tituloContenido);
             precioContenido = itemView.findViewById(R.id.precioContenido);
             tipoContenido = itemView.findViewById(R.id.textViewTipo);
+            temporada = itemView.findViewById(R.id.textViewTemporada);
+            episodio = itemView.findViewById(R.id.textViewCapitulo);
+
+            tempTextView = itemView.findViewById(R.id.textViewTextoTemporada);
+            capTextView = itemView.findViewById(R.id.textViewTextoCapitulo);
         }
     }
 }

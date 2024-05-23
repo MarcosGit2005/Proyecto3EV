@@ -27,6 +27,7 @@
         <activity android:name=".activities.actividades_detalladas.ActivityDetailedCorto"></activity>
         <activity android:name=".activities.actividades_detalladas.ActivityDetailedCortoSinBotones"></activity>
         <activity android:name=".activities.actividades_detalladas.ActivityDetailedCapítulo"></activity>
+        <activity android:name=".activities.actividades_detalladas.ActivityDetailedCapítuloSinBotones"></activity>
         <activity android:name=".activities.actividades_detalladas.ActivityDetailedPelicula"></activity>
         <activity android:name=".activities.actividades_detalladas.ActivityDetailedPeliculaSinBotones"></activity>
         <activity android:name=".activities.preferences.PreferenciasActivity"></activity>

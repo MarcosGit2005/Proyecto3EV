@@ -167,7 +167,7 @@ public class ActivityDetailedCorto extends BaseActivity implements CallInterface
             director.setText(contenido.getNombre_director());
             actores.setText(contenido.getActoresPrincipales());
             fechaEstreno.setText(contenido.getFechaEstreno());
-            ImageDownloader.downloadImage("https://hips.hearstapps.com/hmg-prod/images/gerard-butler-300-entrenamiento-dieta-mens-health-1605801533.jpg?crop=0.526xw:1.00xh;0.241xw,0&resize=1200:*",imagenPelicula);
+            ImageDownloader.downloadImage(contenido.getImagen(),imagenPelicula);
 
         }
 

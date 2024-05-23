@@ -1,5 +1,6 @@
 package com.example.proyecto3ev_cliente.activities.actividades_detalladas;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import com.example.proyecto3ev_cliente.activities.model.ClienteValoraContenido;
 import com.example.proyecto3ev_cliente.activities.model.Contenido;
 import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
+import com.example.proyecto3ev_cliente.base.ImageDownloader;
 import com.example.proyecto3ev_cliente.base.Parameters;
 
 public class ActivityDetailedCortoSinBotones extends BaseActivity implements CallInterface {
@@ -120,7 +122,7 @@ public class ActivityDetailedCortoSinBotones extends BaseActivity implements Cal
             director.setText(contenido.getNombre_director());
             actores.setText(contenido.getActoresPrincipales());
             fechaEstreno.setText(contenido.getFechaEstreno());
-
+            ImageDownloader.downloadImage(contenido.getImagen(),imagenPelicula);
         }
 
 

@@ -10,7 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto3ev_cliente.API.Connector;
 import com.example.proyecto3ev_cliente.R;
+import com.example.proyecto3ev_cliente.activities.actividades_detalladas.ActivityDetailedCapítulo;
+import com.example.proyecto3ev_cliente.activities.actividades_detalladas.ActivityDetailedCapítuloSinBotones;
+import com.example.proyecto3ev_cliente.activities.actividades_detalladas.ActivityDetailedCorto;
 import com.example.proyecto3ev_cliente.activities.actividades_detalladas.ActivityDetailedCortoSinBotones;
+import com.example.proyecto3ev_cliente.activities.actividades_detalladas.ActivityDetailedPelicula;
+import com.example.proyecto3ev_cliente.activities.actividades_detalladas.ActivityDetailedPeliculaSinBotones;
 import com.example.proyecto3ev_cliente.activities.model.Contenido;
 import com.example.proyecto3ev_cliente.base.BaseActivity;
 import com.example.proyecto3ev_cliente.base.CallInterface;
@@ -20,7 +25,7 @@ import java.util.List;
 
 public class AlquiladasActivity extends BaseActivity implements CallInterface,View.OnClickListener {
     private RecyclerView recyclerViewAlquiladas;
-    private AdaptadorRecycleViewContenido adaptadorRecycleViewContenido;
+    private AdaptadorRecycleViewContenidoCarritoAlquiladas adaptadorRecycleViewContenido;
     private List<Contenido> contenidos;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +48,7 @@ public class AlquiladasActivity extends BaseActivity implements CallInterface,Vi
     public void doInUI() {
         hideProgress();
 
-        adaptadorRecycleViewContenido = new AdaptadorRecycleViewContenido(this, contenidos);
+        adaptadorRecycleViewContenido = new AdaptadorRecycleViewContenidoCarritoAlquiladas(this, contenidos);
 
         adaptadorRecycleViewContenido.setOnClickListener(this);
         recyclerViewAlquiladas.setAdapter(adaptadorRecycleViewContenido);
@@ -56,7 +61,14 @@ public class AlquiladasActivity extends BaseActivity implements CallInterface,Vi
     @Override
     public void onClick(View view) {
         Contenido contenido = contenidos.get(recyclerViewAlquiladas.getChildAdapterPosition(view));
-        Intent intent = new Intent(this, ActivityDetailedCortoSinBotones.class);
+        Intent intent = null;
+        if (contenido.getTipoContenido().equals("película")){
+            intent = new Intent(this, ActivityDetailedPeliculaSinBotones.class);
+        } else if (contenido.getTipoContenido().equals("capítulo")){
+            intent = new Intent(this, ActivityDetailedCapítuloSinBotones.class);
+        } else {
+            intent = new Intent(this, ActivityDetailedCortoSinBotones.class);
+        }
         intent.putExtra("contenido",contenido);
         startActivity(intent);
     }
