@@ -121,6 +121,7 @@ public class CrearCuentaActivity extends BaseActivity implements CallInterface {
         clienteCreado = Connector.getConector().post(Cliente.class,
                 new Cliente(usuario,password,nombre,apellidos,domicilio,cp,email,
                         fechaNac,numTarjeta,"cliente",null),"/clientes/");
+        System.out.println(clienteCreado);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
